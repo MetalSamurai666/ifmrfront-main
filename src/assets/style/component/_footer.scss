@@ -1,0 +1,63 @@
+footer {
+    padding-top: 48px;
+    padding-bottom: 32px;
+    background-color: #f2f6fa;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.75);
+    .title {
+        font-size: 24px;
+        font-family: "Fira Sans Condensed";
+        font-weight: 900;
+        margin-bottom: 16px;
+    }
+    .contact {
+        & + .contact {
+            margin-top: 24px;
+        }
+        .name {
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .value {
+            display: flex;
+            gap: 4px;
+            align-items: flex-start;
+        }
+    }
+    .social {
+        display: flex;
+        gap: 16px;
+        margin-top: 40px;
+        img {
+            filter: brightness(0);
+            transition: 0.2s linear;
+        }
+        a:hover img {
+            filter: unset;
+        }
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+    .copyright {
+        margin-top: 56px;
+        display: flex;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 32px;
+        align-items: center;
+        justify-content: space-between;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 12px;
+        .info {
+            text-align: right;
+            max-width: 400px;
+        }
+    }
+}

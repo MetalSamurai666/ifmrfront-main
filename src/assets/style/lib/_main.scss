@@ -1,0 +1,25 @@
+a {
+  text-decoration: none;
+  color: #000;
+}
+ul {
+  list-style-type: none;
+}
+button,
+select,
+textarea,
+input {
+  border: 0;
+  background: unset;
+  cursor: pointer;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 24px;
+}

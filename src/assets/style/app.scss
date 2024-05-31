@@ -1,0 +1,19 @@
+
+*,
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+@import "./lib/fonts";
+@import "./lib/reset";
+
+body {
+    font-family: "Fira Sans", sans-serif;
+}
+
+@import "./lib/var";
+@import "./lib/grid";
+@import "./lib/main";
+
+

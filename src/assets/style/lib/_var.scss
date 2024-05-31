@@ -1,0 +1,72 @@
+$yellow: #e7ce79;
+$blue: #0059c2;
+$navy: #4f80e1;
+$red: #ef3c56;
+
+@mixin fb($w, $py: 0px, $px: 15px) {
+  flex-basis: $w;
+  max-width: $w;
+  width: $w;
+  padding: $py $px;
+}
+
+@mixin bg() {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@mixin img($w, $h) {
+  width: $w;
+  height: $h;
+  object-fit: cover;
+  object-position: center;
+}
+
+@mixin font($fz: 24px, $c: $black, $fw: 700, $lh: auto) {
+  font-size: $fz;
+  color: $c;
+  font-weight: $fw;
+  line-height: $lh;
+}
+@mixin dflex($j: center, $a: center) {
+  display: flex;
+  justify-content: $j;
+  align-items: $a;
+}
+.d-flex {
+  display: flex;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+.align-items-end {
+  align-items: flex-end;
+}
+.d-center {
+  @include dflex();
+}
+.d-between {
+  @include dflex(space-between);
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.line {
+  height: 2px;
+  background-color: #d9d9d9;
+}
