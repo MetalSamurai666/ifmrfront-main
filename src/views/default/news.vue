@@ -1,6 +1,6 @@
 <script setup>
     import { ref } from 'vue'
-    import poster from "@/components/default/poster.vue";
+    import poster from "@/components/default/poster.vue"
     import posterImg from '@/assets/img/poster/news.png'
     import publisherList from '@/components/publisher/publisher_list.vue'
 

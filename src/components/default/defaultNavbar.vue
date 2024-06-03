@@ -24,11 +24,11 @@
           <li>
             <router-link to="/news"> <img src="@/assets/img/icons/news.svg"/>Новости</router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link to="/"> <img src="@/assets/img/icons/partners.svg"/>Партнёры</router-link>
-          </li>
+          </li> -->
           <li>
-            <router-link to="/"> <img src="@/assets/img/icons/phone.svg"/>Контакты</router-link>
+            <router-link to="/contacts"> <img src="@/assets/img/icons/phone.svg"/>Контакты</router-link>
           </li>
         </ul>
       </div>

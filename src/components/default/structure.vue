@@ -107,7 +107,7 @@
                     top: 100%;
                     bottom: unset;
                     width: 2px;
-                    height: 1px;
+                    height: 655px;
                 }
             }
         }

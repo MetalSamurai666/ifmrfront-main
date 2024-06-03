@@ -64,6 +64,18 @@ const router = createRouter({
       ]
     },
     {
+      path: '/contacts',
+      name: 'contacts',
+      component: () => import('@/layouts/default.vue'),
+      children: [
+        {
+          path: '',
+          name: 'contacts',
+          component: () => import('@/views/default/contacts.vue')
+        }
+      ]
+    },
+    {
       path: '/auth',
       name: 'auth',
       component: () => import('@/layouts/auth.vue'),
