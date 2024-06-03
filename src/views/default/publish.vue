@@ -1,21 +1,10 @@
 <script setup>
-    import { ref } from 'vue'
-    import poster from "@/components/default/poster.vue";
-    import posterImg from '@/assets/img/poster/about.png'
-    import content from "@/components/default/content.vue";
-    import structure from '@/components/default/structure.vue';
-    import coop from '@/components/default/coop.vue';
+    import Article from '@/components/default/article.vue';
+    import publisherList from '@/components/publisher/publisher_list.vue'
 
-    const posterProps = ref({
-        img: posterImg,
-        title: 'О Центре изучения проблем развития транспорта и логистики',
-        info: 'Центр изучения проблем развития транспорта и логистики (ЦПРТЛ) – это государственное учреждение, созданное при Министерстве транспорта Республики Узбекистан. Наша организация обладает юридическим статусом государственного учреждения и осуществляет свою деятельность в соответствии с уставом, утвержденным высшими органами власти Республики Узбекистан.'
-    })
-
-    const contentProps = ref({
-        title: 'Цели, основные задачи и функции',
-        text: `
-        <p>
+    const articleItem = {
+        title: 'Транспортная инфраструктура Узбекистана: текущее состояние и перспективы развития',
+        text: `<p>
             <br>Целями деятельности Центра являются обеспечение на системной основе изучения проблем и подготовка предложений в области развития транспорта и логистики.
             </p>
             <br>
@@ -56,16 +45,26 @@
                     осуществляет сотрудничество с международными и региональными организациями и структурами, национальными институтами зарубежных стран в области развития транспорта и логистики.
                     Центр систематически подготавливает информационно-аналитические материалы о проблемах развития транспорта и логистики, вносит предложения по решению выявленных проблем, ежегодно представляет отчет о своей деятельности Министерству транспорта Республики Узбекистан.
                     </p>
-        `
-    })
+        `,
+        date: '05.06.2024',
+        cats: [
+            {
+                title: 'Исследования'
+            },
+            {
+                title: 'Проекты'
+            },
+        ]
+    }
 </script>
 
 <template>
-    <poster :poster="posterProps" />
-    <content :content="contentProps" />
-    <structure />
-    <coop />
+    <div class="publish">
+        <Article :article="articleItem"/>
+        <publisherList :title="'Другие материалы по теме'" :noLogo="true" :md="8" :count="6" :small="true"/>
+    </div>
 </template>
 
-<style lang="scss" scoped>
+<style>
+
 </style>

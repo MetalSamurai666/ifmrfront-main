@@ -2,6 +2,7 @@
     import { ref } from 'vue'
     import poster from "@/components/default/poster.vue";
     import posterImg from '@/assets/img/poster/pubs.png'
+    import contentList from '@/components/default/contentList.vue'
 
     const posterProps = ref({
         img: posterImg,
@@ -13,7 +14,7 @@
 <template>
     <div class="pubs">
         <poster :poster="posterProps" />
-        
+        <contentList />
     </div>
 </template>
 

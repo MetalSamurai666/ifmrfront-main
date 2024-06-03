@@ -22,7 +22,7 @@
             <router-link to="/pubs"> <img src="@/assets/img/icons/articles.svg"/>Публикации</router-link>
           </li>
           <li>
-            <router-link to="/"> <img src="@/assets/img/icons/news.svg"/>Новости</router-link>
+            <router-link to="/news"> <img src="@/assets/img/icons/news.svg"/>Новости</router-link>
           </li>
           <li>
             <router-link to="/"> <img src="@/assets/img/icons/partners.svg"/>Партнёры</router-link>

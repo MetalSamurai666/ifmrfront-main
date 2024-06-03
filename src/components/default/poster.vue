@@ -4,10 +4,8 @@
 
 <template>
     <div 
-        class="poster" 
-        :style="{
-            backgroundImage: 'url(' + poster?.img + ')'
-        }"
+        :class="poster?.alt ? 'poster alt' : 'poster'" 
+        :style="{backgroundImage: 'url(' + poster?.img + ')'}"
     >
         <div class="container">
             <div class="poster__box">
@@ -28,6 +26,17 @@
         background-size: 60%;
         background-position: 0 100%;
         background-repeat: no-repeat;
+        &.alt{
+            background-position: 100% 100%;
+            .poster__box{
+                margin-right: auto;
+                margin-left: unset;
+                align-items: flex-start;
+            }
+            .poster__info{
+                text-align: left;
+            }
+        }
         .container{
             height: 100%;
         }
@@ -43,6 +52,7 @@
             margin-left: auto;
             color: #fff;
             padding-top: 150px;
+            
         }
         &__title{
             font-size: 36px;

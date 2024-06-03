@@ -40,6 +40,30 @@ const router = createRouter({
       ]
     },
     {
+      path: '/news',
+      name: 'news',
+      component: () => import('@/layouts/default.vue'),
+      children: [
+        {
+          path: '',
+          name: 'news',
+          component: () => import('@/views/default/news.vue')
+        }
+      ]
+    },
+    {
+      path: '/publish',
+      name: 'publish',
+      component: () => import('@/layouts/default-alt.vue'),
+      children: [
+        {
+          path: '',
+          name: 'publish',
+          component: () => import('@/views/default/publish.vue')
+        }
+      ]
+    },
+    {
       path: '/auth',
       name: 'auth',
       component: () => import('@/layouts/auth.vue'),

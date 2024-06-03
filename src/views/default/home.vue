@@ -41,7 +41,7 @@
     <div class="line"></div>
   </div>
   <home-info />
-  <publisherList />
+  <publisherList :title="Публикации" :rows="4" />
   <usefullLinks />
   <partners />
   <div class="container"><div class="line"></div></div>

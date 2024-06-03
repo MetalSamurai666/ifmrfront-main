@@ -1,10 +1,10 @@
 <template>
   <div class="publish">
-    <router-link to="/" class="img">
+    <router-link to="/publish" class="img">
       <img src="@/assets/img/photos/publish.jpg" alt="" />
     </router-link>
     <div class="date">05.06.2024</div>
-    <router-link to="/" class="title">Экологическая устойчивость: взгляд в будущее</router-link>
+    <router-link to="/publish" class="title">Экологическая устойчивость: взгляд в будущее</router-link>
     <div class="text">
       Проблемы экологической устойчивости становятся все более актуальными в контексте развития
       транспортной инфраструктуры. Правительство, осознавая важность уменьшения негативного
@@ -29,6 +29,7 @@ defineProps(['publish'])
 img {
   aspect-ratio: 4/3;
   margin-bottom: 24px;
+  width: 100%;
 }
 .date {
   font-size: 12px;

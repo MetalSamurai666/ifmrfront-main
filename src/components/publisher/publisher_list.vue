@@ -1,12 +1,12 @@
 <template>
   <div class="publishers">
-    <div class="container">
-      <h2 class="mb-30">
-        <img src="@/assets/img/icons/publisher.svg" alt="" />
-        Публикации
+    <div :class="small ? 'container-m' : 'container'">
+      <h2 class="mb-30" v-if="title">
+        <img src="@/assets/img/icons/publisher.svg" v-if="!noLogo"/>
+        {{ title }}
       </h2>
       <el-row :gutter="30">
-        <el-col :md="md" :xs="12" v-for="i of 4" :key="i">
+        <el-col :md="md" :xs="12" v-for="i of count" :key="i">
           <publisher-item />
         </el-col>
       </el-row>
@@ -26,11 +26,23 @@ defineProps({
   title: {
     type: String
   },
+  noLogo:{
+    type: Boolean,
+    default: false
+  },
   md: {
     type: Number,
     default: 6
   },
   more: {
+    type: Boolean,
+    default: false
+  },
+  count: {
+    type: Number,
+    default: 4
+  },
+  small: {
     type: Boolean,
     default: false
   }
