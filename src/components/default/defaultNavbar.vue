@@ -54,22 +54,22 @@
 
             <ul class="side__list md-pt-20">
               <li class="item">
-                <router-link class="item__box" to="/"> <img src="@/assets/img/icons/news.svg"/>Главная</router-link>
+                <router-link @click="doMenu(false)" class="item__box" to="/"> <img src="@/assets/img/icons/news.svg"/>Главная</router-link>
               </li>
               <li class="item">
-                <router-link class="item__box" to="/about"> <img src="@/assets/img/icons/about.svg"/>О нас</router-link>
+                <router-link @click="doMenu(false)" class="item__box" to="/about"> <img src="@/assets/img/icons/about.svg"/>О нас</router-link>
               </li>
               <li class="item">
-                <router-link class="item__box" to="/pubs"> <img src="@/assets/img/icons/articles.svg"/>Публикации</router-link>
+                <router-link @click="doMenu(false)" class="item__box" to="/pubs"> <img src="@/assets/img/icons/articles.svg"/>Публикации</router-link>
               </li>
               <li class="item">
-                <router-link class="item__box" to="/news"> <img src="@/assets/img/icons/news.svg"/>Новости</router-link>
+                <router-link @click="doMenu(false)" class="item__box" to="/news"> <img src="@/assets/img/icons/news.svg"/>Новости</router-link>
               </li>
               <!-- <li class="item">
-                <router-link class="item__box" to="/"> <img src="@/assets/img/icons/partners.svg"/>Партнёры</router-link>
+                <router-link @click="doMenu(false)" class="item__box" to="/"> <img src="@/assets/img/icons/partners.svg"/>Партнёры</router-link>
               </li> -->
               <li class="item">
-                <router-link class="item__box" to="/contacts"> <img src="@/assets/img/icons/phone.svg"/>Контакты</router-link>
+                <router-link @click="doMenu(false)" class="item__box" to="/contacts"> <img src="@/assets/img/icons/phone.svg"/>Контакты</router-link>
               </li>
             </ul>
 
