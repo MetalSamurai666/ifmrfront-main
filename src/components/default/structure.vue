@@ -117,5 +117,44 @@
             gap: 15px 95px;
             padding: 0px 175px;
         }
+        
+        @media (max-width: 1024px) {
+            &__list{
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            &__box{
+                padding: 40px 0px;
+            }
+            &__title{
+                font-size: 34px;
+                line-height: 120%;
+            }
+            &__list{
+                grid-template-columns: 1fr;
+                padding: 0px;
+            }
+            .card{
+                padding: 20px;
+                gap: 5px;
+                width: 100%;
+                &::after{
+                    display: none;
+                }
+                &__logo{
+                    width: 30px;
+                }
+                &__title{
+                    font-size: 20px;
+                    line-height: 120%;
+                }
+                &.main{
+                    margin: 20px 0px;
+                    padding: 20px;
+                }
+            }
+        }
     }
 </style>

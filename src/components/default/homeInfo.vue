@@ -1,5 +1,5 @@
 <template>
-  <section class="infografike pt-80 pb-80">
+  <section class="infografike pt-80 md-pt-40 pb-80 md-pb-20">
     <div class="container">
       <h2 class="mb-30 uppercase">
         <img src="@/assets/img/icons/infografiya.svg" alt="" />
@@ -64,7 +64,7 @@
         </SplideSlide>
       </Splide>
 
-      <el-row :gutter="30" class="mt-80">
+      <el-row :gutter="30" class="mt-80 md-mt-40">
         <el-col :lg="12" :xs="24">
           <div
             class="map"
@@ -78,7 +78,7 @@
             </router-link>
           </div>
         </el-col>
-        <el-col :lg="12" :xs="24">
+        <el-col :lg="12" :xs="24" class="md-mt-20">
           <div
             class="map"
             :style="{
@@ -118,6 +118,7 @@ h2 {
     display: flex;
     align-items: center;
     margin: 0;
+    margin-left: auto;
     button {
       position: relative;
       left: unset;
@@ -159,10 +160,12 @@ ul.splide__pagination {
 .map {
   height: 331px;
   position: relative;
-
   border-radius: 4px;
   display: flex;
   flex-direction: column;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   .title {
     padding: 24px;
     color: #fff;

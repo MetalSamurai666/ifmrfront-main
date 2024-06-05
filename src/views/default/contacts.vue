@@ -115,6 +115,7 @@
                     padding: 15px;
                     font-weight: 500;
                     line-height: 120%;
+                    border-radius: 4px;
                     &:hover{
                         background-color: rgb(230, 235, 241);
                     }
@@ -126,6 +127,12 @@
                 &__info{
                     font-family: 'Roboto Slab';
                 }
+            }
+        }
+
+        @media (max-width: 600px) {
+            &__list{
+                grid-template-columns: 1fr;
             }
         }
     }

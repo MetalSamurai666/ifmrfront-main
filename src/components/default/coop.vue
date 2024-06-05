@@ -30,6 +30,7 @@
     .coop{
         background: rgb(45,55,153);
         background: linear-gradient(135deg, rgba(45,55,153,1) 0%, rgba(0,89,194,1) 100%);
+        overflow: hidden;
         &__box{
             padding: 75px 0px;
             position: relative;
@@ -76,6 +77,22 @@
             right: -150px;
             top: 0;
             height: 100%;
+        }
+
+        @media (max-width: 600px) {
+            &__box{
+                padding: 40px 0px;
+            }
+            &__title{
+                font-size: 30px;
+                max-width: 100%;
+            }
+            &__text{
+                max-width: 100%;
+            }
+            &__img{
+                display: none;
+            }
         }
     }
 </style>

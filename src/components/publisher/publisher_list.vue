@@ -10,7 +10,7 @@
           <publisher-item />
         </el-col>
       </el-row>
-      <div class="d-flex justify-content-center mb-80 mt-30">
+      <div class="d-flex justify-content-center mb-80 mt-30 md-mb-20 md-mt-10">
         <router-link to="/" class="more">
           Больше публикаций
           <img src="@/assets/img/icons/links.svg" alt="" />
@@ -56,5 +56,8 @@ defineProps({
   justify-content: center;
   gap: 8px;
   border-bottom: 1px solid #000;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 }
 </style>

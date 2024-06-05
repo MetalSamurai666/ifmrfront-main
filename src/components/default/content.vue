@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="content pt-80 pb-80">
+    <div class="content pt-80 pb-80 md-pt-40 md-pb-40">
         <div class="container">
             <h2 class="content__title">{{ content?.title }}</h2>
 
@@ -23,6 +23,14 @@
         }
         h3{
             font-family: 'Fira Sans';
+        }
+    }
+    @media (max-width: 600px) {
+        p{
+            font-size: 14px;
+        }
+        h3{
+            font-size: 22px;
         }
     }
 }

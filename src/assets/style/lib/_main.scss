@@ -22,6 +22,9 @@ input {
   margin-left: auto;
   margin-right: auto;
   padding: 0 24px;
+  @media (max-width: 600px) {
+    padding: 0px 15px;
+  }
 }
 
 .container-m {
@@ -29,5 +32,8 @@ input {
   margin-left: auto;
   margin-right: auto;
   padding: 0 24px;
+  @media (max-width: 600px) {
+    padding: 0px 15px;
+  }
 }
 

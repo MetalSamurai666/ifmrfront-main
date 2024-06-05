@@ -65,5 +65,37 @@
             font-size: 18px;
             line-height: 140%;
         }
+
+        @media (max-width: 1024px) {
+            height: auto;
+            background-size: 70%;
+            &__box{
+                gap: 15px;
+                padding-bottom: 20px;
+            }
+            &__title{
+                font-size: 30px;
+            }
+            &__info{
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            height: auto;
+            background-size: 0;
+            &__box{
+                max-width: 100%;
+                padding: 120px 0px 40px;
+                gap: 20px;
+            }
+            &__title{
+                font-size: 28px;
+            }
+            &__info{
+                font-size: 14px;
+            }
+            
+        }
     }
 </style>

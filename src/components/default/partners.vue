@@ -1,5 +1,5 @@
 <template>
-  <section class="partners pb-80">
+  <section class="partners pb-80 md-pb-20">
     <div class="container">
       <h2>
         <img src="@/assets/img/icons/partner.svg" alt="" />
@@ -32,7 +32,7 @@
       :options="{
         type: 'loop',
         perPage: 10,
-		pagination:false,
+        pagination:false,
         perSlide: 2,
         autoplay: true,
         interval: 3000,
@@ -42,6 +42,11 @@
           arrow: 'splide__arrow your-class-arrow',
           prev: 'splide__arrow--prev your-class-prev',
           next: 'splide__arrow--next your-class-next'
+        },
+        breakpoints: {
+          768: {
+            perPage: 4
+          }
         }
       }"
       aria-label="Инфографика"
@@ -115,6 +120,12 @@ h2 {
         margin-left: 4px;
       }
     }
+  }
+
+}
+@media (max-width: 768px) {
+  .box {
+    padding: 10px;  
   }
 }
 </style>

@@ -10,7 +10,7 @@
 
                 <div class="article__text" v-html="article?.text"></div>
 
-                <div class="more mt-40">
+                <div class="more mt-40 md-mt-20">
                     <div class="more__date">
                         <img src="@/assets/img/icons/cal-blue.svg" class="more__logo">
 
@@ -28,7 +28,7 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .article{
     &__title{
         background-image: url('@/assets/img/photos/publish.png');
@@ -78,6 +78,30 @@
                 line-height: 135%;
                 &:hover{
                     opacity: 1;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+        &__title{
+            font-size: 34px;
+            height: 350px;
+        }
+        &__text{
+            p{
+                font-size: 14px;
+            }
+        }
+        .more{
+            flex-direction: column;
+            gap: 10px;
+            &__title{
+                font-size: 14px;
+            }
+            &__cats{
+                .item{
+                    font-size: 14px;
                 }
             }
         }

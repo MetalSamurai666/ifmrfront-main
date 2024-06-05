@@ -1,7 +1,7 @@
 <template>
-  <section class="usefull pt-80 pb-80">
+  <section class="usefull pt-80 md-pt-40 pb-80 md-pb-40">
     <div class="container">
-      <h2 class="mb-30">
+      <h2 class="mb-30 md-mb-10">
         <img src="@/assets/img/icons/link.svg" alt="" />
         Полезные ссылки
       </h2>
@@ -30,5 +30,9 @@ export default {}
   font-size: 16px;
   margin-bottom: 10px;
   border-bottom: 1px solid #aaaaaa;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 }
+
 </style>

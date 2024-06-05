@@ -66,4 +66,23 @@ img {
     color: #fff;
   }
 }
+
+@media (max-width: 600px) {
+  .publish{
+    margin-bottom: 20px;
+  }
+  img{
+    margin-bottom: 10px;
+  }
+  .title{
+    font-size: 20px;
+  }
+  .text{
+    font-size: 14px;
+    text-align: justify;
+  }
+  .category{
+    margin-top: 10px;
+  }
+}
 </style>

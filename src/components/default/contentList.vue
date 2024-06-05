@@ -5,7 +5,7 @@
 <template>
     <div class="content">
         <div class="container">
-            <div class="content__box pt-80 pb-80">
+            <div class="content__box pt-80 pb-80 md-pt-40 md-pb-40">
                 <div class="content__list">
                     <publisherList :md="8" :count="6"/>
                 </div>
@@ -82,6 +82,19 @@
             img{
                 width: 20px;
                 filter: invert(1);
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+        &__box{
+            grid-template-columns: 1fr;
+        }
+        &__cats{
+            .item{
+                &__box{
+                    padding: 15px 0px;
+                }
             }
         }
     }

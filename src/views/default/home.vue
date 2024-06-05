@@ -7,7 +7,7 @@
   >
     <h1>Центр изучения проблем развития транспорта и логистики</h1>
   </div>
-  <div class="future pt-80 pb-80">
+  <div class="future pt-80 md-pt-40 pb-80 md-pb-40">
     <div class="container">
       <el-row :gutter="30" class="aic">
         <el-col :md="12" :xs="24">
@@ -22,7 +22,7 @@
             эффективной, устойчивой и современной транспортной системы в Узбекистане.
           </p>
         </el-col>
-        <el-col :md="12" :xs="24">
+        <el-col :md="12" :xs="24" class="md-pt-20">
           <iframe
             width="100%"
             height="315"

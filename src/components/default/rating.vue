@@ -1,5 +1,5 @@
 <template>
-  <section class="rating pt-60 mb-80">
+  <section class="rating pt-60 mb-80 md-pt-40 md-pb-40">
     <div class="container">
       <el-row :gutter="30">
         <el-col :xs="24" :md="12">
@@ -7,7 +7,7 @@
             <img src="@/assets/img/icons/bigstar.svg" alt="" />
             Рейтинг сайта
           </h2>
-          <div class="list">
+          <div class="list md-pb-20">
             <div class="item" v-for="item of 5" :key="item">
               <span> 5 звёзд: </span>
               <el-progress :stroke-width="15" :percentage="70" color="#E7CE79" />
