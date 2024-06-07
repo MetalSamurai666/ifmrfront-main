@@ -1,10 +1,19 @@
 <script setup>
   import { ref } from 'vue';
+  import { useI18n } from 'vue-i18n';
+
+  const {locale} = useI18n()
 
   const sideState = ref(false)
 
   function doMenu(i) {
     sideState.value = i
+  }
+  
+  const currentLang = ref('ru')
+  function doLang(i) {
+    currentLang.value = i
+    locale.value = i
   }
 </script>
 
@@ -17,28 +26,58 @@
           <a class="email" href="#">
             <img src="@/assets/img/icons/email.svg"/>info@ifmr.uz</a
           >
+
           <div class="languages d-flex">
-            <a href="#">O'z </a><a href="#">Уз </a><a class="current" href="#">Ру </a>
+            <!-- <button
+              type="submit"
+              @click="$i18n.locale = item"
+              v-for="item of $i18n.availableLocales"
+              :key="item"
+            >
+              {{ $t('localeTitle') }}
+            </button> -->
+            <button
+              type="submit"
+              @click="doLang('ru')"
+              :class="currentLang === 'ru' ? 'active' : ''"
+            >
+              Ру
+            </button>
+            <button
+              type="submit"
+              @click="doLang('uz')"
+              :class="currentLang === 'uz' ? 'active' : ''"
+            >
+              O`z
+            </button>
+            <button
+              type="submit"
+              @click="doLang('uzk')"
+              :class="currentLang === 'uzk' ? 'active' : ''"
+            >
+              Уз
+            </button>
           </div>
+
         </div>
         <ul class="menu d-flex">
           <li>
-            <router-link to="/"> <img src="@/assets/img/icons/news.svg"/>Главная</router-link>
+            <router-link to="/"> <img src="@/assets/img/icons/news.svg"/>{{ $t('message.nav.main') }}</router-link>
           </li>
           <li>
-            <router-link to="/about"> <img src="@/assets/img/icons/about.svg"/>О нас</router-link>
+            <router-link to="/about"> <img src="@/assets/img/icons/about.svg"/>{{ $t('message.nav.about') }}</router-link>
           </li>
           <li>
-            <router-link to="/pubs"> <img src="@/assets/img/icons/articles.svg"/>Публикации</router-link>
+            <router-link to="/pubs"> <img src="@/assets/img/icons/articles.svg"/>{{ $t('message.nav.pubs') }}</router-link>
           </li>
           <li>
-            <router-link to="/news"> <img src="@/assets/img/icons/news.svg"/>Новости</router-link>
+            <router-link to="/news"> <img src="@/assets/img/icons/news.svg"/>{{ $t('message.nav.news') }}</router-link>
           </li>
           <!-- <li>
-            <router-link to="/"> <img src="@/assets/img/icons/partners.svg"/>Партнёры</router-link>
+            <router-link to="/"> <img src="@/assets/img/icons/partners.svg"/>{{ $t('message.nav.partners') }}</router-link>
           </li> -->
           <li>
-            <router-link to="/contacts"> <img src="@/assets/img/icons/phone.svg"/>Контакты</router-link>
+            <router-link to="/contacts"> <img src="@/assets/img/icons/phone.svg"/>{{ $t('message.nav.contacts') }}</router-link>
           </li>
         </ul>
 

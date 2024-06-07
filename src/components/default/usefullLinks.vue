@@ -32,6 +32,7 @@ export default {}
   border-bottom: 1px solid #aaaaaa;
   @media (max-width: 600px) {
     font-size: 14px;
+    margin-bottom: 0;
   }
 }
 

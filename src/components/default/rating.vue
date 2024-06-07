@@ -1,5 +1,5 @@
 <template>
-  <section class="rating pt-60 mb-80 md-pt-40 md-pb-40">
+  <section class="rating pt-60 mb-80 md-pt-40 md-mb-40">
     <div class="container">
       <el-row :gutter="30">
         <el-col :xs="24" :md="12">

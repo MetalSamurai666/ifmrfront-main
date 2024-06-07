@@ -3,7 +3,7 @@
     <div class="container">
       <h2 class="mb-30 uppercase">
         <img src="@/assets/img/icons/infografiya.svg" alt="" />
-        Инфографика
+        {{ $t('message.infographic.title') }}
 
         <div class="splide__arrows arrows">
           <button
@@ -72,7 +72,7 @@
               backgroundImage: `url(${world})`
             }"
           >
-            <div class="title">Транспортные коридоры</div>
+            <div class="title">{{ $t('message.infographic.card1') }}</div>
             <router-link to="/">
               <img src="@/assets/img/icons/arrow-right.svg" alt="" />
             </router-link>
@@ -85,7 +85,7 @@
               backgroundImage: `url(${uzbekistan})`
             }"
           >
-            <div class="title">Сухие порты Узбекистана</div>
+            <div class="title">{{ $t('message.infographic.card2') }}</div>
             <router-link to="/">
               <img src="@/assets/img/icons/arrow-right.svg" alt="" />
             </router-link>

@@ -3,7 +3,7 @@
     <div :class="small ? 'container-m' : 'container'">
       <h2 class="mb-30" v-if="title">
         <img src="@/assets/img/icons/publisher.svg" v-if="!noLogo"/>
-        {{ title }}
+        {{ $t('message.nav.pubs') }}
       </h2>
       <el-row :gutter="30">
         <el-col :md="md" :xs="12" v-for="i of count" :key="i">

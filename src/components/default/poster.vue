@@ -52,7 +52,6 @@
             margin-left: auto;
             color: #fff;
             padding-top: 150px;
-            
         }
         &__title{
             font-size: 36px;
