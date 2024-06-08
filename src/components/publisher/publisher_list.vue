@@ -12,8 +12,8 @@
       </el-row>
       <div class="d-flex justify-content-center mb-80 mt-30 md-mb-20 md-mt-10">
         <router-link to="/" class="more">
-          Больше публикаций
-          <img src="@/assets/img/icons/links.svg" alt="" />
+          {{ $t('message.list.more') }}
+          <img src="@/assets/img/icons/links.svg" />
         </router-link>
       </div>
     </div>

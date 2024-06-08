@@ -5,30 +5,30 @@
         <el-col :xs="24" :md="12">
           <h2 class="mb-30">
             <img src="@/assets/img/icons/bigstar.svg" alt="" />
-            Рейтинг сайта
+            {{ $t('message.rating.title') }}
           </h2>
           <div class="list md-pb-20">
-            <div class="item" v-for="item of 5" :key="item">
-              <span> 5 звёзд: </span>
+            <div class="item" v-for="item, idx of 5" :key="idx">
+              <span> {{ idx + 1 }} {{ $t('message.rating.star') }}: </span>
               <el-progress :stroke-width="15" :percentage="70" color="#E7CE79" />
             </div>
           </div>
         </el-col>
         <el-col :xs="24" :md="12">
-          <div class="title">Оставьте ваш отзыв</div>
+          <div class="title">{{ $t('message.rating.leaveReview') }}</div>
           <el-form :model="data" label-position="top">
-            <el-form-item label="Ваша оценка">
+            <el-form-item :label="$t('message.rating.yourRating')">
               <el-rate v-model="data.rate" allow-half size="large" />
             </el-form-item>
-            <el-form-item label="Ф. И. О.">
+            <el-form-item :label="$t('message.rating.fullname')">
               <el-input v-model="data.name" />
             </el-form-item>
-            <el-form-item label="Отзыв">
+            <el-form-item :label="$t('message.rating.review')">
               <el-input v-model="data.comment" type="textarea" :row="4" />
             </el-form-item>
             <div class="d-flex justify-content-end">
               <button>
-                Отправить
+                {{ $t('message.rating.send') }}
                 <img src="@/assets/img/icons/send.svg" alt="" />
               </button>
             </div>

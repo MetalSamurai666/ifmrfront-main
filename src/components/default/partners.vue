@@ -3,7 +3,7 @@
     <div class="container">
       <h2>
         <img src="@/assets/img/icons/partner.svg" alt="" />
-        Наши партнёры
+        {{ $t('message.partners.title') }}
 
         <div class="splide__arrows arrows ml-auto">
           <button

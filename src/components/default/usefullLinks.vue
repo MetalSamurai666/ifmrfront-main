@@ -3,13 +3,13 @@
     <div class="container">
       <h2 class="mb-30 md-mb-10">
         <img src="@/assets/img/icons/link.svg" alt="" />
-        Полезные ссылки
+        {{ $t('message.useful.title') }}
       </h2>
       <el-row :gutter="30">
         <el-col :md="12" :xs="24" v-for="item of 6" :key="item">
           <a href="#" class="link">
             <img src="@/assets/img/icons/gerb.svg" alt="" />
-            Министерство развития информационных технологий и коммуникаций Республики Узбекистан
+            {{ $t('message.useful.info') }}
           </a>
         </el-col>
       </el-row>
