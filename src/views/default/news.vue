@@ -13,7 +13,7 @@
 
     const list = ref([
         {
-            
+
         }
     ])
 </script>
@@ -21,7 +21,7 @@
 <template>
     <div class="news">
         <poster :poster="posterProps" />
-        <publisherList :md="8" :count="6" class="pt-80 pb-80" :list="list"/>
+        <publisherList :md="8" :count="1" class="pt-80 pb-80" :list="list"/>
     </div>
 </template>
 
