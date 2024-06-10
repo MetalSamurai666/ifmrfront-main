@@ -1,6 +1,12 @@
 <template>
   <defaultNavbar />
-  <router-view />
+
+    <RouterView class="router-view" v-slot="{ Component }" >
+      <Transition name="page-opacity" mode="out-in">
+        <component :is="Component" />
+      </Transition>
+    </RouterView>
+  
   <defaultFooter />
 </template>
 
@@ -9,4 +15,14 @@
   import defaultFooter from '@/components/default/defaultFooter.vue'
 </script>
 
-<style></style>
+<style>
+.page-opacity-enter-active,
+.page-opacity-leave-active{
+  transition: .3s ease all;
+}
+
+.page-opacity-enter-from,
+.page-opacity-leave-to{
+  opacity: 0;
+}
+</style>

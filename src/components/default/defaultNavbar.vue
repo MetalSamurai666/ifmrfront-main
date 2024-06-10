@@ -20,12 +20,12 @@
 <template>
   <nav class="navbar">
     <div class="container d-flex justify-content-between align-items-end">
-      <a class="logo" href="index.html">LOGO</a>
+      <router-link class="logo" to="/">LOGO</router-link>
       <div class="navbar__elements">
         <div class="info d-flex justify-content-end align-items-center">
-          <a class="email" href="#">
-            <img src="@/assets/img/icons/email.svg"/>info@ifmr.uz</a
-          >
+          <router-link class="email" to="/">
+            <img src="@/assets/img/icons/email.svg"/>info@ifmr.uz
+          </router-link>
 
           <div class="languages d-flex">
             <!-- <button
