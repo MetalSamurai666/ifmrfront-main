@@ -1,11 +1,12 @@
 <template>
   <defaultNavbar />
 
-    <RouterView class="router-view" v-slot="{ Component }" >
+    <!-- <RouterView class="router-view" v-slot="{ Component }" >
       <Transition name="page-opacity" mode="out-in">
         <component :is="Component" />
       </Transition>
-    </RouterView>
+    </RouterView> -->
+    <RouterView/>
   
   <defaultFooter />
 </template>
