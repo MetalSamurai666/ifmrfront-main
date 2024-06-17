@@ -10,12 +10,20 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
+
 import VueSplide from '@splidejs/vue-splide'
 import '@splidejs/vue-splide/css'
+
+// global components
+import PhotoUploadeer from '@/components/usefull/photo-uploader.vue'
 
 const i18n = createI18n({
   legacy: false,
   locale: 'ru',
+  detectBrowserLanguage: false,
+  strategy: 'prefix',
   fallbackLocale: 'ru',
   messages: {
     ru: {
@@ -28,7 +36,7 @@ const i18n = createI18n({
           pubs: 'Публикации',
           news: 'Новости',
           partners: 'Партнёры',
-          contacts: 'Контакты',
+          contacts: 'Контакты'
         },
         infra: {
           title: 'РАЗВИТИЕ ТРАНСПОРТНОЙ ИНФРАСТРУКТУРЫ: ВЗГЛЯД В БУДУЩЕЕ УЗБЕКИСТАНА',
@@ -37,10 +45,11 @@ const i18n = createI18n({
         infographic: {
           title: 'Инфографика',
           card1: 'Транспортные коридоры',
-          card2: 'Сухие порты Узбекистана',
+          card2: 'Сухие порты Узбекистана'
         },
         card: {
-          title: 'Организован форум по развитию сотрудничества между странами Центральной Азии и Китаем',
+          title:
+            'Организован форум по развитию сотрудничества между странами Центральной Азии и Китаем',
           info: 'Проблемы экологической устойчивости становятся все более актуальными в контексте развития транспортной инфраструктуры. Правительство, осознавая важность уменьшения негативного воздействия транспорта на окружающую среду, активно внедряет меры по снижению выбросов и оптимизации энергопотребления в транспортной сфере.'
         },
         list: {
@@ -71,7 +80,8 @@ const i18n = createI18n({
           email: 'info@ifmr.uz'
         },
         publish: {
-          title: 'Организован форум по развитию сотрудничества между странами Центральной Азии и Китаем',
+          title:
+            'Организован форум по развитию сотрудничества между странами Центральной Азии и Китаем',
           text: `<p>
             <br>4 июня текущего года в г. Ташкент состоялся IV Форум аналитических центров «Центральная Азия – Китай» на тему «Взаимовыгодное сотрудничество на пути к всеобщему процветанию и устойчивому развитию».
             </p>
@@ -104,7 +114,7 @@ const i18n = createI18n({
                 Реализация вышеуказанных инициатив позволит не только существенно нарастить объёмы взаимной торговли и обеспечить запуск новых проектов кооперации, но и самое главное – ещё более повысить транзитный потенциал региона.
             </p>
         `
-        },
+        }
       }
     },
     uz: {
@@ -117,7 +127,7 @@ const i18n = createI18n({
           pubs: 'Nashrlar',
           news: 'Yangiliklar',
           partners: 'Hamkorlar',
-          contacts: 'Aloqa',
+          contacts: 'Aloqa'
         },
         infra: {
           title: 'TRANSPORT INFRATUZILMASINI RIVOJLANTIRISH: O`ZBEKISTON KELAJAGIGA QARASH',
@@ -126,10 +136,11 @@ const i18n = createI18n({
         infographic: {
           title: 'Infografika',
           card1: 'Transport yo`laklari',
-          card2: 'O`zbekistonning quruq portlari',
+          card2: 'O`zbekistonning quruq portlari'
         },
         card: {
-          title: 'Markaziy Osiyo davlatlari va Xitoy o`rtasidagi hamkorlik aloqalarini rivojlantirish yuzasidan forum tashkillashtirildi',
+          title:
+            'Markaziy Osiyo davlatlari va Xitoy o`rtasidagi hamkorlik aloqalarini rivojlantirish yuzasidan forum tashkillashtirildi',
           info: 'Ekologik barqarorlik muammolari rivojlanish kontekstida tobora dolzarb bo`lib bormoqda transport infratuzilmasi. Hukumat salbiyni kamaytirish muhimligini anglab etdi transportning atrof-muhitga ta`siri, chiqindilarni kamaytirish choralarini faol ravishda amalga oshirmoqda va transport sohasida energiya sarfini optimallashtirish.'
         },
         list: {
@@ -152,15 +163,16 @@ const i18n = createI18n({
           send: 'Yuborish'
         },
         contacts: {
-          address: "100011, O‘zbekiston Respublikasi, Toshkent shahar, Xadra massivi, 33A",
-          officeTitle1: "Qabulxona",
-          officePhone1: "+998 71 244-01-17",
-          officeTitle2: "Ofis",
-          officePhone2: "+998 71 244-02-40",
-          email: "info@ifmr.uz"
-        },  
+          address: '100011, O‘zbekiston Respublikasi, Toshkent shahar, Xadra massivi, 33A',
+          officeTitle1: 'Qabulxona',
+          officePhone1: '+998 71 244-01-17',
+          officeTitle2: 'Ofis',
+          officePhone2: '+998 71 244-02-40',
+          email: 'info@ifmr.uz'
+        },
         publish: {
-          title: 'Markaziy Osiyo davlatlari va Xitoy o`rtasidagi hamkorlik aloqalarini rivojlantirish yuzasidan forum tashkillashtirildi',
+          title:
+            'Markaziy Osiyo davlatlari va Xitoy o`rtasidagi hamkorlik aloqalarini rivojlantirish yuzasidan forum tashkillashtirildi',
           text: `<p>
             <br>Joriy yilning 4-iyun kuni  Toshkent shahrida "Umumiy farovonlik va barqaror taraqqiyot yo‘lida o‘zaro manfaatli hamkorlik" mavzusida tahlil markazlarining "Markaziy Osiyo – Xitoy" IV forumi bo'lib o'tdi..
             </p>
@@ -206,7 +218,7 @@ const i18n = createI18n({
           pubs: 'Нашрлар',
           news: 'Янгиликлар',
           partners: 'Хамкорлар',
-          contacts: 'Алока',
+          contacts: 'Алока'
         },
         infra: {
           title: 'ТРАНСПОРТ ИНФРАТУЗИЛМАСИНИ РИВОЖЛАНТИРИШ: ЎЗБЕКИСТОН КЕЛАЖАГИГА НАЗАР',
@@ -215,10 +227,11 @@ const i18n = createI18n({
         infographic: {
           title: 'Инфографика',
           card1: 'Транспорт йулаклари',
-          card2: 'Ўзбекистоннинг қуруқ портлари',
+          card2: 'Ўзбекистоннинг қуруқ портлари'
         },
         card: {
-          title: 'Марказий Осиё мамлакатлари ва Хитой ўртасида ҳамкорликни ривожлантириш бўйича форум ташкил етилди',
+          title:
+            'Марказий Осиё мамлакатлари ва Хитой ўртасида ҳамкорликни ривожлантириш бўйича форум ташкил етилди',
           info: 'Екологик барқарорлик масалалари ривожланиш шароитида тобора долзарб бўлиб бормоқда transport инфратузилмаси. Ҳукумат салбийни камайтириш муҳимлигини англаб етди транспортнинг атроф-муҳитга таъсири, чиқиндиларни камайтириш бўйича чора-тадбирларни фаол амалга оширади ва transport соҳасида енергия сарфини оптималлаштириш.'
         },
         list: {
@@ -241,15 +254,16 @@ const i18n = createI18n({
           send: 'Юбориш'
         },
         contacts: {
-          address: "100011, Ўзбекистон Республикаси, Тошкент шаҳар, Хадра массиви, 33А",
-          officeTitle1: "Қабулхона",
-          officePhone1: "+998 71 244-01-17",
-          officeTitle2: "Офис",
-          officePhone2: "+998 71 244-02-40",
-          email: "info@ifmr.uz"
+          address: '100011, Ўзбекистон Республикаси, Тошкент шаҳар, Хадра массиви, 33А',
+          officeTitle1: 'Қабулхона',
+          officePhone1: '+998 71 244-01-17',
+          officeTitle2: 'Офис',
+          officePhone2: '+998 71 244-02-40',
+          email: 'info@ifmr.uz'
         },
         publish: {
-          title: 'Марказий Осиё мамлакатлари ва Хитой ўртасида ҳамкорликни ривожлантириш бўйича форум ташкил етилди',
+          title:
+            'Марказий Осиё мамлакатлари ва Хитой ўртасида ҳамкорликни ривожлантириш бўйича форум ташкил етилди',
           text: `<p>
             <br>Жорий йилнинг 4-июн куни Тошкент шаҳрида "Умумий фаровонлик ва барқарор тараққиёт йўлида ўзаро манфаатли ҳамкорлик" мавзусида таҳлил марказларининг "Марказий Осиё – Хитой" IV форуми бўлиб ўтди.
             </p>
@@ -284,7 +298,7 @@ const i18n = createI18n({
           `
         }
       }
-    },
+    }
   }
 })
 
@@ -295,6 +309,8 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 app.use(VueCookies, { expires: '7d' })
 app.use(createPinia())
+app.component('PhotoUploader', PhotoUploadeer)
+app.component('QuillEditor', QuillEditor)
 app.use(i18n)
 app.use(VueSplide)
 app.use(router)

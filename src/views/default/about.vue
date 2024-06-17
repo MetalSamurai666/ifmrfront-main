@@ -1,20 +1,42 @@
 <script setup>
-    import { ref } from 'vue'
-    import poster from "@/components/default/poster.vue";
-    import posterImg from '@/assets/img/poster/about.png'
-    import content from "@/components/default/content.vue";
-    import structure from '@/components/default/structure.vue';
-    import coop from '@/components/default/coop.vue';
+import { onMounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-    const posterProps = ref({
-        img: posterImg,
-        title: 'О Центре изучения проблем развития транспорта и логистики',
-        info: 'Центр изучения проблем развития транспорта и логистики (ЦПРТЛ) – это государственное учреждение, созданное при Министерстве транспорта Республики Узбекистан. Наша организация обладает юридическим статусом государственного учреждения и осуществляет свою деятельность в соответствии с уставом, утвержденным высшими органами власти Республики Узбекистан.'
-    })
+const { locale } = useI18n()
+import poster from '@/components/default/poster.vue'
+import posterImg from '@/assets/img/poster/about.png'
+import content from '@/components/default/content.vue'
+import structure from '@/components/default/structure.vue'
+import coop from '@/components/default/coop.vue'
 
-    const contentProps = ref({
-        title: 'Цели, основные задачи и функции',
-        text: `
+import { usePageStore } from '@/stores/data/page'
+const store = usePageStore()
+
+let data = ref({})
+
+const getData = async () => {
+  let res = await store.bySlug('about', locale.value)
+  data.value = { ...res }
+}
+
+watch(
+  () => locale.value,
+  async () => await getData()
+)
+
+onMounted(async () => {
+  await getData()
+})
+
+const posterProps = ref({
+  img: posterImg,
+  title: 'О Центре изучения проблем развития транспорта и логистики',
+  info: 'Центр изучения проблем развития транспорта и логистики (ЦПРТЛ) – это государственное учреждение, созданное при Министерстве транспорта Республики Узбекистан. Наша организация обладает юридическим статусом государственного учреждения и осуществляет свою деятельность в соответствии с уставом, утвержденным высшими органами власти Республики Узбекистан.'
+})
+
+const contentProps = ref({
+  title: 'Цели, основные задачи и функции',
+  text: `
         <p>
             <br>Целями деятельности Центра являются обеспечение на системной основе изучения проблем и подготовка предложений в области развития транспорта и логистики.
             </p>
@@ -57,15 +79,24 @@
                     Центр систематически подготавливает информационно-аналитические материалы о проблемах развития транспорта и логистики, вносит предложения по решению выявленных проблем, ежегодно представляет отчет о своей деятельности Министерству транспорта Республики Узбекистан.
                     </p>
         `
-    })
+})
 </script>
 
 <template>
-    <poster :poster="posterProps" />
-    <content :content="contentProps" />
-    <structure />
-    <coop />
+  <poster
+    :poster="{
+      title: data.title || '',
+      info: data.description || '',
+      img: data?.img?.at(0)?.response
+    }"
+  />
+  <content
+    :content="{
+      text: data.text
+    }"
+  />
+  <structure />
+  <coop />
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

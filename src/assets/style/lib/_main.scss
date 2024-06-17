@@ -37,3 +37,31 @@ input {
   }
 }
 
+div.ql-editor {
+  background-color: #fff;
+}
+div.ql-container {
+  height: calc(100% - 90px);
+}
+
+.editor {
+  width: 100%;
+  min-height: 500px;
+  &.small {
+    min-height: 300px;
+    .el-form-item__content {
+      height: 300px;
+    }
+  }
+  .el-form-item__content {
+    display: block;
+    height: 500px;
+    width: 100%;
+    .el-form-item__error {
+      top: 89%;
+    }
+  }
+}
+.small {
+  font-size: 14px;
+}

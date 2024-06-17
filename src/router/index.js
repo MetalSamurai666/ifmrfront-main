@@ -1,3 +1,4 @@
+import menu from '@/helpers/menu/main'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -12,64 +13,29 @@ const router = createRouter({
           path: '',
           name: 'home',
           component: () => import('@/views/default/home.vue')
-        }
-      ]
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import('@/layouts/default.vue'),
-      children: [
+        },
         {
-          path: '',
+          path: 'about',
           name: 'about',
           component: () => import('@/views/default/about.vue')
-        }
-      ]
-    },
-    {
-      path: '/pubs',
-      name: 'pubs',
-      component: () => import('@/layouts/default.vue'),
-      children: [
+        },
         {
-          path: '',
+          path: 'pubs',
           name: 'pubs',
           component: () => import('@/views/default/pubs.vue')
-        }
-      ]
-    },
-    {
-      path: '/news',
-      name: 'news',
-      component: () => import('@/layouts/default.vue'),
-      children: [
+        },
         {
-          path: '',
+          path: 'news',
           name: 'news',
           component: () => import('@/views/default/news.vue')
-        }
-      ]
-    },
-    {
-      path: '/publish',
-      name: 'publish',
-      component: () => import('@/layouts/default-alt.vue'),
-      children: [
+        },
         {
-          path: '',
+          path: 'publish',
           name: 'publish',
           component: () => import('@/views/default/publish.vue')
-        }
-      ]
-    },
-    {
-      path: '/contacts',
-      name: 'contacts',
-      component: () => import('@/layouts/default.vue'),
-      children: [
+        },
         {
-          path: '',
+          path: 'contacts',
           name: 'contacts',
           component: () => import('@/views/default/contacts.vue')
         }
@@ -88,7 +54,7 @@ const router = createRouter({
       ]
     },
     {
-      path: '/dashbord',
+      path: '/dashboard',
       name: 'dashboardLayout',
       component: () => import('@/layouts/dashboard.vue'),
       children: [
@@ -96,7 +62,8 @@ const router = createRouter({
           path: '',
           name: 'dashboard',
           component: () => import('@/views/dashboard/index.vue')
-        }
+        },
+        ...menu
       ]
     }
   ],

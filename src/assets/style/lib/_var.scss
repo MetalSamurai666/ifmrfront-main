@@ -1,7 +1,11 @@
 $yellow: #e7ce79;
 $blue: #0059c2;
+$main: #0059c2;
 $navy: #4f80e1;
+$black: #222222;
 $red: #ef3c56;
+$aside: 240px;
+$gray: #e4e4e4;
 
 @mixin fb($w, $py: 0px, $px: 15px) {
   flex-basis: $w;

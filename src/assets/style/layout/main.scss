@@ -1,0 +1,56 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  background-color: #efefef;
+}
+
+.wrapper {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - $aside);
+}
+
+main {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .el-table {
+    flex: 1;
+    overflow: auto;
+  }
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+i {
+  font-size: 12px;
+}
+
+b {
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .app {
+    flex-direction: column;
+  }
+  .wrapper {
+    width: 100vw;
+  }
+}
