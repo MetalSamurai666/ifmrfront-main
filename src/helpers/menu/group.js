@@ -9,8 +9,8 @@ const group = [
     label: 'Публикации',
   },
   {
-    name: 'test',
-    label: 'Testlash'
+    name: 'other',
+    label: 'Прочее'
   }
 ]
 

@@ -1,7 +1,7 @@
 const blurRule = [
   {
     required: true,
-    message: 'Maydonni to`ldiring',
+    message: 'Заполните поля',
     trigger: 'blur'
   }
 ]
@@ -9,7 +9,7 @@ const blurRule = [
 const changeRule = [
   {
     required: true,
-    message: 'Maydonni to`ldiring',
+    message: 'Заполните поля',
     trigger: 'change'
   }
 ]

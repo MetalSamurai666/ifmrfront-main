@@ -56,11 +56,16 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
         </div>
       </template>
     </el-table-column>
-    <el-table-column label="Заголовка">
+    <el-table-column label="Название">
       <template #default="scope">
         <div @click="getTranslate(scope.row._id, 'ru')">
           {{ scope.row.translates.find((tr) => tr.language == 'ru')?.title }}
         </div>
+      </template>
+    </el-table-column>
+    <el-table-column label="Ссылка">
+      <template #default="scope">
+        {{ scope.row.link }}
       </template>
     </el-table-column>
     <el-table-column label="Переводы" width="200">
@@ -77,8 +82,6 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
         </el-button>
       </template>
     </el-table-column>
-    <el-table-column label="Краткое название" prop="slug" width="150" />
-
     <el-table-column label="Статус" width="90">
       <template #default="scope">
         <div>
@@ -105,12 +108,6 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
           </el-button>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item @click="getTranslate(scope.row._id, 'ru')">
-                <el-icon class="mr-1">
-                  <edit-pen />
-                </el-icon>
-                Редактировать
-              </el-dropdown-item>
               <el-dropdown-item @click="remove(scope.row._id)">
                 <el-icon class="mr-1">
                   <delete />

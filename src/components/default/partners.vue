@@ -32,7 +32,7 @@
       :options="{
         type: 'loop',
         perPage: 10,
-        pagination:false,
+        pagination: false,
         perSlide: 2,
         autoplay: true,
         interval: 3000,
@@ -51,9 +51,26 @@
       }"
       aria-label="Инфографика"
     >
-      <SplideSlide v-for="item of 25" :key="item">
+      <SplideSlide v-for="item of partners" :key="item">
         <div class="box">
-          <img src="@/assets/img/partners/1.png" alt="Инфографика" />
+          <img
+            v-if="item.img?.at(0)?.response"
+            :src="`${url}/${item.img?.at(0)?.response}`"
+            :alt="
+              item?.translates?.find((item) => item?.language == locale)?.title ||
+              item?.translates?.find((item) => item?.language == 'ru')?.title ||
+              ''
+            "
+          />
+          <img
+            v-else
+            src="@/assets/img/partners/1.png"
+            :alt="
+              item?.translates?.find((item) => item?.language == locale)?.title ||
+              item?.translates?.find((item) => item?.language == 'ru')?.title ||
+              ''
+            "
+          />
         </div>
       </SplideSlide>
     </Splide>
@@ -69,6 +86,29 @@ const slide = ref()
 const move = (val) => {
   val > 0 ? slide.value.go('>') : slide.value.go('<')
 }
+
+import { storeToRefs } from 'pinia'
+import { onMounted, watch } from 'vue'
+import { url } from '@/helpers/api'
+import { usePartnerStore } from '@/stores/data/partner'
+const store = usePartnerStore()
+const { partners } = storeToRefs(store)
+
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
+
+const getData = async () => {
+  await store.getAllPartners({
+    search: {
+      status: 0
+    }
+  })
+}
+
+onMounted(async () => {
+  await getData()
+})
 </script>
 
 <style lang="scss" scoped>
@@ -121,11 +161,10 @@ h2 {
       }
     }
   }
-
 }
 @media (max-width: 768px) {
   .box {
-    padding: 10px;  
+    padding: 10px;
   }
 }
 </style>

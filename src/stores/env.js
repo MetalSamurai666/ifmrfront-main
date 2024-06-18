@@ -76,7 +76,7 @@ const convertDate = (value = new Date(), type = null) => {
   let date = new Date(value)
   return type == 'full'
     ? `${addZero(date.getHours())}:${addZero(date.getMinutes())} ${addZero(date.getDate())}/${addZero(date.getMonth() + 1)}/${addZero(date.getFullYear())}`
-    : `${addZero(date.getDate())}/${addZero(date.getMonth() + 1)}/${addZero(date.getFullYear())}`
+    : `${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.${addZero(date.getFullYear())}`
 }
 
 export { project_title, convertDate, langs, convertToSlug }

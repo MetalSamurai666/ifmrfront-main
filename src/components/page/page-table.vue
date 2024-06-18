@@ -63,10 +63,10 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
         </div>
       </template>
     </el-table-column>
-    <el-table-column label="Переводы" width="150">
+    <el-table-column label="Переводы" width="200">
       <template #default="scope">
         <el-button
-          v-for="lang of langs.filter((l) => !l.default)"
+          v-for="lang of langs"
           :key="lang.language"
           @click="getTranslate(scope.row._id, lang.language)"
           :type="

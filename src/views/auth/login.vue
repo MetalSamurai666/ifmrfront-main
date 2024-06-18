@@ -21,6 +21,7 @@
         <el-button type="success" @click="send" size="large">Войти</el-button>
       </el-form>
     </div>
+    <router-link to="/" class="back">Вернуться на сайт</router-link>
     <div></div>
   </div>
 </template>

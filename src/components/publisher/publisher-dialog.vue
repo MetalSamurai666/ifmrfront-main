@@ -2,7 +2,7 @@
   <el-dialog
     v-model="dialogToggle"
     title="Добавить"
-    fullscreen
+    width="900"
     center
     @close="close"
     :close-on-click-modal="false"
@@ -16,11 +16,13 @@
       label-position="top"
     >
       <el-row :gutter="30">
-        <el-col :span="data.language == 'ru' ? 10 : 24">
-          <el-form-item label="Название страниц" prop="title">
+        <el-col :span="data.language == 'ru' ? 12 : 24">
+          <el-form-item label="Название" prop="title" :rules="blurRule">
             <el-input v-model="data.title" @input="convertSlug" @blur="checkingSlug" />
           </el-form-item>
-          <el-form-item v-if="data.language == 'ru'" label="Краткое название (для URL)">
+        </el-col>
+        <el-col v-if="data.language == 'ru'" :span="12">
+          <el-form-item label="Краткое название (для URL)">
             <el-input v-model="data.slug" @blur="checkingSlug" />
             <el-alert
               v-if="lockToggle"
@@ -29,34 +31,34 @@
               :closable="false"
             />
           </el-form-item>
-          <el-form-item v-if="data.language == 'ru'" label="Фотография страниц">
-            <el-upload
-              v-model:file-list="data.img"
-              class="avatar-uploader"
-              list-type="picture-card"
-              :action="`${url}/api/page/upload`"
-              :on-preview="handlePictureCardPreview"
-              :headers="{
-                Authorization: `Bearer ${cookies.get('sitetoken') || ''}`
-              }"
-              :limit="1"
-            >
-              <el-icon><plus /></el-icon>
-            </el-upload>
-          </el-form-item>
         </el-col>
-        <el-col :span="data.language == 'ru' ? 14 : 24">
-          <el-form-item label="Краткий текст" class="editor small">
-            <QuillEditor
-              theme="snow"
-              v-model:content="data.description"
-              ref="editordesc"
-              contentType="html"
-            />
+        <el-col :span="24" v-if="data.language == 'ru'">
+          <el-form-item label="Категория" prop="category" :rules="changeRule">
+            <el-select
+              v-model="data.category"
+              placeholder="Выберите из списка"
+              filterable
+              clearable
+            >
+              <el-option
+                v-for="opt of categorys"
+                :key="opt._id"
+                :value="opt._id"
+                :label="opt.translates?.find((tr) => tr.language == 'ru')?.title || ''"
+              />
+            </el-select>
           </el-form-item>
         </el-col>
       </el-row>
 
+      <el-form-item label="Краткий текст" class="editor small">
+        <QuillEditor
+          theme="snow"
+          v-model:content="data.description"
+          ref="editordesc"
+          contentType="html"
+        />
+      </el-form-item>
       <el-form-item label="Подробный текст" class="editor">
         <QuillEditor
           theme="snow"
@@ -66,6 +68,21 @@
           :modules="modules"
           toolbar="full"
         />
+      </el-form-item>
+      <el-form-item label="Фотография публикации">
+        <el-upload
+          v-model:file-list="data.img"
+          class="avatar-uploader"
+          list-type="picture-card"
+          :action="`${url}/api/publisher/upload`"
+          :on-preview="handlePictureCardPreview"
+          :headers="{
+            Authorization: `Bearer ${cookies.get('sitetoken') || ''}`
+          }"
+          :limit="1"
+        >
+          <el-icon><plus /></el-icon>
+        </el-upload>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -81,13 +98,14 @@
 import { url, api, checkSlug } from '@/helpers/api'
 import cookies from 'vue-cookies'
 import { convertToSlug, langs } from '@/stores/env'
+import { changeRule, blurRule } from '@/helpers/vars'
 import { computed, ref, watch } from 'vue'
 import ImageUploader from 'quill-image-uploader'
 
 import 'quill-image-uploader/dist/quill.imageUploader.min.css'
 
 const emits = defineEmits(['close', 'save', 'checkslug'])
-const props = defineProps(['toggle', 'id', 'type', 'data', 'option'])
+const props = defineProps(['toggle', 'id', 'type', 'data', 'option', 'categorys'])
 const dialogToggle = ref(false)
 const lockToggle = ref(false)
 import axios from 'axios'
@@ -117,7 +135,7 @@ const modules = {
         const formData = new FormData()
         formData.append('file', file)
         axios
-          .post(`${url}/api/page/upload`, formData, {
+          .post(`${url}/api/publisher/upload`, formData, {
             headers: {
               Authorization: `Bearer ${cookies.get('sitetoken') || ''}`
             }
@@ -154,7 +172,7 @@ const convertSlug = () => {
 const checkingSlug = async () => {
   if (data.value.slug < 1) return false
   if (props.data?.resslug == data.value.slug) return false
-  lockToggle.value = await checkSlug('page', data.value.slug)
+  lockToggle.value = await checkSlug('publisher', data.value.slug)
   console.log(lockToggle.value)
 }
 

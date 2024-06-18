@@ -1,23 +1,42 @@
 <script setup>
-    import { ref } from 'vue'
-    import poster from "@/components/default/poster.vue";
-    import posterImg from '@/assets/img/poster/pubs.png'
-    import contentList from '@/components/default/contentList.vue'
+import poster from '@/components/default/poster.vue'
+import posterImg from '@/assets/img/poster/pubs.png'
+import contentList from '@/components/default/contentList.vue'
+import { onMounted, ref, watch } from 'vue'
+import { usePageStore } from '@/stores/data/page'
+const store = usePageStore()
+import { useI18n } from 'vue-i18n'
 
-    const posterProps = ref({
-        img: posterImg,
-        title: 'Публикации',
-        info: 'Результаты наших исследований, аналитические обзоры, статьи, кейсы успешных проектов и многое другое в области транспортной инфраструктуры и логистики. У нас вы можете ознакомиться с последними тенденциями в отрасли, получить экспертные мнения и расширить свои знания о текущих и будущих вызовах и возможностях в сфере транспорта.'
-    })
+const { locale } = useI18n()
+let data = ref({})
+
+const getData = async () => {
+  let res = await store.bySlug('pubs', locale.value)
+  console.log(res)
+  data.value = { ...res }
+}
+
+watch(
+  () => locale.value,
+  async () => await getData()
+)
+
+onMounted(async () => {
+  await getData()
+})
 </script>
 
 <template>
-    <div class="pubs">
-        <poster :poster="posterProps" />
-        <contentList />
-    </div>
+  <div class="pubs">
+    <poster
+      :poster="{
+        title: data.title || '',
+        info: data.description || '',
+        img: data?.img?.at(0)?.response
+      }"
+    />
+    <contentList />
+  </div>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

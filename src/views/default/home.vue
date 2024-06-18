@@ -1,12 +1,5 @@
 <template>
-  <div
-    class="home"
-    :style="{
-      backgroundImage: 'url(' + img + ')'
-    }"
-  >
-    <h1>{{ $t('message.homeTitle') }}</h1>
-  </div>
+  <homeSlider />
   <div class="future pt-80 md-pt-40 pb-80 md-pb-40">
     <div class="container">
       <el-row :gutter="30" class="aic">
@@ -37,7 +30,7 @@
     <div class="line"></div>
   </div>
   <home-info />
-  <publisherList :title="'Публикации'" :rows="4" />
+  <publisherList :title="'Публикации'" :rows="4" :limit="4" :more="true"/>
   <usefullLinks />
   <partners />
   <div class="container"><div class="line"></div></div>
@@ -45,14 +38,38 @@
 </template>
 
 <script setup>
-import img from '@/assets/img/photos/home.jpg'
+import { usePublisherStore } from '@/stores/data/publisher'
+import { storeToRefs } from 'pinia'
+import { onMounted, watch } from 'vue'
+const storePublisher = usePublisherStore()
+const { publishers } = storeToRefs(storePublisher)
+
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
+
+watch(
+  () => locale.value,
+  async () => {
+    await getDate()
+  }
+)
+
+const getDate = async () => {
+  await storePublisher.getPublishers({
+    limit: 4,
+    language: locale.value || 'ru'
+  })
+}
+
+onMounted(async () => {
+  await getDate()
+})
+
 import homeInfo from '@/components/default/homeInfo.vue'
+import homeSlider from '@/components/default/homeSlider.vue'
 import publisherList from '@/components/publisher/publisher_list.vue'
 import usefullLinks from '@/components/default/usefullLinks.vue'
 import partners from '@/components/default/partners.vue'
 import rating from '@/components/default/rating.vue'
 </script>
-
-<style lang="scss" scoped>
-@import '@/assets/style/page/home.scss';
-</style>

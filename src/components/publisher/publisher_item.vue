@@ -1,21 +1,43 @@
 <template>
   <div class="publish">
-    <router-link to="/publish" class="img">
-      <img src="@/assets/img/photos/publish.jpg" alt="" />
+    <router-link
+      :to="{ name: 'publish', params: { slug: publish?.slug || publish?.key?.slug || '' } }"
+      class="img"
+    >
+      <img
+        v-if="publish?.img?.at(0)?.response || publish?.key?.img?.at(0)?.response"
+        :src="`${url}/${publish?.img?.at(0)?.response || publish?.key?.img?.at(0)?.response}`"
+        alt=""
+      />
+      <img v-else src="@/assets/img/photos/publish.jpg" alt="" />
     </router-link>
-    <div class="date">05.06.2024</div>
-    <router-link to="/publish" class="title">{{ $t('message.card.title') }}</router-link>
-    <div class="text">
-      {{ $t('message.card.info') }}
-    </div>
+    <div class="date">{{ convertDate(publish?.createdAt) }}</div>
+    <router-link
+      :to="{ name: 'publish', params: { slug: publish?.slug || publish?.key?.slug || '' } }"
+      class="title"
+      >{{
+        publish?.title || publish?.translates?.find((tr) => tr.language == locale)?.title || ''
+      }}</router-link
+    >
+    <div
+      class="text"
+      v-html="
+        publish?.description ||
+        publish?.translates?.find((tr) => tr.language == locale)?.description ||
+        ''
+      "
+    />
     <div class="category">
-      <router-link to="/" class="link"> Рубрика </router-link>
-      <router-link to="/" class="link"> Рубрика </router-link>
+      <router-link to="/" class="link"> {{ publish?.category?.title }} </router-link>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+import { url } from '@/helpers/api'
+import { convertDate } from '@/stores/env'
+const { locale } = useI18n()
 defineProps(['publish'])
 </script>
 
@@ -65,20 +87,20 @@ img {
 }
 
 @media (max-width: 600px) {
-  .publish{
+  .publish {
     margin-bottom: 20px;
   }
-  img{
+  img {
     margin-bottom: 10px;
   }
-  .title{
+  .title {
     font-size: 20px;
   }
-  .text{
+  .text {
     font-size: 14px;
     text-align: justify;
   }
-  .category{
+  .category {
     margin-top: 10px;
   }
 }

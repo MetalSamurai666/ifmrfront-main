@@ -14,10 +14,11 @@ export const authStore = defineStore('authStore', () => {
       data
     })
     console.log(result.data)
-
-    cookies.set('sitetoken', result.data?.token)
-    user.value = { ...result.data?.user }
-    router.push({ name: 'dashboard' })
+    if (result.status == 200) {
+      cookies.set('sitetoken', result.data?.token)
+      user.value = { ...result.data?.user }
+      router.push({ name: 'dashboard' })
+    }
   }
   const route = useRoute()
   const checkUser = async () => {

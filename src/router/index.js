@@ -21,7 +21,7 @@ const router = createRouter({
         },
         {
           path: 'pubs',
-          name: 'pubs',
+          name: 'publishes',
           component: () => import('@/views/default/pubs.vue')
         },
         {
@@ -30,14 +30,21 @@ const router = createRouter({
           component: () => import('@/views/default/news.vue')
         },
         {
-          path: 'publish',
-          name: 'publish',
-          component: () => import('@/views/default/publish.vue')
-        },
-        {
           path: 'contacts',
           name: 'contacts',
           component: () => import('@/views/default/contacts.vue')
+        }
+      ]
+    },
+    {
+      path: '/publish',
+      name: 'publishlayout',
+      component: () => import('@/layouts/default-alt.vue'),
+      children: [
+        {
+          path: ':slug',
+          name: 'publish',
+          component: () => import('@/views/default/publish.vue')
         }
       ]
     },

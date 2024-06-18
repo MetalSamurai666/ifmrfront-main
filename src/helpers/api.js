@@ -2,8 +2,8 @@ import router from '@/router'
 import cookies from 'vue-cookies'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-// const url = 'https://muslimapi.bookblogs.uz'
-const url = 'http://localhost:3000'
+const url = 'https://ifmr.hamkasb.uz'
+// const url = 'http://localhost:3000'
 
 const api = async (payload) => {
   // if (!cookies.get('sitetoken')) router.push({ name: 'sign-in' })

@@ -32,6 +32,17 @@ export const useCategoryStore = defineStore('useCategoryStore', () => {
     categorysCount.value = data.count
   }
 
+  const getCategorys = async (params) => {
+    categorys.value = []
+    categorysCount.value = 0
+    let { data } = await api({
+      url: `v1/category`,
+      params
+    })
+    console.log(data)
+    categorys.value = [...data]
+  }
+
   const deleteCategory = async (id) => {
     await api({
       url: `api/category/${id}`,
@@ -99,7 +110,7 @@ export const useCategoryStore = defineStore('useCategoryStore', () => {
     categorys,
     category,
     categorysCount,
-
+    getCategorys,
     bySlug,
     getTranslateCategory,
     getCategory,

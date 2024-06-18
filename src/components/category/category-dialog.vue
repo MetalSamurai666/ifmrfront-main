@@ -31,7 +31,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="24">
-          <el-form-item label="Краткие текст" class="editor small">
+          <el-form-item label="Краткий текст" class="editor small">
             <QuillEditor
               theme="snow"
               v-model:content="data.description"

@@ -2,7 +2,7 @@
   <el-dialog
     v-model="dialogToggle"
     title="Добавить"
-    fullscreen
+    width="600"
     center
     @close="close"
     :close-on-click-modal="false"
@@ -16,25 +16,23 @@
       label-position="top"
     >
       <el-row :gutter="30">
-        <el-col :span="data.language == 'ru' ? 10 : 24">
-          <el-form-item label="Название страниц" prop="title">
-            <el-input v-model="data.title" @input="convertSlug" @blur="checkingSlug" />
+        <el-col :span="24">
+          <el-form-item label="Название" prop="title">
+            <el-input v-model="data.title"  />
           </el-form-item>
-          <el-form-item v-if="data.language == 'ru'" label="Краткое название (для URL)">
-            <el-input v-model="data.slug" @blur="checkingSlug" />
-            <el-alert
-              v-if="lockToggle"
-              title="Такое короткое название занята"
-              type="error"
-              :closable="false"
-            />
+        </el-col>
+        <el-col :span="24">
+          <el-form-item label="Ссылка" >
+            <el-input v-model="data.link"/>
           </el-form-item>
-          <el-form-item v-if="data.language == 'ru'" label="Фотография страниц">
+        </el-col>
+        <el-col :span="24">
+          <el-form-item v-if="data.language == 'ru'" label="Логотип">
             <el-upload
               v-model:file-list="data.img"
               class="avatar-uploader"
               list-type="picture-card"
-              :action="`${url}/api/page/upload`"
+              :action="`${url}/api/partner/upload`"
               :on-preview="handlePictureCardPreview"
               :headers="{
                 Authorization: `Bearer ${cookies.get('sitetoken') || ''}`
@@ -45,28 +43,7 @@
             </el-upload>
           </el-form-item>
         </el-col>
-        <el-col :span="data.language == 'ru' ? 14 : 24">
-          <el-form-item label="Краткий текст" class="editor small">
-            <QuillEditor
-              theme="snow"
-              v-model:content="data.description"
-              ref="editordesc"
-              contentType="html"
-            />
-          </el-form-item>
-        </el-col>
       </el-row>
-
-      <el-form-item label="Подробный текст" class="editor">
-        <QuillEditor
-          theme="snow"
-          v-model:content="data.text"
-          ref="editortext"
-          contentType="html"
-          :modules="modules"
-          toolbar="full"
-        />
-      </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
@@ -92,9 +69,6 @@ const dialogToggle = ref(false)
 const lockToggle = ref(false)
 import axios from 'axios'
 
-const editortext = ref()
-const editordesc = ref()
-
 const form = ref()
 const data = ref({
   language: 'ru'
@@ -103,36 +77,10 @@ const rules = ref({
   title: [
     {
       required: true,
-      message: 'Напишите название категории'
+      message: 'Заполните поля'
     }
   ]
 })
-
-const modules = {
-  name: 'imageUploader',
-  module: ImageUploader,
-  options: {
-    upload: (file) => {
-      return new Promise((resolve, reject) => {
-        const formData = new FormData()
-        formData.append('file', file)
-        axios
-          .post(`${url}/api/page/upload`, formData, {
-            headers: {
-              Authorization: `Bearer ${cookies.get('sitetoken') || ''}`
-            }
-          })
-          .then((res) => {
-            resolve(`${url}/${res.data}`)
-          })
-          .catch((err) => {
-            reject('Upload failed')
-            console.error('Error:', err)
-          })
-      })
-    }
-  }
-}
 
 const list = ref([])
 const dialogImageUrl = ref('')
@@ -154,20 +102,17 @@ const convertSlug = () => {
 const checkingSlug = async () => {
   if (data.value.slug < 1) return false
   if (props.data?.resslug == data.value.slug) return false
-  lockToggle.value = await checkSlug('page', data.value.slug)
+  lockToggle.value = await checkSlug('partner', data.value.slug)
   console.log(lockToggle.value)
 }
 
 const close = async () => {
-  emits('close')
-  dialogToggle.value = false
-  editordesc.value.setHTML('')
-  editortext.value.setHTML('')
   setTimeout(async () => {
     data.value = {}
-    if (!form.value) return
-    await form?.value?.resetFields()
+    await form.value.resetFields()
   }, 100)
+  emits('close')
+  dialogToggle.value = false
 }
 
 const save = async () => {
