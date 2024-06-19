@@ -30,7 +30,7 @@
     <div class="line"></div>
   </div>
   <home-info />
-  <publisherList :title="'Публикации'" :rows="4" :limit="4" :more="true"/>
+  <publisherList :title="'Публикации'" :rows="4" :limit="4" :more="true" />
   <usefullLinks />
   <partners />
   <div class="container"><div class="line"></div></div>

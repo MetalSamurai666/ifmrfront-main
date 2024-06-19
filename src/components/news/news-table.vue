@@ -95,7 +95,7 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
         </div>
       </template>
     </el-table-column>
-    <el-table-column width="100" align="right" v-if="false">
+    <el-table-column width="100" align="right">
       <template #default="scope">
         <el-dropdown>
           <el-button class="el-dropdown-link">
@@ -111,7 +111,7 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
                 </el-icon>
                 Редактировать
               </el-dropdown-item>
-              <el-dropdown-item v-if="false" @click="remove(scope.row._id)">
+              <el-dropdown-item @click="remove(scope.row._id)">
                 <el-icon class="mr-1">
                   <delete />
                 </el-icon>

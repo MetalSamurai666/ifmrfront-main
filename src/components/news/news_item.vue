@@ -1,7 +1,7 @@
 <template>
   <div class="publish">
     <router-link
-      :to="{ name: 'publish', params: { slug: publish?.slug || publish?.key?.slug || '' } }"
+      :to="{ name: 'shownews', params: { slug: publish?.slug || publish?.key?.slug || '' } }"
       class="img"
     >
       <img
@@ -10,11 +10,11 @@
         :src="`${url}/${publish?.img?.at(0)?.response || publish?.key?.img?.at(0)?.response}`"
         alt=""
       />
-      <img class="poster" v-else src="@/assets/img/photos/publish.jpg" alt="" />
+      <img v-else class="poster" src="@/assets/img/photos/publish.jpg" alt="" />
     </router-link>
     <div class="date">{{ convertDate(publish?.createdAt) }}</div>
     <router-link
-      :to="{ name: 'publish', params: { slug: publish?.slug || publish?.key?.slug || '' } }"
+      :to="{ name: 'shownews', params: { slug: publish?.slug || publish?.key?.slug || '' } }"
       class="title"
       >{{
         publish?.title || publish?.translates?.find((tr) => tr.language == locale)?.title || ''
@@ -28,9 +28,6 @@
         ''
       "
     />
-    <div class="category">
-      <router-link to="/" class="link"> {{ publish?.category?.title }} </router-link>
-    </div>
   </div>
 </template>
 

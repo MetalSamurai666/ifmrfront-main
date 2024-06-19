@@ -94,14 +94,12 @@ export const usePublisherStore = defineStore('usePublisherStore', () => {
   }
 
   const getPublishers = async (params) => {
-    console.log(params)
     publishers.value = []
     publishersCount.value = 0
     let { data } = await api({
       url: `v1/publisher`,
       params
     })
-    console.log(data)
     publishers.value = [...data.data]
     publishersCount.value = data.count
   }

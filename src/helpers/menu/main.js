@@ -10,6 +10,16 @@ const menu = [
     }
   },
   {
+    path: 'news',
+    name: 'newslist',
+    component: () => import('@/views/dashboard/news.vue'),
+    meta: {
+      title: 'Новости',
+      group: 'content',
+      icon: 'list'
+    }
+  },
+  {
     path: 'publisher',
     name: 'publisher',
     component: () => import('@/views/dashboard/publisher.vue'),

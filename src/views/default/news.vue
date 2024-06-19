@@ -1,30 +1,50 @@
 <script setup>
-    import { ref } from 'vue'
-    import poster from "@/components/default/poster.vue"
-    import posterImg from '@/assets/img/poster/news.png'
-    import publisherList from '@/components/publisher/publisher_list.vue'
+import poster from '@/components/default/poster.vue'
+import newsList from '@/components/news/news-list.vue'
 
-    const posterProps = ref({
-        img: posterImg,
-        title: 'Публикации',
-        info: 'Результаты наших исследований, аналитические обзоры, статьи, кейсы успешных проектов и многое другое в области транспортной инфраструктуры и логистики. У нас вы можете ознакомиться с последними тенденциями в отрасли, получить экспертные мнения и расширить свои знания о текущих и будущих вызовах и возможностях в сфере транспорта.',
-        alt: true
-    })
+import { onMounted, ref, watch } from 'vue'
+import { usePageStore } from '@/stores/data/page'
+const store = usePageStore()
+import { useI18n } from 'vue-i18n'
 
-    const list = ref([
-        {
+const { locale } = useI18n()
+let data = ref({})
 
-        }
-    ])
+import { useNewsStore } from '@/stores/data/news'
+const newsStore = useNewsStore()
+
+const getData = async () => {
+  let res = await store.bySlug('news', locale.value)
+
+  data.value = { ...res }
+
+  await newsStore.getNewss({
+    language: locale.value
+  })
+}
+
+watch(
+  () => locale.value,
+  async () => await getData()
+)
+
+onMounted(async () => {
+  await getData()
+})
 </script>
 
 <template>
-    <div class="news">
-        <poster :poster="posterProps" />
-        <publisherList :md="8" :count="1" class="pt-80 pb-80" :list="list"/>
-    </div>
+  <div class="news">
+    <poster
+      :poster="{
+        title: data.title || '',
+        info: data.description || '',
+        img: data?.img?.at(0)?.response,
+        alt: true
+      }"
+    />
+    <newsList :md="8" :count="1" class="pt-80 pb-80" />
+  </div>
 </template>
 
-<style>
-
-</style>
+<style></style>

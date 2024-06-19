@@ -12,7 +12,7 @@ let data = ref({})
 
 const getData = async () => {
   let res = await store.bySlug('pubs', locale.value)
-  console.log(res)
+  
   data.value = { ...res }
 }
 

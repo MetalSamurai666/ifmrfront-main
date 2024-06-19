@@ -21,10 +21,10 @@ import { url } from '@/helpers/api'
 <style lang="scss" scoped>
 .poster {
   width: 100%;
-  height: 760px;
+  height: 690px;
   background-color: $blue;
   background-size: 100%;
-  background-position: 0 100%;
+  background-position: top right;
   background-repeat: no-repeat;
   &.alt {
     background-position: 100% 100%;

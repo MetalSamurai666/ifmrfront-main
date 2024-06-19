@@ -1,0 +1,64 @@
+.publish {
+  margin-bottom: 30px;
+  .poster {
+    aspect-ratio: 4/3;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+  .date {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 4px;
+  }
+  .title {
+    display: block;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 100%;
+  }
+  .text {
+    font-size: 16px;
+    line-height: 140%;
+    font-family: 'Roboto Slab';
+    font-weight: 300;
+    text-align: justify;
+  }
+  .category {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .link {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 2px;
+    border: 1px solid #000;
+    font-size: 12px;
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .publish {
+    margin-bottom: 20px;
+    img {
+      margin-bottom: 10px;
+    }
+    .title {
+      font-size: 18px;
+    }
+    .text p,
+    .text {
+      font-size: 12px;
+      text-align: justify;
+    }
+    .category {
+      margin-top: 10px;
+    }
+  }
+}

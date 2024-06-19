@@ -1,13 +1,13 @@
 <template>
-  <div class="publishers" v-if="publishers.length > 0">
+  <div class="newss">
     <div :class="small ? 'container-m' : 'container'">
       <h2 class="mb-30" v-if="title">
-        <img src="@/assets/img/icons/publisher.svg" v-if="!noLogo" />
-        {{ $t('message.nav.pubs') }}
+        <img src="@/assets/img/icons/news.svg" v-if="!noLogo" />
+        {{ $t('message.nav.news') }}
       </h2>
       <el-row :gutter="30">
-        <el-col :md="md" :xs="12" v-for="item of publishers" :key="item._id">
-          <publisher-item :publish="item" />
+        <el-col :md="md" :xs="12" v-for="item of newss" :key="item._id">
+          <news-item :publish="item" />
         </el-col>
       </el-row>
       <div v-if="more" class="d-flex justify-content-center mb-80 mt-30 md-mb-20 md-mt-10">
@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import publisherItem from '@/components/publisher/publisher_item.vue'
+import newsItem from '@/components/news/news_item.vue'
 const props = defineProps({
   limit: {
     type: Number,
@@ -56,14 +56,14 @@ const props = defineProps({
   }
 })
 
-import { usePublisherStore } from '@/stores/data/publisher'
+import { useNewsStore } from '@/stores/data/news'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
-const store = usePublisherStore()
-const { publishers } = storeToRefs(store)
+const store = useNewsStore()
+const { newss } = storeToRefs(store)
 
 // onMounted(async () => {
-//   await store.getAllPublishers({
+//   await store.getAllNewss({
 //     limit: props.limit,
 //     search: props.search
 //   })

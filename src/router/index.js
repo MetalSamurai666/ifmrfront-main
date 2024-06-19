@@ -45,9 +45,15 @@ const router = createRouter({
           path: ':slug',
           name: 'publish',
           component: () => import('@/views/default/publish.vue')
+        },
+        {
+          path: ':slug',
+          name: 'shownews',
+          component: () => import('@/views/default/shownews.vue')
         }
       ]
     },
+
     {
       path: '/auth',
       name: 'auth',
