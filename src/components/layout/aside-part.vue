@@ -32,9 +32,10 @@
           <span>{{ item.meta?.title }}</span>
         </router-link>
       </div>
-      <button @click="logout" class="logout el-button">
-        <el-icon> <switch-button /> Выйти </el-icon>
-      </button>
+      <el-button @click="logout" class="logout" type="danger">
+        <el-icon class="mr-10"> <switch-button /> </el-icon>
+        Выйти
+      </el-button>
     </div>
   </aside>
 </template>
@@ -53,11 +54,11 @@ const { user } = storeToRefs(auth_Store)
 
 const logout = () => {
   if (confirm('Вы уверены?')) {
-    auth_Store.exit()
+    auth_Store.logout()
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/style/layout/aside.scss';
 </style>

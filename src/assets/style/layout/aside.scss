@@ -19,10 +19,10 @@ aside {
     }
   }
   .logout {
-    background-color: $red;
-    border: 0;
-    color: #fff;
     margin-top: auto;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
   }
   .links {
     display: flex;

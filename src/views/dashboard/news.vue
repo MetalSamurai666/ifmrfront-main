@@ -12,7 +12,6 @@ import { useNewsStore } from '@/stores/data/news'
 const store = useNewsStore()
 const { newss, newssCount } = storeToRefs(store)
 
-
 const toggle = ref(false)
 const type = ref(false)
 const news = ref({})
@@ -139,14 +138,7 @@ onMounted(async () => {
     >
     </el-pagination>
   </div>
-  <news-dialog
-    @close="handleClose"
-    @save="handleSave"
-    :toggle="toggle"
-    :type="type"
-    :data="news"
-    :categorys="categorys"
-  />
+  <news-dialog @close="handleClose" @save="handleSave" :toggle="toggle" :type="type" :data="news" />
 </template>
 
 <style></style>

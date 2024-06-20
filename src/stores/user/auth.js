@@ -39,7 +39,7 @@ export const authStore = defineStore('authStore', () => {
 
   const logout = () => {
     cookies.remove('sitetoken')
-    router.push({ name: 'login' })
+    router.push({ name: 'home' })
   }
 
   return {
