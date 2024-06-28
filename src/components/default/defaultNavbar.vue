@@ -2,7 +2,8 @@
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import cookies from 'vue-cookies'
-const { locale } = useI18n()
+import { useRouter } from 'vue-router'
+const { t, locale } = useI18n()
 
 const sideState = ref(false)
 
@@ -21,6 +22,10 @@ const currentLang = ref('ru')
 function doLang(i) {
   locale.value = i
 }
+const router = useRouter()
+const routeTo = (url) => {
+  router.push(url)
+}
 
 onMounted(() => {
   if (cookies.get('sitelocal')) {
@@ -32,22 +37,19 @@ onMounted(() => {
 <template>
   <nav class="navbar">
     <div class="container d-flex justify-content-between align-items-end">
-      <router-link class="logo" to="/">LOGO</router-link>
+      <router-link class="logo" to="/">
+        <img src="@/assets/logo.png" alt="" />
+        <span>
+          {{ t('title') }}
+        </span>
+      </router-link>
       <div class="navbar__elements">
         <div class="info d-flex justify-content-end align-items-center">
           <router-link class="email" to="/">
-            <img src="@/assets/img/icons/email.svg" />info@ifmr.uz
+            <img src="@/assets/img/icons/email.svg" />markaz@mintrans.uz
           </router-link>
 
           <div class="languages d-flex">
-            <!-- <button
-              type="submit"
-              @click="$i18n.locale = item"
-              v-for="item of $i18n.availableLocales"
-              :key="item"
-            >
-              {{ $t('localeTitle') }}
-            </button> -->
             <button
               type="submit"
               @click="setDefaultLocale('ru')"
@@ -78,9 +80,21 @@ onMounted(() => {
             >
           </li>
           <li>
-            <router-link to="/about">
-              <img src="@/assets/img/icons/about.svg" />{{ $t('message.nav.about') }}</router-link
-            >
+            <el-dropdown>
+              <div class="link" @click="routeTo('/about')">
+                <img src="@/assets/img/icons/about.svg" />
+                <span>{{ $t('message.nav.about') }}</span>
+              </div>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item>Action 1</el-dropdown-item>
+                  <el-dropdown-item>Action 2</el-dropdown-item>
+                  <el-dropdown-item>Action 3</el-dropdown-item>
+                  <el-dropdown-item>Action 4</el-dropdown-item>
+                  <el-dropdown-item>Action 5</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
           </li>
           <li>
             <router-link to="/pubs">
@@ -92,9 +106,6 @@ onMounted(() => {
               <img src="@/assets/img/icons/news.svg" />{{ $t('message.nav.news') }}</router-link
             >
           </li>
-          <!-- <li>
-            <router-link to="/"> <img src="@/assets/img/icons/partners.svg"/>{{ $t('message.nav.partners') }}</router-link>
-          </li> -->
           <li>
             <router-link to="/contacts">
               <img src="@/assets/img/icons/phone.svg" />{{

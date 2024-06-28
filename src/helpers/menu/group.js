@@ -6,7 +6,11 @@ const group = [
   },
   {
     name: 'publisher',
-    label: 'Публикации',
+    label: 'Публикации'
+  },
+  {
+    name: 'document',
+    label: 'Документы'
   },
   {
     name: 'other',

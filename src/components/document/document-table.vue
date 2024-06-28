@@ -1,7 +1,7 @@
 <script setup>
 import { ElMessageBox } from 'element-plus'
 import { langs } from '@/stores/env'
-import { url } from '@/helpers/api'
+import { url, download } from '@/helpers/api'
 const emit = defineEmits(['edit', 'remove', 'status'])
 const props = defineProps({
   data: Array,
@@ -62,6 +62,17 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
           "
         >
           {{ lang.language }}
+        </el-button>
+      </template>
+    </el-table-column>
+    <el-table-column label="Файл" width="200">
+      <template #default="scope">
+        <el-button
+          v-if="scope.row.img?.length > 0"
+          @click="download(scope.row.img?.at(0)?.response)"
+          type="primary"
+        >
+          <el-icon><document /></el-icon>
         </el-button>
       </template>
     </el-table-column>

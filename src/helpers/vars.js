@@ -40,4 +40,6 @@ const blockType = [
   },
 ]
 
+
+
 export { blurRule, changeRule, schoolType, blockType }

@@ -12,7 +12,7 @@ aside {
     align-items: center;
     text-transform: uppercase;
     gap: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     img {
       height: 50px;
       filter: brightness(0);
@@ -40,7 +40,7 @@ aside {
     align-items: center;
     gap: 10px;
     color: lighten($black, 20%);
-    padding: 13px 18px;
+    padding: 10px 18px;
     border-radius: 8px;
     &:hover,
     &.active {

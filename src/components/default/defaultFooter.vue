@@ -3,33 +3,33 @@
     <div class="container">
       <el-row :gutter="30">
         <el-col :md="12" :sm="24">
-          <div class="title">Контакты</div>
+          <div class="title">{{ t('message.nav.contacts') }}</div>
           <div class="contact">
-            <div class="name">Адрес</div>
+            <div class="name">{{ t('contacts.addresstitle') }}</div>
             <div class="value">
               <img src="@/assets/img/icons/location.svg" alt="" />
-              100011, Республика Узбекистан, г. Ташкент, массив Хадра, 33А
+              {{ t('contacts.address') }}
             </div>
           </div>
           <div class="contact">
-            <div class="name">Приёмная</div>
+            <div class="name">{{ t('contacts.officeTitle1') }}</div>
             <div class="value">
               <img src="@/assets/img/icons/telephone.svg" alt="" />
-              +998 71 244-01-17
+              +998 (71) 202-05-00 (531)
             </div>
           </div>
           <div class="contact">
-            <div class="name">Офис</div>
+            <div class="name">{{ t('contacts.officeTitle2') }}</div>
             <div class="value">
               <img src="@/assets/img/icons/telephone.svg" alt="" />
-              +998 71 244-02-40
+              +998 (71) 244-59-55
             </div>
           </div>
           <div class="contact">
             <div class="name">E-mail</div>
             <div class="value">
               <img src="@/assets/img/icons/mail.svg" alt="" />
-              info@ifmr.uz
+              markaz@mintrans.uz
             </div>
           </div>
           <div class="social">
@@ -121,16 +121,16 @@
       <div class="copyright">
         <div class="author">Сайт разработан <a href="#">MD.uz</a></div>
         <div class="info">
-          Институт прогнозирования и макроэкономических исследований при Министерстве экономического
-          развития и сокращения бедности Республики Узбекистан.
+          {{ t('copyright') }}
         </div>
       </div>
     </div>
   </footer>
 </template>
 
-<script>
-export default {}
+<script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>

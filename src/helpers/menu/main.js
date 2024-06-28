@@ -26,7 +26,7 @@ const menu = [
     meta: {
       title: 'Публикации',
       group: 'publisher',
-      icon: 'list'
+      icon: 'memo'
     }
   },
   {
@@ -67,6 +67,26 @@ const menu = [
       title: 'Партнеры',
       group: 'other',
       icon: 'suitcase'
+    }
+  },
+  {
+    path: 'doccategory',
+    name: 'doccategory',
+    component: () => import('@/views/dashboard/doccategory.vue'),
+    meta: {
+      title: 'Тип документов',
+      group: 'document',
+      icon: 'document'
+    }
+  },
+  {
+    path: 'document',
+    name: 'document',
+    component: () => import('@/views/dashboard/document.vue'),
+    meta: {
+      title: 'Док/законы',
+      group: 'document',
+      icon: 'reading'
     }
   }
 ]
