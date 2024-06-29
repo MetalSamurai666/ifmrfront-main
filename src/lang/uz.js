@@ -1,7 +1,7 @@
 export default {
   localeTitle: 'O`z',
   title:
-    'O‘zbekiston Respublikasi Transport vazirligi huzuridagi Transport va logistikani rivojlantirish muammolarini o‘rganish markazi',
+    'Transport va logistikani rivojlantirish muammolarini o‘rganish markazi',
   message: {
     homeTitle: 'TRANSPORT VA LOGISTIKANI RIVOJLANTIRISH MUAMMOLARINI O`RGANISH MARKAZI',
     nav: {

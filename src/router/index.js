@@ -14,11 +14,11 @@ const router = createRouter({
           name: 'home',
           component: () => import('@/views/default/home.vue')
         },
-        {
-          path: 'about',
-          name: 'about',
-          component: () => import('@/views/default/about.vue')
-        },
+        // {
+        //   path: 'about',
+        //   name: 'about',
+        //   component: () => import('@/views/default/about.vue')
+        // },
         {
           path: 'pubs',
           name: 'publishes',
@@ -33,6 +33,11 @@ const router = createRouter({
           path: 'contacts',
           name: 'contacts',
           component: () => import('@/views/default/contacts.vue')
+        },
+        {
+          path: ':slug',
+          name: 'pageshow',
+          component: () => import('@/views/default/pageSlug.vue')
         }
       ]
     },

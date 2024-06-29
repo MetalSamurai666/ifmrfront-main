@@ -116,7 +116,7 @@ const checkingSlug = async () => {
   if (data.value.slug < 1) return false
   if (props.data?.resslug == data.value.slug) return false
   lockToggle.value = await checkSlug('category', data.value.slug)
-  console.log(lockToggle.value)
+
 }
 
 const close = async () => {

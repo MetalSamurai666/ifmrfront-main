@@ -45,37 +45,17 @@
           </div>
         </el-col>
         <el-col :md="6" :sm="12">
-          <div class="title">О нас</div>
+          <div class="title">{{ $t('message.nav.about') }}</div>
           <ul>
             <li>
-              <a href="#">
-                <img src="@/assets/img/icons/right.svg" alt="" />
-                Деятельность института</a
+              <router-link
+                v-for="page of pages.filter((p) => need.includes(p?.key?.slug))"
+                :key="page._id"
+                :to="{ name: 'pageshow', params: { slug: page?.key?.slug } }"
               >
-            </li>
-            <li>
-              <a href="#">
                 <img src="@/assets/img/icons/right.svg" alt="" />
-                Деятельность института</a
-              >
-            </li>
-            <li>
-              <a href="#">
-                <img src="@/assets/img/icons/right.svg" alt="" />
-                Деятельность института</a
-              >
-            </li>
-            <li>
-              <a href="#">
-                <img src="@/assets/img/icons/right.svg" alt="" />
-                Деятельность института</a
-              >
-            </li>
-            <li>
-              <a href="#">
-                <img src="@/assets/img/icons/right.svg" alt="" />
-                Деятельность института</a
-              >
+                {{ page.title }}
+              </router-link>
             </li>
           </ul>
           <div class="title mt-50">Законы</div>
@@ -129,8 +109,19 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
+
+import { useCategoryStore } from '@/stores/data/category'
+import { storeToRefs } from 'pinia'
+const categoryStore = useCategoryStore()
+const { categorys } = storeToRefs(categoryStore)
+
+import { usePageStore } from '@/stores/data/page'
+const pageStore = usePageStore()
+const { pages } = storeToRefs(pageStore)
+const need = ref(['about', 'leadership', 'structure', 'vacancy', 'partners'])
 </script>
 
 <style lang="scss" scoped>

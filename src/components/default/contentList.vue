@@ -61,7 +61,7 @@ onMounted(async () => {
             </router-link>
           </li>
           <li class="item" v-for="cat of categorys" :key="cat._id">
-            <router-link :to="{ name: 'publishes', query: { id: cat?.key._id } }" class="item__box">
+            <router-link :to="{ name: 'publishes', query: { id: cat?.key?._id } }" class="item__box">
               {{ cat?.title }}
 
               <img src="@/assets/img/icons/arrow-right.svg" />

@@ -4,18 +4,17 @@ import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n()
 import poster from '@/components/default/poster.vue'
-
 import content from '@/components/default/content.vue'
-import structure from '@/components/default/structure.vue'
-import coop from '@/components/default/coop.vue'
 
 import { usePageStore } from '@/stores/data/page'
+import { useRoute } from 'vue-router'
 const store = usePageStore()
-
+const route = useRoute()
 let data = ref({})
 
 const getData = async () => {
-  let res = await store.bySlug('about', locale.value)
+  let res = await store.bySlug(route.params?.slug, locale.value)
+  console.log(res.data);
   data.value = { ...res }
 }
 
@@ -24,10 +23,16 @@ watch(
   async () => await getData()
 )
 
+watch(()=>route?.params?.slug,
+
+  () => {
+    getData()
+  }
+)
+
 onMounted(async () => {
   await getData()
 })
-
 </script>
 
 <template>
@@ -43,8 +48,6 @@ onMounted(async () => {
       text: data.text
     }"
   />
-  <structure />
-  <coop />
 </template>
 
 <style lang="scss" scoped></style>

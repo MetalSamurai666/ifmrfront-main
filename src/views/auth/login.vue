@@ -1,7 +1,9 @@
 <template>
   <div class="auth">
     <div class="auth__box">
-      <div class="logo">LOGO</div>
+      <div class="logo">
+        <img src="@/assets/logo.svg" alt="" />
+      </div>
       <el-form @submit.prevent="send" label-position="top">
         <el-form-item>
           <el-input v-model="login" placeholder="Логин" size="large" clearable prefix-icon="User" />

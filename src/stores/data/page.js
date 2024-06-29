@@ -54,13 +54,12 @@ export const usePageStore = defineStore('usePageStore', () => {
   }
 
   const savePage = async (data) => {
-    console.log(data)
+
     let res = await api({
       url: `api/page`,
       method: 'put',
       data
     })
-    console.log(res.data)
     pages.value = [
       ...pages.value.map((page) => {
         if (page._id == res.data._id) return { ...res.data }
@@ -93,12 +92,22 @@ export const usePageStore = defineStore('usePageStore', () => {
     })
     return data
   }
+  
+  const allPage = async (params) => {
+    let res =  await api({
+      url: `v1/page`,
+      params
+    })
+
+    pages.value = [...res.data]
+
+  }
 
   return {
     pages,
     page,
     pagesCount,
-
+    allPage,
     bySlug,
     getTranslatePage,
     getPage,

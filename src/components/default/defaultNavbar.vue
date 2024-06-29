@@ -1,9 +1,9 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+const { t, locale } = useI18n()
 import cookies from 'vue-cookies'
 import { useRouter } from 'vue-router'
-const { t, locale } = useI18n()
 
 const sideState = ref(false)
 
@@ -19,18 +19,45 @@ function doMenu(i) {
 }
 
 const currentLang = ref('ru')
-function doLang(i) {
-  locale.value = i
-}
+
 const router = useRouter()
 const routeTo = (url) => {
   router.push(url)
 }
 
-onMounted(() => {
+import { useCategoryStore } from '@/stores/data/category'
+import { storeToRefs } from 'pinia'
+const categoryStore = useCategoryStore()
+const { categorys } = storeToRefs(categoryStore)
+
+import { usePageStore } from '@/stores/data/page'
+const pageStore = usePageStore()
+const { pages } = storeToRefs(pageStore)
+
+const need = ref(['about', 'leadership', 'structure', 'vacancy', 'partners'])
+
+const get = async () => {
+  categoryStore.getCategorys({
+    language: locale.value || 'ru'
+  })
+
+  await pageStore.allPage({
+    language: locale.value || 'ru'
+  })
+}
+
+watch(
+  () => locale.value,
+  () => {
+    get()
+  }
+)
+
+onMounted(async () => {
   if (cookies.get('sitelocal')) {
     setDefaultLocale(cookies.get('sitelocal'))
   }
+  get()
 })
 </script>
 
@@ -38,7 +65,7 @@ onMounted(() => {
   <nav class="navbar">
     <div class="container d-flex justify-content-between align-items-end">
       <router-link class="logo" to="/">
-        <img src="@/assets/logo.png" alt="" />
+        <img src="@/assets/logo.svg" alt="" />
         <span>
           {{ t('title') }}
         </span>
@@ -87,19 +114,35 @@ onMounted(() => {
               </div>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item>Action 1</el-dropdown-item>
-                  <el-dropdown-item>Action 2</el-dropdown-item>
-                  <el-dropdown-item>Action 3</el-dropdown-item>
-                  <el-dropdown-item>Action 4</el-dropdown-item>
-                  <el-dropdown-item>Action 5</el-dropdown-item>
+                  <el-dropdown-item
+                    v-for="page of pages.filter((p) => need.includes(p?.key?.slug))"
+                    :key="page._id"
+                    @click="routeTo({ name: 'pageshow', params: { slug: page?.key?.slug } })"
+                  >
+                    {{ page.title }}
+                  </el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
           </li>
           <li>
-            <router-link to="/pubs">
-              <img src="@/assets/img/icons/articles.svg" />{{ $t('message.nav.pubs') }}</router-link
-            >
+            <el-dropdown>
+              <div class="link" @click="routeTo('/pubs')">
+                <img src="@/assets/img/icons/articles.svg" />
+                <span>{{ $t('message.nav.pubs') }}</span>
+              </div>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item
+                    v-for="category of categorys"
+                    :key="category._id"
+                    @click="routeTo({ name: 'publishes', query: { id: category?._id } })"
+                  >
+                    {{ category?.title }}
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
           </li>
           <li>
             <router-link to="/news">
