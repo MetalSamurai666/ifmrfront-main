@@ -9,12 +9,12 @@
     font-weight: 500;
     color: #fff;
     display: flex;
-    max-width: 430px;
+
     align-items: center;
     gap: 10px;
     img {
-      width: 60px;
-      flex-basis: 60px;
+      width: 400px;
+      object-fit: cover;
     }
     span {
       flex: 1;
@@ -70,6 +70,7 @@
       align-items: center;
       color: currentColor;
       cursor: pointer;
+
       // &.router-link-active.router-link-exact-active {
       //   text-decoration: underline;
       // }
@@ -77,6 +78,7 @@
       &:active {
         outline: unset;
       }
+      .el-icon,
       span {
         color: #fff;
       }

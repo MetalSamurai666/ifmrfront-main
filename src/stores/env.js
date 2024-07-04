@@ -11,8 +11,8 @@ const langs = [
     language: 'uz'
   },
   {
-    label: 'Узбекча',
-    language: 'uzk'
+    label: 'English',
+    language: 'en'
   }
 ]
 

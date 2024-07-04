@@ -52,6 +52,14 @@ watch(
     get()
   }
 )
+import ru from '@/assets/logo/ru.svg'
+import en from '@/assets/logo/en.svg'
+import uz from '@/assets/logo/uz.svg'
+const logo = {
+  ru,
+  en,
+  uz
+}
 
 onMounted(async () => {
   if (cookies.get('sitelocal')) {
@@ -65,10 +73,7 @@ onMounted(async () => {
   <nav class="navbar">
     <div class="container d-flex justify-content-between align-items-end">
       <router-link class="logo" to="/">
-        <img src="@/assets/logo.svg" alt="" />
-        <span>
-          {{ t('title') }}
-        </span>
+        <img :src="logo[locale]" alt="" />
       </router-link>
       <div class="navbar__elements">
         <div class="info d-flex justify-content-end align-items-center">
@@ -93,10 +98,10 @@ onMounted(async () => {
             </button>
             <button
               type="submit"
-              @click="setDefaultLocale('uzk')"
-              :class="currentLang === 'uzk' ? 'active' : ''"
+              @click="setDefaultLocale('en')"
+              :class="currentLang === 'en' ? 'active' : ''"
             >
-              Уз
+              En
             </button>
           </div>
         </div>
@@ -109,7 +114,7 @@ onMounted(async () => {
           <li>
             <el-dropdown>
               <div class="link" @click="routeTo('/about')">
-                <img src="@/assets/img/icons/about.svg" />
+                <el-icon><suitcase/></el-icon>
                 <span>{{ $t('message.nav.about') }}</span>
               </div>
               <template #dropdown>
@@ -128,7 +133,7 @@ onMounted(async () => {
           <li>
             <el-dropdown>
               <div class="link" @click="routeTo('/pubs')">
-                <img src="@/assets/img/icons/articles.svg" />
+                <el-icon><info-filled/></el-icon>
                 <span>{{ $t('message.nav.pubs') }}</span>
               </div>
               <template #dropdown>

@@ -1,59 +1,51 @@
 .home {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  color: #fff;
+  height: 100dvh;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  &:after {
+    content: '';
+    background: rgb(41, 126, 225);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100dvw;
+    height: 300px;
+    z-index: 1;
+  }
+  &:before {
+    content: '';
+    background: rgb(41, 126, 225);
+    background: linear-gradient(186deg, rgba(41, 126, 225, 1) 0%, rgba(59, 73, 190, 1) 100%);
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100dvw;
     height: 100dvh;
-    background-size: cover;
+    z-index: 1;
+  }
+  h1 {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 72px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 24px 32px;
     position: relative;
-    overflow: hidden;
-    &:after {
-        content: "";
-        background: rgb(41, 126, 225);
-        background: linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 1) 0%,
-            rgba(0, 0, 0, 0) 100%
-        );
-        opacity: 0.5;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100dvw;
-        height: 300px;
-        z-index: 1;
-    }
-    &:before {
-        content: "";
-        background: rgb(41, 126, 225);
-        background: linear-gradient(
-            186deg,
-            rgba(41, 126, 225, 1) 0%,
-            rgba(59, 73, 190, 1) 100%
-        );
-        opacity: 0.5;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100dvw;
-        height: 100dvh;
-        z-index: 1;
-    }
-    h1 {
-        font-family: "Fira Sans Condensed", sans-serif;
-        font-size: 72px;
-        text-align: center;
-        text-transform: uppercase;
-        font-weight: 700;
-        padding: 24px 32px;
-        position: relative;
-        z-index: 2;
-    }
+    z-index: 2;
+  }
 
-    @media (max-width: 600px) {
-        h1{
-            font-size: 46px;
-        }
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 46px;
     }
+  }
 }

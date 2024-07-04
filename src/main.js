@@ -21,7 +21,7 @@ import PhotoUploadeer from '@/components/usefull/photo-uploader.vue'
 
 import ru from './lang/ru'
 import uz from './lang/uz'
-import uzk from './lang/uzk'
+import en from './lang/en'
 
 const i18n = createI18n({
   legacy: false,
@@ -32,7 +32,7 @@ const i18n = createI18n({
   messages: {
     ru,
     uz,
-    uzk
+    en
   }
 })
 

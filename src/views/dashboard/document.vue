@@ -5,7 +5,6 @@ import { storeToRefs } from 'pinia'
 import documentDialog from '@/components/document/document-dialog.vue'
 import documentTable from '@/components/document/document-table.vue'
 
-import { useRoute } from 'vue-router'
 import { url } from '@/helpers/api'
 import router from '@/router'
 import { useDocumentStore } from '@/stores/data/document'
@@ -22,7 +21,6 @@ const document = ref({})
 const page = ref(1)
 const limit = ref(20)
 const search = ref({})
-const route = useRoute()
 const handleSave = async (value) => {
   let data = {
     img: [...value.img],

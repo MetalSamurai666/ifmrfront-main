@@ -1,16 +1,15 @@
 export default {
-  localeTitle: 'Уз',
-  title:
-    'Транспорт ва логистикани ривожлантириш муаммоларини ўрганиш маркази',
+  localeTitle: 'En',
+  title: 'Center for research of issues in development of transport and logistics ',
   message: {
     homeTitle: 'ТРАНСПОРТ ВА ЛОГИСТИКАНИ РИВОЖЛАНТИРИШ МУАММОЛАРИНИ ЎРГАНИШ МАРКАЗИ',
     nav: {
-      main: 'Бош сахифа',
-      about: 'Биз хакимизда',
-      pubs: 'Нашрлар',
-      news: 'Янгиликлар',
-      partners: 'Хамкорлар',
-      contacts: 'Алока'
+      main: 'Home',
+      about: 'About us',
+      pubs: 'Plublisher',
+      news: 'News',
+      partners: 'Partners',
+      contacts: 'Contact'
     },
     infra: {
       title: 'ТРАНСПОРТ ИНФРАТУЗИЛМАСИНИ РИВОЖЛАНТИРИШ: ЎЗБЕКИСТОН КЕЛАЖАГИГА НАЗАР',
@@ -47,11 +46,11 @@ export default {
     }
   },
   contacts: {
-    addresstitle: 'Манзил',
+    addresstitle: 'Address',
     address:
       'Тошкент шаҳри, Зулфияхоним кўчаси, 3-уй. Мўлжал: Шайхонтоҳур тумани прокуратураси. 57, 72-сонли автобусларнинг "Билимгоҳ" бекати',
-    officeTitle1: 'Қабулхона',
-    officeTitle2: 'Факс',
+    officeTitle1: 'Reception',
+    officeTitle2: 'Fax',
     officePhone1: '+998 (71) 202-05-00 (531)',
     officePhone2: '+998 (71) 244-59-55',
     email: 'info@ifmr.uz'
