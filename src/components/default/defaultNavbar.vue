@@ -133,7 +133,7 @@ onMounted(async () => {
           <li>
             <el-dropdown>
               <div class="link" @click="routeTo('/pubs')">
-                <el-icon><info-filled/></el-icon>
+                <img src="@/assets/img/icons/articles.svg" />
                 <span>{{ $t('message.nav.pubs') }}</span>
               </div>
               <template #dropdown>
@@ -151,7 +151,9 @@ onMounted(async () => {
           </li>
           <li>
             <router-link to="/news">
-              <img src="@/assets/img/icons/news.svg" />{{ $t('message.nav.news') }}</router-link
+              
+              <el-icon><info-filled/></el-icon>
+              {{ $t('message.nav.news') }}</router-link
             >
           </li>
           <li>
