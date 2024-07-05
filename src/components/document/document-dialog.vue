@@ -33,9 +33,9 @@
           </el-form-item>
         </el-col>
         <el-col :span="24" v-if="data.language == 'ru'">
-          <el-form-item label="Категория" prop="category" :rules="changeRule">
+          <el-form-item label="Категория" prop="doccategory" :rules="changeRule">
             <el-select
-              v-model="data.category"
+              v-model="data.doccategory"
               placeholder="Выберите из списка"
               filterable
               clearable
@@ -62,7 +62,6 @@
       <el-form-item label="Файл документа">
         <el-upload
           v-model:file-list="data.img"
-          
           :action="`${url}/api/document/upload`"
           :on-preview="handlePictureCardPreview"
           :headers="{
@@ -84,12 +83,11 @@
 </template>
 
 <script setup>
-import { url, api, checkSlug } from '@/helpers/api'
+import { url, checkSlug } from '@/helpers/api'
 import cookies from 'vue-cookies'
-import { convertToSlug, langs } from '@/stores/env'
+import { convertToSlug } from '@/stores/env'
 import { changeRule, blurRule } from '@/helpers/vars'
-import { computed, ref, watch } from 'vue'
-import ImageUploader from 'quill-image-uploader'
+import { ref, watch } from 'vue'
 
 import 'quill-image-uploader/dist/quill.imageUploader.min.css'
 
@@ -97,7 +95,6 @@ const emits = defineEmits(['close', 'save', 'checkslug'])
 const props = defineProps(['toggle', 'id', 'type', 'data', 'option', 'doccategorys'])
 const dialogToggle = ref(false)
 const lockToggle = ref(false)
-import axios from 'axios'
 
 const editordesc = ref()
 
@@ -114,42 +111,10 @@ const rules = ref({
   ]
 })
 
-const modules = {
-  name: 'imageUploader',
-  module: ImageUploader,
-  options: {
-    upload: (file) => {
-      return new Promise((resolve, reject) => {
-        const formData = new FormData()
-        formData.append('file', file)
-        axios
-          .post(`${url}/api/document/upload`, formData, {
-            headers: {
-              Authorization: `Bearer ${cookies.get('sitetoken') || ''}`
-            }
-          })
-          .then((res) => {
-            resolve(`${url}/${res.data}`)
-          })
-          .catch((err) => {
-            reject('Upload failed')
-            console.error('Error:', err)
-          })
-      })
-    }
-  }
-}
-
-const list = ref([])
-const dialogImageUrl = ref('')
 const dialogVisible = ref(false)
 
 const handlePictureCardPreview = () => {
   dialogVisible.value = true
-}
-
-const handleUpload = (path) => {
-  data.value.img = [...path]
 }
 
 const convertSlug = () => {
@@ -161,7 +126,6 @@ const checkingSlug = async () => {
   if (data.value.slug < 1) return false
   if (props.data?.resslug == data.value.slug) return false
   lockToggle.value = await checkSlug('document', data.value.slug)
-
 }
 
 const close = async () => {
@@ -177,7 +141,7 @@ const close = async () => {
 
 const save = async () => {
   if (!form.value) return
-  await form.value.validate(async (valid, fields) => {
+  await form.value.validate(async (valid) => {
     if (valid) {
       // console.log(data.value)
       emits('save', { ...data.value })
@@ -194,6 +158,8 @@ watch(
       data.value = {
         language: 'ru'
       }
+
+    console.log(data.value)
     dialogToggle.value = to
   }
 )

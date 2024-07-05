@@ -1,6 +1,6 @@
 <script setup>
 import poster from '@/components/default/poster.vue'
-import contentList from '@/components/default/contentList.vue'
+import documentList from '@/components/document/documentList.vue'
 import { onMounted, ref, watch } from 'vue'
 import { usePageStore } from '@/stores/data/page'
 const store = usePageStore()
@@ -10,8 +10,8 @@ const { locale } = useI18n()
 let data = ref({})
 
 const getData = async () => {
-  let res = await store.bySlug('pubs', locale.value)
-  
+  let res = await store.bySlug('document', locale.value)
+
   data.value = { ...res }
 }
 
@@ -34,7 +34,7 @@ onMounted(async () => {
         img: data?.img?.at(0)?.response
       }"
     />
-    <contentList />
+    <documentList />
   </div>
 </template>
 

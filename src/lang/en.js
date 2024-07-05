@@ -8,6 +8,7 @@ export default {
       about: 'About us',
       pubs: 'Plublisher',
       news: 'News',
+      document: 'Regulatory documents',
       partners: 'Partners',
       contacts: 'Contact'
     },

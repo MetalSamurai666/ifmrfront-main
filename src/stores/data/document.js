@@ -85,7 +85,7 @@ export const useDocumentStore = defineStore('useDocumentStore', () => {
 
   const bySlug = async (slug, language) => {
     let { data } = await api({
-      url: `v1/publish/${slug}`,
+      url: `v1/document/${slug}`,
       params: {
         language
       }
@@ -95,13 +95,11 @@ export const useDocumentStore = defineStore('useDocumentStore', () => {
 
   const getDocuments = async (params) => {
     documents.value = []
-    documentsCount.value = 0
     let { data } = await api({
       url: `v1/document`,
       params
     })
-    documents.value = [...data.data]
-    documentsCount.value = data.count
+    documents.value = [...data]
   }
 
   return {

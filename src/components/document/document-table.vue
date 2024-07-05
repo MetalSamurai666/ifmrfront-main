@@ -51,6 +51,13 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
         </div>
       </template>
     </el-table-column>
+    <el-table-column label="Тип документ" prop="doccategory.translates.at(0)?.title" width="200">
+      <template #default="scope">
+        <div>
+          {{ scope.row.doccategory?.translates?.at(0)?.title }}
+        </div>
+      </template>
+    </el-table-column>
     <el-table-column label="Переводы" width="200">
       <template #default="scope">
         <el-button
@@ -76,6 +83,7 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
         </el-button>
       </template>
     </el-table-column>
+
     <el-table-column label="Краткое название" prop="slug" width="150" />
 
     <el-table-column label="Статус" width="90">

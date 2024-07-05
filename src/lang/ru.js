@@ -7,6 +7,7 @@ export default {
     nav: {
       main: 'Главная',
       about: 'О нас',
+      document: 'Нормативные документы',
       pubs: 'Публикации',
       news: 'Новости',
       partners: 'Партнёры',

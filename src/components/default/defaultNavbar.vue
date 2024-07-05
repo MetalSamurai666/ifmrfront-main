@@ -34,6 +34,10 @@ import { usePageStore } from '@/stores/data/page'
 const pageStore = usePageStore()
 const { pages } = storeToRefs(pageStore)
 
+import { useDoccategoryStore } from '@/stores/data/doccategory'
+const doccategoryStore = useDoccategoryStore()
+const { doccategorys } = storeToRefs(doccategoryStore)
+
 const need = ref(['about', 'leadership', 'structure', 'vacancy', 'partners'])
 
 const get = async () => {
@@ -42,6 +46,10 @@ const get = async () => {
   })
 
   await pageStore.allPage({
+    language: locale.value || 'ru'
+  })
+
+  await doccategoryStore.getDoccategorys({
     language: locale.value || 'ru'
   })
 }
@@ -114,7 +122,7 @@ onMounted(async () => {
           <li>
             <el-dropdown>
               <div class="link" @click="routeTo('/about')">
-                <el-icon><suitcase/></el-icon>
+                <el-icon><suitcase /></el-icon>
                 <span>{{ $t('message.nav.about') }}</span>
               </div>
               <template #dropdown>
@@ -125,6 +133,25 @@ onMounted(async () => {
                     @click="routeTo({ name: 'pageshow', params: { slug: page?.key?.slug } })"
                   >
                     {{ page.title }}
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </li>
+          <li>
+            <el-dropdown>
+              <div class="link" @click="routeTo('/document')">
+                <el-icon><document /></el-icon>
+                <span>{{ $t('message.nav.document') }}</span>
+              </div>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item
+                    v-for="category of doccategorys"
+                    :key="category._id"
+                    @click="routeTo({ name: 'publishes', query: { id: category?._id } })"
+                  >
+                    {{ category?.title }}
                   </el-dropdown-item>
                 </el-dropdown-menu>
               </template>
@@ -151,8 +178,7 @@ onMounted(async () => {
           </li>
           <li>
             <router-link to="/news">
-              
-              <el-icon><info-filled/></el-icon>
+              <el-icon><info-filled /></el-icon>
               {{ $t('message.nav.news') }}</router-link
             >
           </li>

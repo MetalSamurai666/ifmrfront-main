@@ -30,6 +30,11 @@ const router = createRouter({
           component: () => import('@/views/default/news.vue')
         },
         {
+          path: 'document',
+          name: 'documents',
+          component: () => import('@/views/default/documentList.vue')
+        },
+        {
           path: 'contacts',
           name: 'contacts',
           component: () => import('@/views/default/contacts.vue')
@@ -41,6 +46,7 @@ const router = createRouter({
         }
       ]
     },
+
     {
       path: '/publish',
       name: 'publishlayout',

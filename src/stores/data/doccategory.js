@@ -21,6 +21,7 @@ export const useDoccategoryStore = defineStore('useDoccategoryStore', () => {
   }
 
   const getAllDoccategorys = async (params) => {
+    console.log(params)
     doccategorys.value = []
     doccategorysCount.value = 0
     let { data } = await api({
@@ -59,7 +60,10 @@ export const useDoccategoryStore = defineStore('useDoccategoryStore', () => {
     })
     doccategorys.value = [
       ...doccategorys.value.map((doccategory) => {
-        return { ...doccategory, status: doccategory._id == data._id ? data.status : doccategory.status }
+        return {
+          ...doccategory,
+          status: doccategory._id == data._id ? data.status : doccategory.status
+        }
       })
     ]
     ElMessage.warning('Статус изменено')

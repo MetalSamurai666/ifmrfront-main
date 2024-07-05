@@ -6,6 +6,7 @@ export default {
     homeTitle: 'TRANSPORT VA LOGISTIKANI RIVOJLANTIRISH MUAMMOLARINI O`RGANISH MARKAZI',
     nav: {
       main: 'Bosh sahifa',
+      documents: 'Me`yoriy hujjatlar',
       about: 'Biz haqimizda',
       pubs: 'Nashrlar',
       news: 'Yangiliklar',
