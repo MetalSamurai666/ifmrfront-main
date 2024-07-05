@@ -3,6 +3,7 @@ import publisherList from '@/components/publisher/publisher_list.vue'
 import { usePublisherStore } from '@/stores/data/publisher'
 import { storeToRefs } from 'pinia'
 import { onMounted, watch } from 'vue'
+
 const storePublisher = usePublisherStore()
 const { publishers } = storeToRefs(storePublisher)
 
@@ -73,14 +74,14 @@ onMounted(async () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .content {
   &__box {
     display: grid;
     grid-template-columns: 3fr 1fr;
     gap: 30px;
   }
-  &__cats {
+  &__cats{
     display: flex;
     flex-direction: column;
     padding: 0px 15px;
@@ -95,8 +96,8 @@ onMounted(async () => {
         line-height: 120%;
         text-transform: uppercase;
         &:hover {
-          color: $blue;
-          border-color: $blue;
+        color: $blue;
+        border-color: $blue;
         }
       }
       img {
@@ -110,11 +111,12 @@ onMounted(async () => {
     &__box {
       grid-template-columns: 1fr;
     }
-    &__cats {
+    &__cats{
       .item {
         &__box {
           padding: 15px 0px;
         }
+        
       }
     }
   }
