@@ -95,5 +95,18 @@ onMounted(async () => {
         }
       }
     }
+
+    @media (max-width: 600px) {
+    &__box {
+      grid-template-columns: 1fr;
+    }
+    &__cats{
+      .item {
+        &__box {
+          padding: 15px 0px;
+        }
+      }
+    }
+  }
   }
 </style>

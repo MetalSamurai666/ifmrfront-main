@@ -116,7 +116,6 @@ onMounted(async () => {
         &__box {
           padding: 15px 0px;
         }
-        
       }
     }
   }
