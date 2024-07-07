@@ -90,25 +90,13 @@ onMounted(async () => {
           </router-link>
 
           <div class="languages d-flex">
-            <button
-              type="submit"
-              @click="setDefaultLocale('ru')"
-              :class="currentLang === 'ru' ? 'active' : ''"
-            >
+            <button type="submit" @click="setDefaultLocale('ru')" :class="currentLang === 'ru' ? 'active' : ''">
               Ру
             </button>
-            <button
-              type="submit"
-              @click="setDefaultLocale('uz')"
-              :class="currentLang === 'uz' ? 'active' : ''"
-            >
+            <button type="submit" @click="setDefaultLocale('uz')" :class="currentLang === 'uz' ? 'active' : ''">
               O`z
             </button>
-            <button
-              type="submit"
-              @click="setDefaultLocale('en')"
-              :class="currentLang === 'en' ? 'active' : ''"
-            >
+            <button type="submit" @click="setDefaultLocale('en')" :class="currentLang === 'en' ? 'active' : ''">
               En
             </button>
           </div>
@@ -116,22 +104,18 @@ onMounted(async () => {
         <ul class="menu d-flex">
           <li>
             <router-link to="/">
-              <img src="@/assets/img/icons/news.svg" />{{ $t('message.nav.main') }}</router-link
-            >
+              <img src="@/assets/img/icons/home.svg" />{{ $t('message.nav.main') }}</router-link>
           </li>
           <li>
             <el-dropdown>
               <div class="link" @click="routeTo('/about')">
-                <el-icon><suitcase /></el-icon>
+                <img src="@/assets/img/icons/aboutus.svg" />
                 <span>{{ $t('message.nav.about') }}</span>
               </div>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item
-                    v-for="page of pages.filter((p) => need.includes(p?.key?.slug))"
-                    :key="page._id"
-                    @click="routeTo({ name: 'pageshow', params: { slug: page?.key?.slug } })"
-                  >
+                  <el-dropdown-item v-for="page of pages.filter((p) => need.includes(p?.key?.slug))" :key="page._id"
+                    @click="routeTo({ name: 'pageshow', params: { slug: page?.key?.slug } })">
                     {{ page.title }}
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -141,16 +125,15 @@ onMounted(async () => {
           <li>
             <el-dropdown>
               <div class="link" @click="routeTo('/document')">
-                <el-icon><document /></el-icon>
+                <el-icon>
+                  <document />
+                </el-icon>
                 <span>{{ $t('message.nav.document') }}</span>
               </div>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item
-                    v-for="category of doccategorys"
-                    :key="category._id"
-                    @click="routeTo({ name: 'publishes', query: { id: category?._id } })"
-                  >
+                  <el-dropdown-item v-for="category of doccategorys" :key="category._id"
+                    @click="routeTo({ name: 'publishes', query: { id: category?._id } })">
                     {{ category?.title }}
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -165,11 +148,8 @@ onMounted(async () => {
               </div>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item
-                    v-for="category of categorys"
-                    :key="category._id"
-                    @click="routeTo({ name: 'publishes', query: { id: category?._id } })"
-                  >
+                  <el-dropdown-item v-for="category of categorys" :key="category._id"
+                    @click="routeTo({ name: 'publishes', query: { id: category?._id } })">
                     {{ category?.title }}
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -178,16 +158,14 @@ onMounted(async () => {
           </li>
           <li>
             <router-link to="/news">
-              <el-icon><info-filled /></el-icon>
-              {{ $t('message.nav.news') }}</router-link
-            >
+              <img src="@/assets/img/icons/news.svg" />
+              {{ $t('message.nav.news') }}</router-link>
           </li>
           <li>
             <router-link to="/contacts">
               <img src="@/assets/img/icons/phone.svg" />{{
                 $t('message.nav.contacts')
-              }}</router-link
-            >
+              }}</router-link>
           </li>
         </ul>
 
@@ -204,38 +182,32 @@ onMounted(async () => {
             <ul class="side__list md-pt-20">
               <li class="item">
                 <router-link @click="doMenu(false)" class="item__box" to="/">
-                  <img src="@/assets/img/icons/news.svg" />Главная</router-link
-                >
+                  <img src="@/assets/img/icons/news.svg" />Главная</router-link>
               </li>
               <li class="item">
                 <router-link @click="doMenu(false)" class="item__box" to="/about">
-                  <img src="@/assets/img/icons/about.svg" />О нас</router-link
-                >
+                  <img src="@/assets/img/icons/about.svg" />О нас</router-link>
               </li>
               <li class="item">
                 <router-link @click="doMenu(false)" class="item__box" to="/pubs">
-                  <img src="@/assets/img/icons/articles.svg" />Публикации</router-link
-                >
+                  <img src="@/assets/img/icons/articles.svg" />Публикации</router-link>
               </li>
               <li class="item">
                 <router-link @click="doMenu(false)" class="item__box" to="/news">
-                  <img src="@/assets/img/icons/news.svg" />Новости</router-link
-                >
+                  <img src="@/assets/img/icons/news.svg" />Новости</router-link>
               </li>
               <!-- <li class="item">
                 <router-link @click="doMenu(false)" class="item__box" to="/"> <img src="@/assets/img/icons/partners.svg"/>Партнёры</router-link>
               </li> -->
               <li class="item">
                 <router-link @click="doMenu(false)" class="item__box" to="/contacts">
-                  <img src="@/assets/img/icons/phone.svg" />Контакты</router-link
-                >
+                  <img src="@/assets/img/icons/phone.svg" />Контакты</router-link>
               </li>
             </ul>
 
             <div class="side__more">
               <a class="email md-pt-10 md-pb-10" href="#">
-                <img src="@/assets/img/icons/email.svg" />info@ifmr.uz</a
-              >
+                <img src="@/assets/img/icons/email.svg" />info@ifmr.uz</a>
               <div class="side__languages d-flex md-pt-10">
                 <a href="#">O'z </a><a href="#">Уз </a><a class="current" href="#">Ру </a>
               </div>

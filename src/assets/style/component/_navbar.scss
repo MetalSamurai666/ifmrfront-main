@@ -13,7 +13,7 @@
     align-items: center;
     gap: 10px;
     img {
-      width: 400px;
+      width: 350px;
       object-fit: cover;
     }
     span {
@@ -70,7 +70,9 @@
       align-items: center;
       color: currentColor;
       cursor: pointer;
-
+      img {
+        width: 20px;
+      }
       // &.router-link-active.router-link-exact-active {
       //   text-decoration: underline;
       // }

@@ -11,8 +11,6 @@ import { url } from '@/helpers/api'
     <div class="container">
       <div class="poster__box">
         <div class="poster__title">{{ poster?.title }}</div>
-
-        <div class="poster__info" v-html="poster?.info" />
       </div>
     </div>
   </div>
@@ -21,10 +19,10 @@ import { url } from '@/helpers/api'
 <style lang="scss" scoped>
 .poster {
   width: 100%;
-  height: 690px;
+  padding-bottom: 50px;
   background-color: $blue;
-  background-size: 100%;
-  background-position: top right;
+  background-size: cover;
+  background-position: center top;
   background-repeat: no-repeat;
   &.alt {
     background-position: 100% 100%;
