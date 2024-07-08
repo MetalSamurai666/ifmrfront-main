@@ -14,7 +14,7 @@ let data = ref({})
 
 const getData = async () => {
   let res = await store.bySlug(route.params?.slug, locale.value)
-  console.log(res.data);
+  console.log(res);
   data.value = { ...res }
 }
 

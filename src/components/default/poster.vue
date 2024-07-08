@@ -8,6 +8,7 @@ import { url } from '@/helpers/api'
     :class="poster?.alt ? 'poster alt' : 'poster'"
     :style="{ backgroundImage: 'url(' + url + '/' + poster?.img + ')' }"
   >
+    
     <div class="container">
       <div class="poster__box">
         <div class="poster__title">{{ poster?.title }}</div>
