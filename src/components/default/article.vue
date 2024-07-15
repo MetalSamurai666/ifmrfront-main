@@ -28,7 +28,7 @@ defineProps(['article'])
             <div class="more__title">Дата публикации: {{ convertDate(article.createdAt) }}</div>
           </div>
 
-          <ul class="more__cats">
+          <ul class="more__cats" v-if="article?.cats">
             <li class="item" v-for="item in article?.cats" :key="item">
               <router-link to="/">{{ item?.title }}</router-link>
             </li>

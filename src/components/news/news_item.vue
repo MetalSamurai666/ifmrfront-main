@@ -12,22 +12,25 @@
       />
       <img v-else class="poster" src="@/assets/img/photos/publish.jpg" alt="" />
     </router-link>
-    <div class="date">{{ convertDate(publish?.createdAt) }}</div>
-    <router-link
-      :to="{ name: 'shownews', params: { slug: publish?.slug || publish?.key?.slug || '' } }"
-      class="title"
-      >{{
-        publish?.title || publish?.translates?.find((tr) => tr.language == locale)?.title || ''
-      }}</router-link
-    >
-    <div
-      class="text"
-      v-html="
-        publish?.description ||
-        publish?.translates?.find((tr) => tr.language == locale)?.description ||
-        ''
-      "
-    />
+    <div class="publish__box">
+      <div class="date">{{ convertDate(publish?.createdAt) }}</div>
+      <router-link
+        :to="{ name: 'shownews', params: { slug: publish?.slug || publish?.key?.slug || '' } }"
+        class="title"
+        >{{
+          publish?.title || publish?.translates?.find((tr) => tr.language == locale)?.title || ''
+        }}
+        </router-link
+      >
+      <div
+        class="text"
+        v-html="
+          publish?.description ||
+          publish?.translates?.find((tr) => tr.language == locale)?.description ||
+          ''
+        "
+      />
+    </div>
   </div>
 </template>
 

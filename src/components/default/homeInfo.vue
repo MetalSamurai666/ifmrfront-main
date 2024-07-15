@@ -1,8 +1,8 @@
 <template>
   <section class="infografike pt-80 md-pt-40 pb-80 md-pb-20">
     <div class="container">
-      <h2 class="mb-30 uppercase">
-        <img src="@/assets/img/icons/infografiya.svg" alt="" />
+      <h2 class="mb-30 uppercase" >
+        <img src="@/assets/img/icons/infografiya.svg" />
         {{ $t('message.infographic.title') }}
 
         <div class="splide__arrows arrows">
@@ -40,7 +40,7 @@
             arrow: 'splide__arrow your-class-arrow',
             prev: 'splide__arrow--prev your-class-prev',
             next: 'splide__arrow--next your-class-next'
-          }
+          },
         }"
         aria-label="Инфографика"
       >
@@ -145,6 +145,9 @@ h2 {
       & + button {
         margin-left: 4px;
       }
+    }
+    @media (max-width: 500px) {
+      display: none;
     }
   }
 }

@@ -54,7 +54,8 @@ export default {
     officeTitle2: 'Fax',
     officePhone1: '+998 (71) 202-05-00 (531)',
     officePhone2: '+998 (71) 244-59-55',
-    email: 'markaz@mintrans.uz'
+    email: 'markaz@mintrans.uz',
+    contactUs: 'Biz bilan bog`laning'
   },
   copyright:
     'Barcha huquqlar qonun bilan himoyalangan. Rasmiy veb-saytning axborot materiallaridan foydalanishda unga havola ko‘rsatilishi shart!'

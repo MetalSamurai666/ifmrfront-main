@@ -54,7 +54,8 @@ export default {
     officeTitle2: 'Fax',
     officePhone1: '+998 (71) 202-05-00 (531)',
     officePhone2: '+998 (71) 244-59-55',
-    email: 'info@ifmr.uz'
+    email: 'info@ifmr.uz',
+    contactUs: 'Contact us'
   },
   copyright:
     'Барча ҳуқуқлар қонун билан ҳимояланган. Расмий wеб-сайтнинг ахборот материалларидан жўнатишда ҳавола кўрсатилиши шарт!'

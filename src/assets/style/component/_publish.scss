@@ -16,6 +16,11 @@
     font-weight: 600;
     margin-bottom: 12px;
     line-height: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3; 
+    -webkit-box-orient: vertical;
   }
   .text {
     font-size: 16px;
@@ -23,6 +28,20 @@
     font-family: 'Roboto Slab';
     font-weight: 300;
     text-align: justify;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    max-height: 4.2em;
+    p{
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3; 
+      -webkit-box-orient: vertical;
+
+    }
   }
   .category {
     display: flex;
@@ -41,13 +60,23 @@
       color: #fff;
     }
   }
+  &.alt{
+    display: flex;
+    gap: 15px;
+    .poster{
+      width: 200px;
+      max-width: 200px;
+      margin-bottom: 0;
+    }
+  }
 }
 
 @media (max-width: 600px) {
   .publish {
     margin-bottom: 20px;
     img {
-      margin-bottom: 10px;
+      width: 50px;
+      margin-bottom: 0px;
     }
     .title {
       font-size: 18px;
@@ -59,6 +88,13 @@
     }
     .category {
       margin-top: 10px;
+    }
+    &.alt{
+      flex-direction: column;
+      .poster{
+        width: 100%;
+        max-width: 100%;
+      }
     }
   }
 }

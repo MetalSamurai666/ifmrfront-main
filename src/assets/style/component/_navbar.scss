@@ -118,24 +118,71 @@
       flex-direction: column;
       gap: 10px;
       .item {
+        &__main{
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
         &__box {
           display: flex;
           align-items: center;
           gap: 10px;
           padding: 5px 5px;
           color: #fff;
+          img{
+            width: 20px;
+          }
+        }
+        &__expand{
+          padding: 5px;
+          margin: -5px;
+          display: flex;
+        }
+        &__list{
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          padding-left: 25px;
+          padding-top: 0;
+          padding-bottom: 0;
+          max-height: 0em;
+          overflow: hidden;
+        }
+        &__sub{
+          font-size: 15px;
+        }
+        &.active{
+          .item {
+            &__list {
+              max-height: 100em;
+              padding-top: 5px;
+              padding-bottom: 5px;
+            }
+            &__expand{
+              transform: rotate(90deg);
+            }
+          }
         }
       }
     }
     &__languages {
       border-top: 1px solid #fff;
       gap: 20px;
+      padding: 10px 7px;
+      margin-top: 5px;
       a {
         color: #fff;
         &.current {
           text-decoration: underline;
         }
       }
+    }
+  }
+  .email{
+    padding: 7px;
+    margin-top: 15px;
+    img{
+      width: 20px;
     }
   }
   .button {
@@ -150,7 +197,9 @@
       display: none;
     }
     .logo {
-      font-size: 32px;
+      img{
+        width: 200px; 
+      }
     }
     .container {
       padding: 10px 15px;

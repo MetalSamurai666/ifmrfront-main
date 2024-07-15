@@ -28,7 +28,7 @@
         ''
       "
     />
-    <div class="category">
+    <div class="category" v-if="publish?.category?.title">
       <router-link to="/" class="link"> {{ publish?.category?.title }} </router-link>
     </div>
   </div>

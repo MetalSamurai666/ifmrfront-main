@@ -69,6 +69,16 @@ const logo = {
   uz
 }
 
+const activeExpand = ref(0)
+function doExpand(id) {
+  if (activeExpand.value == id) {
+    activeExpand.value = 0
+  } else {
+    activeExpand.value = id
+  }
+  console.log(activeExpand.value)
+}
+
 onMounted(async () => {
   if (cookies.get('sitelocal')) {
     setDefaultLocale(cookies.get('sitelocal'))
@@ -181,27 +191,99 @@ onMounted(async () => {
 
             <ul class="side__list md-pt-20">
               <li class="item">
-                <router-link @click="doMenu(false)" class="item__box" to="/">
-                  <img src="@/assets/img/icons/news.svg" />Главная</router-link>
+                <div class="item__main">
+                  <router-link @click="doMenu(false)" class="item__box" to="/">
+                    <img src="@/assets/img/icons/news.svg" />
+                    Главная
+                  </router-link>
+                </div>
               </li>
-              <li class="item">
-                <router-link @click="doMenu(false)" class="item__box" to="/about">
-                  <img src="@/assets/img/icons/about.svg" />О нас</router-link>
+              <li :class="activeExpand === 2 ? 'item active' : 'item'">
+                <div class="item__main">
+                  <router-link @click="doMenu(false)" class="item__box" to="/about">
+                    <img src="@/assets/img/icons/about.svg" />
+                    {{ $t('message.nav.about') }}
+                  </router-link>
+
+                  <button class="item__expand" @click="doExpand(2)">
+                    <el-icon size="14" color="white"><ArrowRightBold /></el-icon>
+                  </button>
+                </div>
+
+                <div class="item__list">
+                  <div 
+                    class="item__sub"
+                    v-for="page of pages.filter((p) => need.includes(p?.key?.slug))" 
+                    :key="page._id"
+                    @click="routeTo({ 
+                      name: 'pageshow', 
+                      params: { slug: page?.key?.slug } 
+                    }), doMenu(false)"
+                  >
+                    - {{ page.title }}
+                  </div>
+                </div>
               </li>
-              <li class="item">
-                <router-link @click="doMenu(false)" class="item__box" to="/pubs">
-                  <img src="@/assets/img/icons/articles.svg" />Публикации</router-link>
+              <li :class="activeExpand === 3 ? 'item active' : 'item'">
+                <div class="item__main">
+                  <router-link @click="doMenu(false)" class="item__box" to="/document">
+                    <el-icon size="20">
+                      <document />
+                    </el-icon>
+                    {{ $t('message.nav.document') }}
+                  </router-link>
+
+                  <button class="item__expand" @click="doExpand(3)">
+                    <el-icon size="14" color="white"><ArrowRightBold /></el-icon>
+                  </button>
+                </div>
+
+                <div class="item__list">
+                  <div 
+                    class="item__sub"
+                    v-for="category of doccategorys" :key="category._id"
+                    @click="routeTo({ name: 'publishes', query: { id: category?._id } }), doMenu(false)"
+                  >
+                    - {{ category.title }}
+                  </div>
+                </div>
               </li>
-              <li class="item">
-                <router-link @click="doMenu(false)" class="item__box" to="/news">
-                  <img src="@/assets/img/icons/news.svg" />Новости</router-link>
+              <li :class="activeExpand === 4 ? 'item active' : 'item'">
+                <div class="item__main">
+                  <router-link @click="doMenu(false)" class="item__box" to="/pubs">
+                    <img src="@/assets/img/icons/articles.svg" />
+                    {{ $t('message.nav.pubs') }}
+                  </router-link>
+
+                  <button class="item__expand" @click="doExpand(4)">
+                    <el-icon size="14" color="white"><ArrowRightBold /></el-icon>
+                  </button>
+                </div>
+
+                <div class="item__list">
+                  <div 
+                    class="item__sub"
+                    v-for="category of categorys" :key="category._id"
+                    @click="
+                      routeTo({ name: 'publishes', query: { id: category?._id } }), 
+                      doMenu(false)
+                    "
+                  >
+                    - {{ category.title }}
+                  </div>
+                </div>
               </li>
               <!-- <li class="item">
-                <router-link @click="doMenu(false)" class="item__box" to="/"> <img src="@/assets/img/icons/partners.svg"/>Партнёры</router-link>
+                <router-link @click="doMenu(false)" class="item__box" to="/"> 
+                  <img src="@/assets/img/icons/partners.svg"/>
+                  Партнёры
+                </router-link>
               </li> -->
               <li class="item">
                 <router-link @click="doMenu(false)" class="item__box" to="/contacts">
-                  <img src="@/assets/img/icons/phone.svg" />Контакты</router-link>
+                  <img src="@/assets/img/icons/phone.svg" />
+                  Контакты
+                </router-link>
               </li>
             </ul>
 

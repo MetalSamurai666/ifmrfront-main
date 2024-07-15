@@ -10,7 +10,7 @@
             <div class="item__box">
                 <div class="item__title">{{ item?.title }}</div>
 
-                <a :href="url+'/'+item?.key.img[0].response" class="item__download">
+                <a :href="url+'/'+item?.key.img[0].response" target="_blank" class="item__download">
                     <el-icon size="24"><Download /></el-icon>
                 </a>
 

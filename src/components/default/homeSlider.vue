@@ -37,6 +37,8 @@
             ''
           }}
         </h1>
+
+        <router-link to="/" class="home__link">{{ $t('contacts.contactUs') }}</router-link>
       </div>
     </SplideSlide>
   </Splide>

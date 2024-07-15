@@ -1,5 +1,11 @@
 <template>
   <homeSlider />
+  <publisherList :title="'Публикации'" :rows="4" :limit="4" :more="true" class="pt-40"/>
+  <homeNews :title="'Новости'"/>
+  <div class="container">
+    <div class="line"></div>
+  </div>
+  <home-info />
   <div class="future pt-80 md-pt-40 pb-80 md-pb-40">
     <div class="container">
       <el-row :gutter="30" class="aic">
@@ -26,11 +32,6 @@
       </el-row>
     </div>
   </div>
-  <div class="container">
-    <div class="line"></div>
-  </div>
-  <home-info />
-  <publisherList :title="'Публикации'" :rows="4" :limit="4" :more="true" />
   <usefullLinks />
   <partners />
   <div class="container"><div class="line"></div></div>
@@ -39,10 +40,10 @@
 
 <script setup>
 import { usePublisherStore } from '@/stores/data/publisher'
-import { storeToRefs } from 'pinia'
+// import { storeToRefs } from 'pinia'
 import { onMounted, watch } from 'vue'
 const storePublisher = usePublisherStore()
-const { publishers } = storeToRefs(storePublisher)
+// const { publishers } = storeToRefs(storePublisher)
 
 import { useI18n } from 'vue-i18n'
 
@@ -72,4 +73,5 @@ import publisherList from '@/components/publisher/publisher_list.vue'
 import usefullLinks from '@/components/default/usefullLinks.vue'
 import partners from '@/components/default/partners.vue'
 import rating from '@/components/default/rating.vue'
+import homeNews from '@/components/default/homeNews.vue'
 </script>
