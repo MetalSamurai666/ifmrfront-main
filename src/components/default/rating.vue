@@ -88,14 +88,7 @@ const data = ref({})
   font-family: 'Roboto Slab';
 }
 button {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 20px;
-  border: 3px solid #fff;
-  padding: 12px 16px;
-  font-weight: 500;
-  color: #fff;
+  
   // img{
   //   filter: invert(1);
   // }
@@ -121,6 +114,14 @@ button {
 }
 
 .sendBtn{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  border: 3px solid #fff;
+  padding: 12px 16px;
+  font-weight: 500;
+  color: #fff;
   img{
     filter: invert(1);
   }

@@ -43,6 +43,11 @@ const router = createRouter({
           path: ':slug',
           name: 'pageshow',
           component: () => import('@/views/default/pageSlug.vue')
+        },
+        {
+          path: 'search',
+          name: 'search',
+          component: () => import('@/views/default/search.vue')
         }
       ]
     },
