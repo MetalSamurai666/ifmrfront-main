@@ -38,6 +38,10 @@ import { useDoccategoryStore } from '@/stores/data/doccategory'
 const doccategoryStore = useDoccategoryStore()
 const { doccategorys } = storeToRefs(doccategoryStore)
 
+import { useNewscategoryStore } from '@/stores/data/newscategory'
+const newscategoryStore = useNewscategoryStore()
+const { newscategorys } = storeToRefs(newscategoryStore)
+
 const need = ref(['about', 'leadership', 'structure', 'vacancy', 'partners'])
 
 const get = async () => {
@@ -50,6 +54,10 @@ const get = async () => {
   })
 
   await doccategoryStore.getDoccategorys({
+    language: locale.value || 'ru'
+  })
+  
+  await newscategoryStore.getNewscategorys({
     language: locale.value || 'ru'
   })
 }
@@ -167,10 +175,26 @@ onMounted(async () => {
             </el-dropdown>
           </li>
           <li>
+            <el-dropdown>
+              <div class="link" @click="routeTo('/news')">
+                <img src="@/assets/img/icons/news.svg" />
+                <span>{{ $t('message.nav.news') }}</span>
+              </div>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item v-for="category of newscategorys" :key="category._id"
+                    @click="routeTo({ name: 'news', query: { id: category?._id } })">
+                    {{ category?.title }}
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </li>
+          <!-- <li>
             <router-link to="/news">
               <img src="@/assets/img/icons/news.svg" />
               {{ $t('message.nav.news') }}</router-link>
-          </li>
+          </li> -->
           <li>
             <router-link to="/contacts">
               <img src="@/assets/img/icons/phone.svg" />{{

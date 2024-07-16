@@ -10,13 +10,23 @@ const menu = [
     }
   },
   {
+    path: 'newscategory',
+    name: 'newscategorylist',
+    component: () => import('@/views/dashboard/newsCategory.vue'),
+    meta: {
+      title: 'Категория',
+      group: 'news',
+      icon: 'list'
+    }
+  },
+  {
     path: 'news',
     name: 'newslist',
     component: () => import('@/views/dashboard/news.vue'),
     meta: {
       title: 'Новости',
-      group: 'content',
-      icon: 'list'
+      group: 'news',
+      icon: 'memo'
     }
   },
   {

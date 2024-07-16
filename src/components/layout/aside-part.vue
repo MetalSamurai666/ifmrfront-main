@@ -1,8 +1,10 @@
 <template>
   <aside>
-    <router-link to="/dashboard" class="logo"> LOGO </router-link>
+    <router-link to="/dashboard" class="logo">
+      <img src="@/assets/logo/ru_light.svg" alt="ru_light.svg" />
+    </router-link>
     <div class="links">
-      <router-link
+      <!-- <router-link
         to="/dashboard"
         :class="{
           link: true,
@@ -13,7 +15,7 @@
           <house />
         </el-icon>
         <span>Главная</span>
-      </router-link>
+      </router-link> -->
       <div v-for="(gr, gr_index) of group" :key="gr_index" class="links__group">
         <div class="title">{{ gr.label }}</div>
         <router-link

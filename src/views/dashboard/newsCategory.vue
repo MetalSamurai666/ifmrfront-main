@@ -2,69 +2,52 @@
 import { ref, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 
-import newsDialog from '@/components/news/news-dialog.vue'
-import newsTable from '@/components/news/news-table.vue'
+import newscategoryDialog from '@/components/newscategory/newscategory-dialog.vue'
+import newscategoryTable from '@/components/newscategory/newscategory-table.vue'
 
 import { useRoute } from 'vue-router'
 import { url } from '@/helpers/api'
 import router from '@/router'
-import { useNewsStore } from '@/stores/data/news'
-const store = useNewsStore()
-const { newss, newssCount } = storeToRefs(store)
-
 import { useNewscategoryStore } from '@/stores/data/newscategory'
-const newscategoryStore = useNewscategoryStore()
-const { newscategorys } = storeToRefs(newscategoryStore)
+const store = useNewscategoryStore()
+const { newscategorys, newscategorysCount } = storeToRefs(store)
 
 const toggle = ref(false)
 const type = ref(false)
-const news = ref({})
+const newscategory = ref({})
 const page = ref(1)
 const limit = ref(20)
 const search = ref({})
-
 const handleSave = async (value) => {
   let data = {
-    img: [...value.img],
     slug: value.slug,
-    newscategory: value?.newscategory,
     translates: [
       {
         title: value.title,
         language: value.language || 'ru',
         description: value.description,
-        text: value.text
       }
     ]
   }
-  console.log(data)
   if (type.value) {
-    await store.saveNews({
+    await store.saveNewscategory({
       _id: value._id,
       ...data
     })
   } else {
-    await store.addNews({ ...data })
+    await store.addNewscategory({ ...data })
   }
 }
 
 const handleEdit = async ({ id, language = null }) => {
-  news.value = await store.getTranslateNews({ id, language })
-  let { key, ...translate } = news.value
-  console.log(news.value)
-  news.value = {
+  newscategory.value = await store.getTranslateNewscategory({ id, language })
+  let { key, ...translate } = newscategory.value
+  console.log(newscategory.value)
+  newscategory.value = {
     ...key,
-    resslug: key?.slug?.slice() || '',
-    newscategory: key?.newscategory,
-    img: key?.img.map((img) => {
-      return {
-        ...img,
-        url: `${url}/${img.response}`
-      }
-    }),
+    resslug: key.slug?.slice() || '',
     language: translate.language,
     title: translate.title,
-    text: translate.text,
     description: translate.description
   }
   type.value = true
@@ -72,17 +55,17 @@ const handleEdit = async ({ id, language = null }) => {
 }
 
 const handleRemove = async (id) => {
-  await store.deleteNews(id)
+  await store.deleteNewscategory(id)
 }
 
 const handleStatus = async (val) => {
-  await store.statusNews(val)
+  await store.statusNewscategory(val)
 }
 
 const handleClose = () => {
   toggle.value = false
   type.value = false
-  news.value = {}
+  newscategory.value = {}
 }
 
 const handleOpen = () => {
@@ -92,10 +75,10 @@ const handleOpen = () => {
 const getDate = async () => {
   window.scrollTo(0, 0)
   router.push({
-    path: '/dashboard/news',
-    query: { news: page.value }
+    path: '/dashboard/newscategory',
+    query: { page: page.value }
   })
-  await store.getAllNewss({
+  await store.getAllNewscategorys({
     page: page.value,
     limit: limit.value,
     search: search.value || {}
@@ -109,17 +92,13 @@ const handleCurrentChange = async (val) => {
 
 onMounted(async () => {
   await getDate()
-
-  await newscategoryStore.getAllNewscategorys({
-    limit: 0
-  })
 })
 </script>
 
 <template>
   <div class="head mb-20">
     <div class="df align-item-center">
-      <h1>Новости</h1>
+      <h1>Тип новостей</h1>
     </div>
 
     <div class="df align-item-center">
@@ -131,30 +110,29 @@ onMounted(async () => {
       </el-button>
     </div>
   </div>
-  <news-table
-    :data="newss"
-    :page="page"
+  <newscategory-table
+    :data="newscategorys"
+    :newscategory="page"
     @remove="handleRemove"
     @edit="handleEdit"
     @status="handleStatus"
   />
-  <div class="text-center mt-1" v-if="newssCount > limit">
+  <div class="text-center mt-1" v-if="newscategorysCount > limit">
     <el-pagination
-      :current-news="news"
+      :current-newscategory="newscategory"
       background
       @current-change="handleCurrentChange"
-      :news-size="limit"
-      :total="newssCount"
+      :newscategory-size="limit"
+      :total="newscategorysCount"
     >
     </el-pagination>
   </div>
-  <news-dialog
+  <newscategory-dialog
     @close="handleClose"
     @save="handleSave"
-    :newscategorys="newscategorys"
     :toggle="toggle"
     :type="type"
-    :news="news"
+    :data="newscategory"
   />
 </template>
 

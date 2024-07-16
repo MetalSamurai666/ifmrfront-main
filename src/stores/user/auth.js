@@ -4,7 +4,6 @@ import cookies from 'vue-cookies'
 
 import { api } from '@/helpers/api'
 import router from '../../router'
-import { useRoute } from 'vue-router'
 export const authStore = defineStore('authStore', () => {
   const user = ref({})
   const login = async (data) => {
@@ -17,10 +16,9 @@ export const authStore = defineStore('authStore', () => {
     if (result.status == 200) {
       cookies.set('sitetoken', result.data?.token)
       user.value = { ...result.data?.user }
-      router.push({ name: 'dashboard' })
+      router.push({ name: 'slider' })
     }
   }
-  const route = useRoute()
   const checkUser = async () => {
     if (cookies.get('sitetoken')) {
       let res = await api({

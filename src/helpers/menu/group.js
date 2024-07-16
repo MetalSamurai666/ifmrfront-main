@@ -5,6 +5,10 @@ const group = [
     access: ['admin', 'employee']
   },
   {
+    name: 'news',
+    label: 'Новости'
+  },
+  {
     name: 'publisher',
     label: 'Публикации'
   },

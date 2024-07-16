@@ -44,29 +44,10 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
 <template>
   <el-table stripe :data="data">
     <el-table-column type="index" :index="indexMethod" />
-    <el-table-column width="80">
-      <template #default="scope">
-        <div>
-          <img
-            v-if="scope.row.img?.at(0)?.response"
-            :src="`${url}/${scope.row.img.at(0)?.response}`"
-            alt=""
-            style="width: 60px; aspect-ratio: 1/1; object-fit: cover"
-          />
-        </div>
-      </template>
-    </el-table-column>
     <el-table-column label="Заголовка">
       <template #default="scope">
         <div @click="getTranslate(scope.row._id, 'ru')">
           {{ scope.row.translates.find((tr) => tr.language == 'ru')?.title }}
-        </div>
-      </template>
-    </el-table-column>
-    <el-table-column label="Категория" width="300">
-      <template #default="scope">
-        <div>
-          {{ scope.row.newscategory?.translates?.at(0)?.title }}
         </div>
       </template>
     </el-table-column>

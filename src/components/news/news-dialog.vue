@@ -32,6 +32,23 @@
             />
           </el-form-item>
         </el-col>
+        <el-col :span="24" v-if="data.language == 'ru'">
+          <el-form-item label="Категория" prop="newscategory" :rules="changeRule">
+            <el-select
+              v-model="data.newscategory"
+              placeholder="Выберите из списка"
+              filterable
+              clearable
+            >
+              <el-option
+                v-for="opt of newscategorys"
+                :key="opt._id"
+                :value="opt._id"
+                :label="opt.translates?.find((tr) => tr.language == 'ru')?.title || ''"
+              />
+            </el-select>
+          </el-form-item>
+        </el-col>
       </el-row>
 
       <el-form-item label="Краткий текст" class="editor small">
@@ -88,7 +105,7 @@ import ImageUploader from 'quill-image-uploader'
 import 'quill-image-uploader/dist/quill.imageUploader.min.css'
 
 const emits = defineEmits(['close', 'save', 'checkslug'])
-const props = defineProps(['toggle', 'id', 'type', 'data', 'option', 'categorys'])
+const props = defineProps(['toggle', 'id', 'type', 'news', 'option', 'newscategorys'])
 const dialogToggle = ref(false)
 const lockToggle = ref(false)
 import axios from 'axios'
@@ -185,7 +202,7 @@ const save = async () => {
 watch(
   () => props.toggle,
   async (to) => {
-    if (props.type) data.value = { ...props.data }
+    if (props.type) data.value = { ...props.news }
     else
       data.value = {
         language: 'ru'
