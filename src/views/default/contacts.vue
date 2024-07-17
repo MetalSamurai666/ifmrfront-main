@@ -147,7 +147,7 @@ import poster from '@/components/default/poster.vue'
         color: $blue;
       }
       &__info {
-        font-family: 'Roboto Slab';
+        font-family: 'Montserrat';
       }
     }
   }

@@ -86,7 +86,7 @@
                 background: #ccc;
             }
             &__title{
-                font-family: 'Roboto Slab';
+                font-family: 'Montserrat';
                 font-size: 24px;
                 text-align: center;
             }

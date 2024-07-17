@@ -13,7 +13,7 @@ defineProps(['content'])
 <style lang="scss">
 .content {
   &__text {
-    font-family: 'Roboto Slab';
+    font-family: 'Montserrat';
     line-height: 140%;
     font-size: 18px;
     p {

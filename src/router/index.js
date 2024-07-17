@@ -48,7 +48,12 @@ const router = createRouter({
           path: 'search',
           name: 'search',
           component: () => import('@/views/default/search.vue')
-        }
+        },
+        {
+          path: 'logi',
+          name: 'logi',
+          component: () => import('@/views/default/logi.vue')
+        },
       ]
     },
 

@@ -59,7 +59,7 @@ import { url } from '@/helpers/api'
     text-transform: uppercase;
   }
   &__info {
-    font-family: 'Roboto Slab';
+    font-family: 'Montserrat';
     font-size: 18px;
     line-height: 140%;
   }

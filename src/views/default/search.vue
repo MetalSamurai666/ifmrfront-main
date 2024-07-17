@@ -32,8 +32,8 @@
 
                     <div :class="showBox ? 'filter__body show' : 'filter__body'">
                         <el-form :label-position="'top'">
-                            <el-row :gutter="30">
-                                <el-col :span="12">
+                            <el-row :gutter="30" class="filter__row">
+                                <el-col :span="12" class="filter__col">
                                     <el-form-item label="Область">
                                         <el-select placeholder="Выберите область" size="large">
                                             <el-option label="Zone one" value="shanghai" />
@@ -73,7 +73,7 @@
                                     </el-row>
                                 </el-col>
 
-                                <el-col :span="12">
+                                <el-col :span="12" class="filter__col">
                                     <el-form-item label="Район/город">
                                         <el-select placeholder="Выберите район" size="large">
                                             <el-option label="Zone one" value="shanghai" />
@@ -117,12 +117,16 @@
                     </div>
                 </div>
 
-                <button class="filter__show" @click="showBox = !showBox">Расширенный поиск</button>
+                <button class="filter__show" @click="showBox = !showBox">
+                    Расширенный поиск
+                </button>
             </div>
         </div>
         <div class="list">
             <div class="container">
-                <div class="filter__title">По заданным Вами параметрам найдены следующие центры транспортной логистики</div>
+                <div class="filter__title">
+                    По заданным Вами параметрам найдены следующие центры транспортной логистики
+                </div>
 
                 <ul class="list__grid">
                     <li class="item">
@@ -229,6 +233,12 @@
                     font-size: 16px;
                 }
             }
+            &__row{
+                flex-direction: column;
+            }
+            &__col{
+                max-width: 100%;
+            }
         }
     }
 
@@ -248,6 +258,10 @@
                     gap: 10px;
                     padding: 30px 20px 20px;
                     border-radius: 20px;
+                    transition: .3s linear;
+                    &:hover{
+                        box-shadow: none;
+                    }
                 }
                 &__top{
                     display: flex;
@@ -282,6 +296,8 @@
         @media (max-width: 600px) {
             &__grid{
                 grid-template-columns: 1fr;
+                padding: 30px 10px;
+                margin: -10px;
             }
         }
     }

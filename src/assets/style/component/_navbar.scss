@@ -72,6 +72,8 @@
       cursor: pointer;
       img {
         width: 20px;
+        height: 20px;
+        image-rendering: optimizeQuality;
       }
       // &.router-link-active.router-link-exact-active {
       //   text-decoration: underline;
@@ -104,6 +106,7 @@
     opacity: 0.8;
     &__box {
       padding: 20px;
+      white-space: nowrap;
     }
     &.active {
       right: 0;

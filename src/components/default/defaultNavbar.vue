@@ -143,9 +143,7 @@ onMounted(async () => {
           <li>
             <el-dropdown>
               <div class="link" @click="routeTo('/document')">
-                <el-icon>
-                  <document />
-                </el-icon>
+                <img src="@/assets/img/icons/docs.png">
                 <span>{{ $t('message.nav.document') }}</span>
               </div>
               <template #dropdown>

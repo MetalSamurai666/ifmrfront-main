@@ -85,7 +85,7 @@ const data = ref({})
 }
 .el-form--default.el-form--label-top .el-form-item div.el-form-item__label {
   font-size: 16px;
-  font-family: 'Roboto Slab';
+  font-family: 'Montserrat';
 }
 button {
   

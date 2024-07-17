@@ -44,7 +44,7 @@
         }
         &__text{
             max-width: 50%;
-            font-family: 'Roboto Slab';
+            font-family: 'Montserrat';
             line-height: 140%;
             margin: 30px 0px;
         }
