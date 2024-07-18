@@ -1,3 +1,27 @@
+<script setup>
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
+import { useCategoryStore } from '@/stores/data/category'
+import { storeToRefs } from 'pinia'
+const categoryStore = useCategoryStore()
+const { categorys } = storeToRefs(categoryStore)
+
+import { usePageStore } from '@/stores/data/page'
+const pageStore = usePageStore()
+const { pages } = storeToRefs(pageStore)
+const need = ref(['about', 'leadership', 'structure', 'vacancy', 'partners'])
+
+import { useDoccategoryStore } from '@/stores/data/doccategory'
+const doccategoryStore = useDoccategoryStore()
+const { doccategorys } = storeToRefs(doccategoryStore)
+
+import { useNewscategoryStore } from '@/stores/data/newscategory'
+const newscategoryStore = useNewscategoryStore()
+const { newscategorys } = storeToRefs(newscategoryStore)
+</script>
+
 <template>
   <footer>
     <div class="container">
@@ -45,55 +69,54 @@
           </div>
         </el-col>
         <el-col :md="6" :sm="12">
-          <div class="title">{{ $t('message.nav.about') }}</div>
+          <router-link to="/about" class="title">{{ $t('message.nav.about') }}</router-link>
           <ul>
-            <li>
+            <li v-for="page of pages.filter((p) => need.includes(p?.key?.slug))"
+              :key="page._id">
               <router-link
-                v-for="page of pages.filter((p) => need.includes(p?.key?.slug))"
-                :key="page._id"
+                
                 :to="{ name: 'pageshow', params: { slug: page?.key?.slug } }"
               >
-                <img src="@/assets/img/icons/right.svg" alt="" />
+                <img src="@/assets/img/icons/right.svg" />
                 {{ page.title }}
               </router-link>
             </li>
           </ul>
-          <div class="title mt-50">Законы</div>
+          <router-link to="/document" class="title mt-50">{{ $t('message.nav.document') }}</router-link>
           <ul>
-            <li>
-              <a href="#">
-                <img src="@/assets/img/icons/right.svg" alt="" />
-                Деятельность института
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <img src="@/assets/img/icons/right.svg" alt="" />
-                Деятельность института
-              </a>
+            <li v-for="category of doccategorys" :key="category._id">
+              <router-link
+                :to="{ name: 'pageshow', params: { slug: page?.key?.slug } }"
+              >
+                <img src="@/assets/img/icons/right.svg" />
+                {{ category?.title }}
+              </router-link>
             </li>
           </ul>
+          
         </el-col>
         <el-col :md="6" :sm="12">
-          <div class="title">Публикации</div>
+          <router-link to="/pubs" class="title">{{ $t('message.nav.pubs') }}</router-link>
           <ul>
-            <li>
-              <a href="#">
-                <img src="@/assets/img/icons/right.svg" alt="" />
-                Деятельность института
-              </a>
+            <li v-for="category of newscategorys" :key="category._id">
+              <router-link
+                :to="{ name: 'pageshow', params: { slug: page?.key?.slug } }"
+              >
+                <img src="@/assets/img/icons/right.svg" />
+                {{ category?.title }}
+              </router-link>
             </li>
-            <li>
-              <a href="#">
-                <img src="@/assets/img/icons/right.svg" alt="" />
-                Деятельность института
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <img src="@/assets/img/icons/right.svg" alt="" />
-                Деятельность института
-              </a>
+          </ul>
+
+          <router-link to="/pubs" class="title mt-50">{{ $t('message.nav.news') }}</router-link>
+          <ul>
+            <li v-for="category of categorys" :key="category._id">
+              <router-link
+                :to="{ name: 'pageshow', params: { slug: page?.key?.slug } }"
+              >
+                <img src="@/assets/img/icons/right.svg" />
+                {{ category?.title }}
+              </router-link>
             </li>
           </ul>
         </el-col>
@@ -107,22 +130,6 @@
     </div>
   </footer>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
-
-import { useCategoryStore } from '@/stores/data/category'
-import { storeToRefs } from 'pinia'
-const categoryStore = useCategoryStore()
-const { categorys } = storeToRefs(categoryStore)
-
-import { usePageStore } from '@/stores/data/page'
-const pageStore = usePageStore()
-const { pages } = storeToRefs(pageStore)
-const need = ref(['about', 'leadership', 'structure', 'vacancy', 'partners'])
-</script>
 
 <style lang="scss" scoped>
 @import '@/assets/style/component/footer';

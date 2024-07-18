@@ -9,6 +9,9 @@ footer {
         font-family: "Fira Sans Condensed";
         font-weight: 900;
         margin-bottom: 16px;
+        color: rgba(0, 0, 0, 0.75);
+        margin-bottom: 10px;
+        display: block;
     }
     .contact {
         & + .contact {
