@@ -98,6 +98,56 @@ const menu = [
       group: 'document',
       icon: 'reading'
     }
+  },
+  {
+    path: 'room',
+    name: 'room',
+    component: () => import('@/views/dashboard/roomList.vue'),
+    meta: {
+      title: 'Тип помещений',
+      group: 'centers',
+      icon: 'office-building'
+    }
+  },
+  {
+    path: 'storage',
+    name: 'storage',
+    component: () => import('@/views/dashboard/storageList.vue'),
+    meta: {
+      title: 'Тип хранения',
+      group: 'centers',
+      icon: 'files'
+    }
+  },
+  {
+    path: 'safe',
+    name: 'safe',
+    component: () => import('@/views/dashboard/safeList.vue'),
+    meta: {
+      title: 'Тип безопасности',
+      group: 'centers',
+      icon: 'warn-triangle-filled'
+    }
+  },
+  {
+    path: 'service',
+    name: 'service',
+    component: () => import('@/views/dashboard/serviceList.vue'),
+    meta: {
+      title: 'Тип услуг',
+      group: 'centers',
+      icon: 'memo'
+    }
+  },
+  {
+    path: 'spec',
+    name: 'spec',
+    component: () => import('@/views/dashboard/specList.vue'),
+    meta: {
+      title: 'Специализация',
+      group: 'centers',
+      icon: 'list'
+    }
   }
 ]
 

@@ -86,7 +86,7 @@ const { newscategorys } = storeToRefs(newscategoryStore)
           <ul>
             <li v-for="category of doccategorys" :key="category._id">
               <router-link
-                :to="{ name: 'pageshow', params: { slug: page?.key?.slug } }"
+                :to="{ name: 'pageshow', params: { slug: category?.key?.slug } }"
               >
                 <img src="@/assets/img/icons/right.svg" />
                 {{ category?.title }}
@@ -100,7 +100,7 @@ const { newscategorys } = storeToRefs(newscategoryStore)
           <ul>
             <li v-for="category of newscategorys" :key="category._id">
               <router-link
-                :to="{ name: 'pageshow', params: { slug: page?.key?.slug } }"
+                :to="{ name: 'pageshow', params: { slug: category?.key?.slug } }"
               >
                 <img src="@/assets/img/icons/right.svg" />
                 {{ category?.title }}
@@ -112,7 +112,7 @@ const { newscategorys } = storeToRefs(newscategoryStore)
           <ul>
             <li v-for="category of categorys" :key="category._id">
               <router-link
-                :to="{ name: 'pageshow', params: { slug: page?.key?.slug } }"
+                :to="{ name: 'pageshow', params: { slug: category?.key?.slug } }"
               >
                 <img src="@/assets/img/icons/right.svg" />
                 {{ category?.title }}

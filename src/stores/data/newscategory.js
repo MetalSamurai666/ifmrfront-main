@@ -9,7 +9,7 @@ export const useNewscategoryStore = defineStore('useNewscategoryStore', () => {
   const newscategory = ref({})
 
   const addNewscategory = async (data) => {
-    console.log(data)
+
     let newNewscategory = await api({
       url: 'api/newscategory',
       method: 'post',
@@ -21,14 +21,14 @@ export const useNewscategoryStore = defineStore('useNewscategoryStore', () => {
   }
 
   const getAllNewscategorys = async (params) => {
-    console.log(params)
+
     newscategorys.value = []
     newscategorysCount.value = 0
     let { data } = await api({
       url: `api/newscategory`,
       params
     })
-    console.log(data)
+
     newscategorys.value = [...data.data]
     newscategorysCount.value = data.count
   }
@@ -40,7 +40,6 @@ export const useNewscategoryStore = defineStore('useNewscategoryStore', () => {
       url: `v1/newscategory`,
       params
     })
-    console.log(data)
     newscategorys.value = [...data]
   }
 

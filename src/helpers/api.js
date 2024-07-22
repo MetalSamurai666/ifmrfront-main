@@ -3,6 +3,7 @@ import cookies from 'vue-cookies'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 const url = 'https://ifmr.hamkasb.uz'
+const mainurl = 'http://jd1.md.uz'
 // const url = 'http://localhost:3000'
 
 const api = async (payload) => {
@@ -73,4 +74,4 @@ const download = async (filepath) => {
   })
 }
 
-export { api, url, download, generateExcel, checkSlug }
+export { api, url, download, generateExcel, checkSlug, mainurl }

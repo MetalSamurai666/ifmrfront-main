@@ -1,7 +1,6 @@
 <script setup>
 import { ElMessageBox } from 'element-plus'
 import { langs } from '@/stores/env'
-import { mainurl, url } from '@/helpers/api'
 const emit = defineEmits(['edit', 'remove', 'status'])
 const props = defineProps({
   data: Array,
@@ -15,9 +14,9 @@ const props = defineProps({
   }
 })
 
-const edit = (id) => {
-  emit('edit', { id })
-}
+// const edit = (id) => {
+//   emit('edit', { id })
+// }
 
 const changeStatus = (val) => {
   emit('status', val)
@@ -44,18 +43,6 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
 <template>
   <el-table stripe :data="data">
     <el-table-column type="index" :index="indexMethod" />
-    <el-table-column width="80">
-      <template #default="scope">
-        <div>
-          <img
-            v-if="scope.row.img?.at(0)?.response"
-            :src="`${url}/${scope.row.img.at(0)?.response}`"
-            alt=""
-            style="width: 60px; aspect-ratio: 1/1; object-fit: cover"
-          />
-        </div>
-      </template>
-    </el-table-column>
     <el-table-column label="Заголовка">
       <template #default="scope">
         <div @click="getTranslate(scope.row._id, 'ru')">
@@ -77,15 +64,7 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
         </el-button>
       </template>
     </el-table-column>
-    <el-table-column label="Краткое название" prop="slug" width="150">
-      <template #default="scope">
-        <div>
-          <a :href="`${mainurl}/publish/${scope.row.slug}`" class="el-button" target="_blank">
-            <el-icon><View /></el-icon>
-          </a>
-        </div>
-      </template>
-    </el-table-column>
+    <el-table-column label="Краткое название" prop="slug" width="150" />
 
     <el-table-column label="Статус" width="90">
       <template #default="scope">
@@ -113,12 +92,6 @@ const indexMethod = (index) => (+props.page - 1) * props.limit + index + 1
           </el-button>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item @click="getTranslate(scope.row._id, 'ru')">
-                <el-icon class="mr-1">
-                  <edit-pen />
-                </el-icon>
-                Редактировать
-              </el-dropdown-item>
               <el-dropdown-item @click="remove(scope.row._id)">
                 <el-icon class="mr-1">
                   <delete />

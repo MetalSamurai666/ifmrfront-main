@@ -17,6 +17,10 @@ const group = [
     label: 'Документы'
   },
   {
+    name: 'centers',
+    label: 'Центры'
+  },
+  {
     name: 'other',
     label: 'Прочее'
   }
