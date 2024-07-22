@@ -96,7 +96,7 @@ const { newscategorys } = storeToRefs(newscategoryStore)
           
         </el-col>
         <el-col :md="6" :sm="12">
-          <router-link to="/pubs" class="title">{{ $t('message.nav.pubs') }}</router-link>
+          <router-link to="/pubs" class="title">{{ $t('message.nav.news') }}</router-link>
           <ul>
             <li v-for="category of newscategorys" :key="category._id">
               <router-link
@@ -108,7 +108,7 @@ const { newscategorys } = storeToRefs(newscategoryStore)
             </li>
           </ul>
 
-          <router-link to="/pubs" class="title mt-50">{{ $t('message.nav.news') }}</router-link>
+          <router-link to="/pubs" class="title mt-50">{{ $t('message.nav.pubs') }}</router-link>
           <ul>
             <li v-for="category of categorys" :key="category._id">
               <router-link
