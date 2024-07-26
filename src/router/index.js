@@ -53,7 +53,7 @@ const router = createRouter({
           path: 'logi',
           name: 'logi',
           component: () => import('@/views/default/logi.vue')
-        },
+        }
       ]
     },
 
@@ -97,6 +97,7 @@ const router = createRouter({
           name: 'dashboard',
           component: () => import('@/views/dashboard/index.vue')
         },
+       
         ...menu
       ]
     }

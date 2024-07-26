@@ -35,7 +35,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { UploadProps, UploadUserFile } from 'element-plus'
 import { ref } from 'vue'
 import cookies from 'vue-cookies'

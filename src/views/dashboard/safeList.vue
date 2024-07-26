@@ -69,7 +69,7 @@ const handleOpen = () => {
 const getDate = async () => {
   window.scrollTo(0, 0)
   router.push({
-    path: '/dashboard/safe',
+    name: 'safe',
     query: { page: page.value }
   })
   await store.getAllSafes({

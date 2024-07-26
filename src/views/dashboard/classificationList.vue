@@ -2,17 +2,17 @@
 import { ref, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 
-import roomDialog from '@/components/room/room-dialog.vue'
-import roomTable from '@/components/room/room-table.vue'
+import classificationDialog from '@/components/classification/classification-dialog.vue'
+import classificationTable from '@/components/classification/classification-table.vue'
 
 import router from '@/router'
-import { useRoomStore } from '@/stores/data/room'
-const store = useRoomStore()
-const { rooms, roomsCount } = storeToRefs(store)
+import { useClassificationStore } from '@/stores/data/classification'
+const store = useClassificationStore()
+const { classifications, classificationsCount } = storeToRefs(store)
 
 const toggle = ref(false)
 const type = ref(false)
-const room = ref({})
+const classification = ref({})
 const page = ref(1)
 const limit = ref(20)
 const search = ref({})
@@ -26,20 +26,20 @@ const handleSave = async (value) => {
     ]
   }
   if (type.value) {
-    await store.saveRoom({
+    await store.saveClassification({
       _id: value._id,
       ...data
     })
   } else {
-    await store.addRoom({ ...data })
+    await store.addClassification({ ...data })
   }
 }
 
 const handleEdit = async ({ id, language = null }) => {
-  room.value = await store.getTranslateRoom({ id, language })
-  let { key, ...translate } = room.value
-  console.log(room.value)
-  room.value = {
+  classification.value = await store.getTranslateClassification({ id, language })
+  let { key, ...translate } = classification.value
+  console.log(classification.value)
+  classification.value = {
     ...key,    
     language: translate.language,
     title: translate.title,    
@@ -49,17 +49,17 @@ const handleEdit = async ({ id, language = null }) => {
 }
 
 const handleRemove = async (id) => {
-  await store.deleteRoom(id)
+  await store.deleteClassification(id)
 }
 
 const handleStatus = async (val) => {
-  await store.statusRoom(val)
+  await store.statusClassification(val)
 }
 
 const handleClose = () => {
   toggle.value = false
   type.value = false
-  room.value = {}
+  classification.value = {}
 }
 
 const handleOpen = () => {
@@ -69,10 +69,10 @@ const handleOpen = () => {
 const getDate = async () => {
   window.scrollTo(0, 0)
   router.push({
-    name: 'room',
+    name: 'classification',
     query: { page: page.value }
   })
-  await store.getAllRooms({
+  await store.getAllClassifications({
     page: page.value,
     limit: limit.value,
     search: search.value || {}
@@ -92,7 +92,7 @@ onMounted(async () => {
 <template>
   <div class="head mb-20">
     <div class="df align-item-center">
-      <h1>Тип помещений</h1>
+      <h1>Тип классификации</h1>
     </div>
 
     <div class="df align-item-center">
@@ -104,24 +104,24 @@ onMounted(async () => {
       </el-button>
     </div>
   </div>
-  <room-table
-    :data="rooms"
-    :room="page"
+  <classification-table
+    :data="classifications"
+    :classification="page"
     @remove="handleRemove"
     @edit="handleEdit"
     @status="handleStatus"
   />
-  <div class="text-center mt-1" v-if="roomsCount > limit">
+  <div class="text-center mt-1" v-if="classificationsCount > limit">
     <el-pagination
-      :current-room="room"
+      :current-classification="classification"
       background
       @current-change="handleCurrentChange"
-      :room-size="limit"
-      :total="roomsCount"
+      :classification-size="limit"
+      :total="classificationsCount"
     >
     </el-pagination>
   </div>
-  <room-dialog @close="handleClose" @save="handleSave" :toggle="toggle" :type="type" :room="room" />
+  <classification-dialog @close="handleClose" @save="handleSave" :toggle="toggle" :type="type" :classification="classification" />
 </template>
 
 <style></style>

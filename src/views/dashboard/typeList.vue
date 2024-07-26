@@ -69,7 +69,7 @@ const handleOpen = () => {
 const getDate = async () => {
   window.scrollTo(0, 0)
   router.push({
-    path: '/dashboard/type',
+    name: 'type',
     query: { page: page.value }
   })
   await store.getAllTypes({
@@ -92,7 +92,7 @@ onMounted(async () => {
 <template>
   <div class="head mb-20">
     <div class="df align-item-center">
-      <h1>Тип специализации</h1>
+      <h1>Тип склада</h1>
     </div>
 
     <div class="df align-item-center">

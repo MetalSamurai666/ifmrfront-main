@@ -27,6 +27,8 @@ export const useStorageStore = defineStore('useStorageStore', () => {
       params
     })
 
+    console.log(data.data)
+
     storages.value = [...data.data]
     storagesCount.value = data.count
   }
