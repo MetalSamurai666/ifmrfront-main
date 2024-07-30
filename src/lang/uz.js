@@ -1,7 +1,6 @@
 export default {
   localeTitle: 'O`z',
-  title:
-    'Transport va logistikani rivojlantirish muammolarini o‘rganish markazi',
+  title: 'Transport va logistikani rivojlantirish muammolarini o‘rganish markazi',
   message: {
     homeTitle: 'TRANSPORT VA LOGISTIKANI RIVOJLANTIRISH MUAMMOLARINI O`RGANISH MARKAZI',
     nav: {
@@ -47,6 +46,47 @@ export default {
       send: 'Yuborish'
     }
   },
+
+  blocks: {
+    title: 'Bo‘limlar',
+    center: {
+      title: 'Транспортные логистические центры',
+      text: 'Перечень и данные транспортно-логистических центров в Узбекистане'
+    },
+    agro: {
+      title: 'Агрологистические центры',
+      text: 'Перечень и данные агро-логистических центров в Узбекистане'
+    },
+    terminals: {
+      title: 'Терминалы',
+      text: 'Информация об имеющихся складах в Узбекистане'
+    },
+    parks: {
+      title: 'TIR-парки',
+      text: 'Специализированные парковки для грузовиков'
+    },
+    econom: {
+      title: 'Свободные экономические зоны',
+      text: 'специально выделенная территория с четко определенными административными границами и особым правовым режимом'
+    },
+    terms: {
+      title: 'Терминалы',
+      text: 'Пункт, в котором заканчивается одна транспортная сеть и начинается другая'
+    },
+    hallway: {
+      title: 'Транспортные коридоры',
+      text: 'Совокупность транспортных коммуникаций различных видов транспорта, обеспечивающий транспортировку грузов между различными странами'
+    },
+    port: {
+      title: 'Сухие порты',
+      text: 'Предоставляет все услуги порта, за исключением погрузки груза на морские суда и выгрузки с них'
+    },
+    info: {
+      title: 'Инфографика',
+      text: 'Визуализация данных или идей, целью которой является донесение сложной информации до аудитории быстрым и понятным образом'
+    }
+  },
+
   contacts: {
     addresstitle: 'Manzil',
     address: `Toshkent shahri, Zulfiyaxonim ko‘chasi, 3-uy. Mo'ljal: Shayxontohur tumani prokuraturasi. 57, 72-sonli avtobuslarning "Bilimgoh" bekati`,

@@ -19,7 +19,7 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
-    line-clamp: 3; 
+    line-clamp: 3;
     -webkit-box-orient: vertical;
   }
   .text {
@@ -29,18 +29,23 @@
     font-weight: 400;
     text-align: justify;
     overflow: hidden;
+    color: #c2b7bd;
     display: -webkit-box;
     -webkit-line-clamp: 3;
-    line-clamp: 3; 
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     max-height: 4.2em;
-    p{
+    & > p,
+    & > p span,
+    & > * {
+      color: #c2b7bd !important;
+    }
+    p {
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
-      line-clamp: 3; 
+      line-clamp: 3;
       -webkit-box-orient: vertical;
-
     }
   }
   .category {
@@ -60,10 +65,10 @@
       color: #fff;
     }
   }
-  &.alt{
+  &.alt {
     display: flex;
     gap: 15px;
-    .poster{
+    .poster {
       width: 200px;
       max-width: 200px;
       margin-bottom: 0;
@@ -89,9 +94,9 @@
     .category {
       margin-top: 10px;
     }
-    &.alt{
+    &.alt {
       flex-direction: column;
-      .poster{
+      .poster {
         width: 100%;
         max-width: 100%;
       }

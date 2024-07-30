@@ -1,11 +1,9 @@
 <template>
   <homeSlider />
-  <publisherList :title="'Публикации'" :rows="4" :limit="4" :more="true" class="pt-40"/>
-  <homeNews :title="'Новости'"/>
-  <div class="container">
-    <div class="line"></div>
-  </div>
-  <home-info />
+  <publisherList :title="'Публикации'" :rows="4" :limit="4" :more="true" class="pt-40" />
+  <homeNews :title="'Новости'" />
+  <home-info v-if="false" />
+  <blocksList />
   <div class="future pt-80 md-pt-40 pb-80 md-pb-40">
     <div class="container">
       <el-row :gutter="30" class="aic">
@@ -32,13 +30,14 @@
       </el-row>
     </div>
   </div>
+  <rating />
   <usefullLinks />
   <partners />
-  <div class="container"><div class="line"></div></div>
-  <rating />
 </template>
 
 <script setup>
+import blocksList from '@/components/default/blocksList.vue'
+
 import { usePublisherStore } from '@/stores/data/publisher'
 // import { storeToRefs } from 'pinia'
 import { onMounted, watch } from 'vue'

@@ -45,9 +45,9 @@ const router = createRouter({
           component: () => import('@/views/default/pageSlug.vue')
         },
         {
-          path: 'search',
-          name: 'search',
-          component: () => import('@/views/default/search.vue')
+          path: 'centers',
+          name: 'center',
+          component: () => import('@/views/default/centerList.vue')
         },
         {
           path: 'logi',
@@ -74,7 +74,6 @@ const router = createRouter({
         }
       ]
     },
-
     {
       path: '/auth',
       name: 'auth',
@@ -97,7 +96,7 @@ const router = createRouter({
           name: 'dashboard',
           component: () => import('@/views/dashboard/index.vue')
         },
-       
+
         ...menu
       ]
     }
