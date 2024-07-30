@@ -1,5 +1,20 @@
 <script setup>
-import Rating from '@/components/default/rating.vue';
+    import Rating from '@/components/default/rating.vue'
+    import { useCenterStore } from '@/stores/data/center'
+    // import { useI18n } from 'vue-i18n'
+    // import { url } from '@/helpers/api'
+    import {  onMounted } from 'vue'
+    import { useRoute } from 'vue-router'
+
+    // const { locale } = useI18n()
+    const route = useRoute()
+
+    const centerStore = useCenterStore()
+
+    onMounted(() => {
+        console.log(route?.params.id)
+        centerStore.bySlug(route?.params.id)
+    })
 
 </script>
 
@@ -8,7 +23,7 @@ import Rating from '@/components/default/rating.vue';
         <div class="placeholder"></div>
         <div class="container">
             <div class="logi__box">
-                <img src="@/assets/img/result.png" class="logi__img">
+                <!-- <img :src="url+'/'+item?.img[0]?.response" class="logi__img"> -->
 
                 <div class="logi__content" v-html="`<b> asd </b>`"></div>
 

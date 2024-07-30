@@ -1,7 +1,19 @@
 <script setup>
-    import { ref } from 'vue';
+    import { onMounted, ref } from 'vue'
+    import { useCenterStore } from '@/stores/data/center'
+    import { storeToRefs } from 'pinia'
+    import { useI18n } from 'vue-i18n'
+    import { url } from '@/helpers/api'
+
+    const { locale } = useI18n()
 
     const showBox = ref(false)
+    const centerStore = useCenterStore()
+    const { centers } = storeToRefs(centerStore)
+
+    onMounted(() => {
+        centerStore.getAllCenters()
+    })
 </script>
 
 <template>
@@ -129,23 +141,35 @@
                 </div>
 
                 <ul class="list__grid">
-                    <li class="item">
-                        <router-link to="/" class="item__box">
+                    <li class="item" v-for="item of centers" :key="item">
+                        <router-link :to="`/logi/${item?._id}`" class="item__box">
                             <div class="item__top">
-                                <img src="@/assets/img/result.png" alt="Item image" class="item__img">
+                                <img :src="url+'/'+item?.img[0]?.response" alt="Item image" class="item__img">
 
-                                <div class="item__title">Universal Logistics Services</div>
+                                <div class="item__title">
+                                    {{ 
+                                        item?.translates?.find((item) => item?.language == locale)?.title||
+                                        item?.translates?.find((item) => item?.language == 'ru')?.title ||
+                                        '' 
+                                    }}
+                                </div>
                             </div>
 
                             <div class="item__mid">
-                                <div class="item__rating">45 балл </div>
+                                <div class="item__rating">{{ item?.rating }} балл </div>
 
                                 <router-link to="/">Подробнее об оценке</router-link>
                             </div>
 
-                            <div class="item__address">Ташкент , Алмазарский район , 92Б, ул.Чукурсай</div>
+                            <div class="item__address">
+                                {{ 
+                                    item?.translates?.find((item) => item?.language == locale)?.address||
+                                    item?.translates?.find((item) => item?.language == 'ru')?.address ||
+                                    '' 
+                                }}
+                            </div>
 
-                            <router-link to="/" class="item__more">Подробнее</router-link>
+                            <router-link :to="item?._id" class="item__more">Подробнее</router-link>
                         </router-link>
                     </li>
                 </ul>
@@ -154,7 +178,7 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .placeholder {
         background-color: #2a37af;
         height: 300px;
@@ -259,6 +283,7 @@
                     padding: 30px 20px 20px;
                     border-radius: 20px;
                     transition: .3s linear;
+                    height: 100%;
                     &:hover{
                         box-shadow: none;
                     }

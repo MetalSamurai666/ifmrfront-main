@@ -52,7 +52,13 @@ const router = createRouter({
         {
           path: 'logi',
           name: 'logi',
-          component: () => import('@/views/default/logi.vue')
+          children: [
+            {
+              path: ':id',
+              name: 'logiPage',
+              component: () => import('@/views/default/logi.vue')
+            }
+          ]
         }
       ]
     },

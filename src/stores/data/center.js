@@ -84,6 +84,7 @@ export const useCenterStore = defineStore('useCenterStore', () => {
   }
 
   const getCenter = async ({ id }) => {
+    console.log(id)
     let { data } = await api({
       url: `api/center/${id}`
     })
