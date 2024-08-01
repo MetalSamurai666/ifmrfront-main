@@ -31,6 +31,17 @@ export const useCenterStore = defineStore('useCenterStore', () => {
     centersCount.value = data.count
   }
 
+  const searchingCenters = async (params) => {
+    centers.value = []
+    centersCount.value = 0
+    let { data } = await api({
+      url: `api/center/searching`,
+      params
+    })
+    console.log(data)
+    centers.value = [...data]
+  }
+
   const getCenters = async (params) => {
     centers.value = []
     centersCount.value = 0
@@ -98,9 +109,9 @@ export const useCenterStore = defineStore('useCenterStore', () => {
     return data
   }
 
-  const bySlug = async (slug, language) => {
+  const bySlug = async (id, language) => {
     let { data } = await api({
-      url: `center/${slug}`,
+      url: `api/center/byid/${id}`,
       params: {
         language
       }
@@ -114,6 +125,7 @@ export const useCenterStore = defineStore('useCenterStore', () => {
     centersCount,
     getCenters,
     bySlug,
+    searchingCenters,
     getTranslateCenter,
     getCenter,
     addCenter,

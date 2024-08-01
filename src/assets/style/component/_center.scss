@@ -1,0 +1,147 @@
+.placeholder {
+  background-color: #2a37af;
+  height: 300px;
+}
+
+.filter {
+  padding: 40px 0px;
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__box {
+    padding: 20px 30px;
+    background-color: #f0f2f9;
+    margin-top: 20px;
+    border-radius: 22px;
+  }
+
+  &__search {
+    display: flex;
+    gap: 20px;
+
+    img {
+      width: 30px;
+    }
+
+    input {
+      flex: 1;
+      font-size: 24px;
+      background: 0;
+      outline: 0;
+    }
+
+    button {
+      font-size: 24px;
+      background-color: #fd9000;
+      color: #fff;
+      padding: 10px 60px;
+      text-align: center;
+      border-radius: 15px;
+    }
+  }
+
+  &__body {
+    max-height: 0em;
+    overflow: hidden;
+    // transition: .3s linear;
+    &.show {
+      margin-top: 10px;
+      border-top: 1px solid #cbcbcb;
+      padding: 10px 0px;
+      max-height: 75em;
+    }
+  }
+
+  &__show {
+    color: #fd9000;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 600px) {
+    &__search {
+      img {
+        display: none;
+      }
+      input {
+        font-size: 16px;
+      }
+      button {
+        padding: 5px 10px;
+        height: 40px;
+        font-size: 16px;
+      }
+    }
+    &__row {
+      flex-direction: column;
+    }
+    &__col {
+      max-width: 100%;
+    }
+  }
+}
+
+.list {
+  padding: 0px 0px 40px;
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 40px 20px;
+    margin: -20px;
+    .item {
+      &__box {
+        box-shadow: 4px 8px 18.8px 0px #0000001a;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 30px 20px 20px;
+        border-radius: 20px;
+        transition: 0.3s linear;
+        height: 100%;
+        &:hover {
+          box-shadow: none;
+        }
+      }
+      &__top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      &__img {
+        max-width: 110px;
+      }
+      &__title {
+        font-size: 24px;
+        font-weight: 600;
+      }
+      &__mid {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        a {
+          color: #fd9000;
+          font-size: 14px;
+        }
+      }
+      &__rating {
+        font-weight: 600;
+      }
+      &__more {
+        font-size: 20px;
+        color: #fd9000;
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    &__grid {
+      grid-template-columns: 1fr;
+      padding: 30px 10px;
+      margin: -10px;
+    }
+  }
+}

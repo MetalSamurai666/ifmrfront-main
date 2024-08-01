@@ -47,18 +47,18 @@ const router = createRouter({
         {
           path: 'centers',
           name: 'center',
-          component: () => import('@/views/default/centerList.vue')
+          component: () => import('@/views/default/centerList.vue'),
+          meta: {
+            bg: true
+          }
         },
         {
-          path: 'logi',
-          name: 'logi',
-          children: [
-            {
-              path: ':id',
-              name: 'logiPage',
-              component: () => import('@/views/default/logi.vue')
-            }
-          ]
+          path: 'centershow/:id',
+          name: 'centerpage',
+          component: () => import('@/views/default/centerPage.vue'),
+          meta: {
+            bg: true
+          }
         }
       ]
     },

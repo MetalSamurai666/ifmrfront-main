@@ -4,6 +4,12 @@
   position: absolute;
   width: 100%;
   top: 0;
+  &.bg {
+    background-image: url('@/assets/img/head.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
   .logo {
     font-size: 18px;
     font-weight: 500;
@@ -121,7 +127,7 @@
       flex-direction: column;
       gap: 10px;
       .item {
-        &__main{
+        &__main {
           display: flex;
           align-items: center;
           gap: 10px;
@@ -132,16 +138,16 @@
           gap: 10px;
           padding: 5px 5px;
           color: #fff;
-          img{
+          img {
             width: 20px;
           }
         }
-        &__expand{
+        &__expand {
           padding: 5px;
           margin: -5px;
           display: flex;
         }
-        &__list{
+        &__list {
           display: flex;
           flex-direction: column;
           gap: 5px;
@@ -151,17 +157,17 @@
           max-height: 0em;
           overflow: hidden;
         }
-        &__sub{
+        &__sub {
           font-size: 15px;
         }
-        &.active{
+        &.active {
           .item {
             &__list {
               max-height: 100em;
               padding-top: 5px;
               padding-bottom: 5px;
             }
-            &__expand{
+            &__expand {
               transform: rotate(90deg);
             }
           }
@@ -181,10 +187,10 @@
       }
     }
   }
-  .email{
+  .email {
     padding: 7px;
     margin-top: 15px;
-    img{
+    img {
       width: 20px;
     }
   }
@@ -200,8 +206,8 @@
       display: none;
     }
     .logo {
-      img{
-        width: 200px; 
+      img {
+        width: 200px;
       }
     }
     .container {

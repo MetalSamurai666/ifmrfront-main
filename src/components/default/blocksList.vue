@@ -9,7 +9,7 @@
         <el-col :xs="24" :md="8" v-for="(key, index) of blocks" :key="key" class="mb-36">
           <router-link :to="{ name: index == 0 ? key : 'home' }" class="block">
             <img :src="getImageUrl(key)" alt="" />
-            <div>
+            <div class="block__flex">
               <div class="block__title">{{ $t(`blocks.${key}.title`) }}</div>
               <div class="block__text">{{ $t(`blocks.${key}.text`) }}</div>
             </div>
@@ -52,8 +52,14 @@ const getImageUrl = (path) => {
   gap: 7px;
   min-height: 152px;
   transition: linear 0.3s;
+  &__flex {
+    flex-basis: calc(100% - 60px);
+  }
   img {
     transition: linear 0.3s;
+    width: 100px;
+    height: 70px;
+    object-fit: contain;
   }
   height: 100%;
   &:hover {

@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-const { t, locale } = useI18n()
+const { locale } = useI18n()
 import cookies from 'vue-cookies'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const sideState = ref(false)
 
@@ -13,6 +13,10 @@ function setDefaultLocale(lang) {
   cookies.set('sitelocal', lang)
   locale.value = lang
 }
+
+import { useFullStore } from '@/stores/usefull'
+const usefull = useFullStore()
+const { navbarBg } = storeToRefs(usefull)
 
 function doMenu(i) {
   sideState.value = i
@@ -56,7 +60,7 @@ const get = async () => {
   await doccategoryStore.getDoccategorys({
     language: locale.value || 'ru'
   })
-  
+
   await newscategoryStore.getNewscategorys({
     language: locale.value || 'ru'
   })
@@ -77,6 +81,8 @@ const logo = {
   uz
 }
 
+const route = useRoute()
+
 const activeExpand = ref(0)
 function doExpand(id) {
   if (activeExpand.value == id) {
@@ -96,7 +102,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <nav class="navbar">
+  <nav
+    class="navbar"
+    :class="{
+      bg: route?.meta?.bg
+    }"
+  >
     <div class="container d-flex justify-content-between align-items-end">
       <router-link class="logo" to="/">
         <img :src="logo[locale]" alt="" />
@@ -108,13 +119,25 @@ onMounted(async () => {
           </router-link>
 
           <div class="languages d-flex">
-            <button type="submit" @click="setDefaultLocale('ru')" :class="currentLang === 'ru' ? 'active' : ''">
+            <button
+              type="submit"
+              @click="setDefaultLocale('ru')"
+              :class="currentLang === 'ru' ? 'active' : ''"
+            >
               Ру
             </button>
-            <button type="submit" @click="setDefaultLocale('uz')" :class="currentLang === 'uz' ? 'active' : ''">
+            <button
+              type="submit"
+              @click="setDefaultLocale('uz')"
+              :class="currentLang === 'uz' ? 'active' : ''"
+            >
               O`z
             </button>
-            <button type="submit" @click="setDefaultLocale('en')" :class="currentLang === 'en' ? 'active' : ''">
+            <button
+              type="submit"
+              @click="setDefaultLocale('en')"
+              :class="currentLang === 'en' ? 'active' : ''"
+            >
               En
             </button>
           </div>
@@ -122,7 +145,8 @@ onMounted(async () => {
         <ul class="menu d-flex">
           <li>
             <router-link to="/">
-              <img src="@/assets/img/icons/home.svg" />{{ $t('message.nav.main') }}</router-link>
+              <img src="@/assets/img/icons/home.svg" />{{ $t('message.nav.main') }}</router-link
+            >
           </li>
           <li>
             <el-dropdown>
@@ -132,8 +156,11 @@ onMounted(async () => {
               </div>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item v-for="page of pages.filter((p) => need.includes(p?.key?.slug))" :key="page._id"
-                    @click="routeTo({ name: 'pageshow', params: { slug: page?.key?.slug } })">
+                  <el-dropdown-item
+                    v-for="page of pages.filter((p) => need.includes(p?.key?.slug))"
+                    :key="page._id"
+                    @click="routeTo({ name: 'pageshow', params: { slug: page?.key?.slug } })"
+                  >
                     {{ page.title }}
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -143,13 +170,16 @@ onMounted(async () => {
           <li>
             <el-dropdown>
               <div class="link" @click="routeTo('/document')">
-                <img src="@/assets/img/icons/docs.png">
+                <img src="@/assets/img/icons/docs.png" />
                 <span>{{ $t('message.nav.document') }}</span>
               </div>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item v-for="category of doccategorys" :key="category._id"
-                    @click="routeTo({ name: 'publishes', query: { id: category?._id } })">
+                  <el-dropdown-item
+                    v-for="category of doccategorys"
+                    :key="category._id"
+                    @click="routeTo({ name: 'publishes', query: { id: category?._id } })"
+                  >
                     {{ category?.title }}
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -164,8 +194,11 @@ onMounted(async () => {
               </div>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item v-for="category of categorys" :key="category._id"
-                    @click="routeTo({ name: 'publishes', query: { id: category?._id } })">
+                  <el-dropdown-item
+                    v-for="category of categorys"
+                    :key="category._id"
+                    @click="routeTo({ name: 'publishes', query: { id: category?._id } })"
+                  >
                     {{ category?.title }}
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -180,8 +213,11 @@ onMounted(async () => {
               </div>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item v-for="category of newscategorys" :key="category._id"
-                    @click="routeTo({ name: 'news', query: { id: category?._id } })">
+                  <el-dropdown-item
+                    v-for="category of newscategorys"
+                    :key="category._id"
+                    @click="routeTo({ name: 'news', query: { id: category?._id } })"
+                  >
                     {{ category?.title }}
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -197,7 +233,8 @@ onMounted(async () => {
             <router-link to="/contacts">
               <img src="@/assets/img/icons/phone.svg" />{{
                 $t('message.nav.contacts')
-              }}</router-link>
+              }}</router-link
+            >
           </li>
         </ul>
 
@@ -233,14 +270,17 @@ onMounted(async () => {
                 </div>
 
                 <div class="item__list">
-                  <div 
+                  <div
                     class="item__sub"
-                    v-for="page of pages.filter((p) => need.includes(p?.key?.slug))" 
+                    v-for="page of pages.filter((p) => need.includes(p?.key?.slug))"
                     :key="page._id"
-                    @click="routeTo({ 
-                      name: 'pageshow', 
-                      params: { slug: page?.key?.slug } 
-                    }), doMenu(false)"
+                    @click="
+                      routeTo({
+                        name: 'pageshow',
+                        params: { slug: page?.key?.slug }
+                      }),
+                        doMenu(false)
+                    "
                   >
                     - {{ page.title }}
                   </div>
@@ -261,10 +301,13 @@ onMounted(async () => {
                 </div>
 
                 <div class="item__list">
-                  <div 
+                  <div
                     class="item__sub"
-                    v-for="category of doccategorys" :key="category._id"
-                    @click="routeTo({ name: 'publishes', query: { id: category?._id } }), doMenu(false)"
+                    v-for="category of doccategorys"
+                    :key="category._id"
+                    @click="
+                      routeTo({ name: 'publishes', query: { id: category?._id } }), doMenu(false)
+                    "
                   >
                     - {{ category.title }}
                   </div>
@@ -283,12 +326,12 @@ onMounted(async () => {
                 </div>
 
                 <div class="item__list">
-                  <div 
+                  <div
                     class="item__sub"
-                    v-for="category of categorys" :key="category._id"
+                    v-for="category of categorys"
+                    :key="category._id"
                     @click="
-                      routeTo({ name: 'publishes', query: { id: category?._id } }), 
-                      doMenu(false)
+                      routeTo({ name: 'publishes', query: { id: category?._id } }), doMenu(false)
                     "
                   >
                     - {{ category.title }}
@@ -311,7 +354,8 @@ onMounted(async () => {
 
             <div class="side__more">
               <a class="email md-pt-10 md-pb-10" href="#">
-                <img src="@/assets/img/icons/email.svg" />info@ifmr.uz</a>
+                <img src="@/assets/img/icons/email.svg" />info@ifmr.uz</a
+              >
               <div class="side__languages d-flex md-pt-10">
                 <a href="#">O'z </a><a href="#">Уз </a><a class="current" href="#">Ру </a>
               </div>

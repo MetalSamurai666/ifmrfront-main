@@ -1,0 +1,55 @@
+.logi {
+  padding: 55px 0;
+  &__head {
+    display: flex;
+    gap: 24px;
+    font-size: 24px;
+    font-weight: 500;
+    align-items: center;
+    margin-bottom: 50px;
+    img {
+      width: 120px;
+      object-fit: 16/9;
+      object-fit: contain;
+      object-position: left;
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  &__item {
+    display: flex;
+    font-size: 24px;
+    gap: 20px;
+    &.col {
+      flex-direction: column;
+      .name {
+        max-width: unset;
+      }
+    }
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    .name {
+      max-width: 300px;
+      width: 100%;
+      font-weight: 500;
+    }
+    .value {
+      flex: 1;
+      text-align: left;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  }
+}

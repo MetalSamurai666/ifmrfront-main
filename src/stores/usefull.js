@@ -7,6 +7,10 @@ export const useFullStore = defineStore('useFullStore', () => {
   const id = ref('')
   const params = ref({})
 
+  const navbarBg = ref(false)
+
+  const setNavbarBg = (value) => (navbarBg.value = value)
+
   const setToggle = (value) => (toggle.value = value)
   const setEditToggle = (value, _id) => {
     editToggle.value = value
@@ -24,6 +28,8 @@ export const useFullStore = defineStore('useFullStore', () => {
     id,
     params,
     excelToggle,
+    setNavbarBg,
+    navbarBg,
     setEditToggle,
     setToggle,
     setExcelToggle,
