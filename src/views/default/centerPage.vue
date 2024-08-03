@@ -14,7 +14,6 @@ const route = useRoute()
 const data = ref({})
 const centerStore = useCenterStore()
 
-import { useFullStore } from '@/stores/usefull'
 
 onMounted(async () => {
   console.log(route?.params.id)

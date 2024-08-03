@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useCenterStore } from '@/stores/data/center'
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
@@ -19,9 +19,41 @@ const searching = async () => {
   await centerStore.searchingCenters({ ...search.value })
 }
 
+import { placeStore } from '@/stores/data/place'
+const place_store = placeStore()
+
+const regions = ref([])
+
+const getData = async () => {
+  let res = await place_store.getRegions({
+    language: locale.value
+  })
+  regions.value = [...res.data]
+}
+
+const districts = ref([])
+const getDistricts = async () => {
+  if (search.value.region) {
+    let res = await place_store.getDistricts({
+      region: search.value.region,
+      language: locale.value
+    })
+    console.log(res.data)
+  }
+}
+
+watch(
+  () => locale.value,
+  () => {
+    getData()
+  }
+)
+
 onMounted(() => {
   centerStore.getAllCenters()
   usefull.setNavbarBg(true)
+
+  getData()
 })
 </script>
 
@@ -55,9 +87,18 @@ onMounted(() => {
               <el-row :gutter="30" class="filter__row">
                 <el-col :span="12" class="filter__col">
                   <el-form-item label="Область">
-                    <el-select placeholder="Выберите область" size="large">
-                      <el-option label="Zone one" value="shanghai" />
-                      <el-option label="Zone two" value="beijing" />
+                    <el-select
+                      v-model="search.region"
+                      placeholder="Выберите область"
+                      @change="getDistricts"
+                      size="large"
+                    >
+                      <el-option
+                        v-for="region of regions"
+                        :key="region"
+                        :label="region.title"
+                        :value="region._id"
+                      />
                     </el-select>
                   </el-form-item>
 

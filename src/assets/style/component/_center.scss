@@ -48,6 +48,9 @@
     max-height: 0em;
     overflow: hidden;
     // transition: .3s linear;
+    .el-form-item__label {
+      color: #000 !important;
+    }
     &.show {
       margin-top: 10px;
       border-top: 1px solid #cbcbcb;
