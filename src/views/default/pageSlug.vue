@@ -14,7 +14,6 @@ let data = ref({})
 
 const getData = async () => {
   let res = await store.bySlug(route.params?.slug, locale.value)
-  console.log(res);
   data.value = { ...res }
 }
 
@@ -23,7 +22,8 @@ watch(
   async () => await getData()
 )
 
-watch(()=>route?.params?.slug,
+watch(
+  () => route?.params?.slug,
 
   () => {
     getData()
@@ -31,6 +31,7 @@ watch(()=>route?.params?.slug,
 )
 
 onMounted(async () => {
+  console.log('ku')
   await getData()
 })
 </script>

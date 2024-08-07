@@ -99,6 +99,7 @@ export const useDocumentStore = defineStore('useDocumentStore', () => {
       url: `v1/document`,
       params
     })
+    console.log(data)
     documents.value = [...data]
   }
 

@@ -26,7 +26,6 @@ export const usePageStore = defineStore('usePageStore', () => {
       url: `api/page`,
       params
     })
-    console.log(data)
     pages.value = [...data.data]
     pagesCount.value = data.count
   }
@@ -83,24 +82,21 @@ export const usePageStore = defineStore('usePageStore', () => {
   }
 
   const bySlug = async (slug, language) => {
-    console.log(slug,language);
     let { data } = await api({
       url: `page/${slug}`,
       params: {
         language
       }
     })
-    console.log(data)
     return data
   }
 
   const allPage = async (params) => {
-    
     let res = await api({
       url: `v1/page`,
       params
     })
-
+    console.log(res.data)
     pages.value = [...res.data]
   }
 

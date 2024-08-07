@@ -14,10 +14,6 @@ function setDefaultLocale(lang) {
   locale.value = lang
 }
 
-import { useFullStore } from '@/stores/usefull'
-const usefull = useFullStore()
-const { navbarBg } = storeToRefs(usefull)
-
 function doMenu(i) {
   sideState.value = i
 }
@@ -46,7 +42,7 @@ import { useNewscategoryStore } from '@/stores/data/newscategory'
 const newscategoryStore = useNewscategoryStore()
 const { newscategorys } = storeToRefs(newscategoryStore)
 
-const need = ref(['about', 'leadership', 'structure', 'vacancy', 'partners'])
+const need = ref(['about', 'leadership', 'organisation', 'vacancy', 'partners'])
 
 const get = async () => {
   categoryStore.getCategorys({
@@ -159,7 +155,7 @@ onMounted(async () => {
                   <el-dropdown-item
                     v-for="page of pages.filter((p) => need.includes(p?.key?.slug))"
                     :key="page._id"
-                    @click="routeTo({ name: 'pageshow', params: { slug: page?.key?.slug } })"
+                    @click="routeTo(`/${page.key?.slug}`)"
                   >
                     {{ page.title }}
                   </el-dropdown-item>
@@ -178,7 +174,7 @@ onMounted(async () => {
                   <el-dropdown-item
                     v-for="category of doccategorys"
                     :key="category._id"
-                    @click="routeTo({ name: 'publishes', query: { id: category?._id } })"
+                    @click="routeTo({ name: 'documents', query: { id: category?._id } })"
                   >
                     {{ category?.title }}
                   </el-dropdown-item>

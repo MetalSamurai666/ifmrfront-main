@@ -60,6 +60,16 @@ const menu = [
     }
   },
   {
+    path: 'vacancies',
+    name: 'vacancies',
+    component: () => import('@/views/dashboard/vacanciesList.vue'),
+    meta: {
+      title: 'Вакансии',
+      group: 'other',
+      icon: 'link'
+    }
+  },
+  {
     path: 'link',
     name: 'link',
     component: () => import('@/views/dashboard/link.vue'),

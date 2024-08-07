@@ -31,7 +31,6 @@ const getData = async () => {
   regions.value = [...res.data]
 }
 
-const districts = ref([])
 const getDistricts = async () => {
   if (search.value.region) {
     let res = await place_store.getDistricts({

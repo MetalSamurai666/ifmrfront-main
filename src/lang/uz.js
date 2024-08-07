@@ -1,11 +1,19 @@
 export default {
   localeTitle: 'O`z',
   title: 'Transport va logistikani rivojlantirish muammolarini o‘rganish markazi',
+  link: 'Havola',
+  date: 'Hujjatlarni qabul qilish vaqti',
+  personal: {
+    phone: 'Telefon raqami',
+    inphone: 'Ichki raqam',
+    recept: 'Qabul kunlari',
+    email: 'E-pochta manzili'
+  },
   message: {
     homeTitle: 'TRANSPORT VA LOGISTIKANI RIVOJLANTIRISH MUAMMOLARINI O`RGANISH MARKAZI',
     nav: {
       main: 'Bosh sahifa',
-      documents: 'Me`yoriy hujjatlar',
+      document: 'Me`yoriy hujjatlar',
       about: 'Biz haqimizda',
       pubs: 'Nashrlar',
       news: 'Yangiliklar',

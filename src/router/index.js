@@ -22,7 +22,7 @@ const router = createRouter({
         {
           path: 'pubs',
           name: 'publishes',
-          component: () => import('@/views/default/pubs.vue')
+          component: () => import('@/views/default/pubsPage.vue')
         },
         {
           path: 'news',
@@ -35,15 +35,21 @@ const router = createRouter({
           component: () => import('@/views/default/documentList.vue')
         },
         {
+          path: 'leadership',
+          name: 'leadership',
+          component: () => import('@/views/default/personalsList.vue')
+        },
+        {
+          path: 'vacancy',
+          name: 'vacancy',
+          component: () => import('@/views/default/vacancyList.vue')
+        },
+        {
           path: 'contacts',
           name: 'contacts',
           component: () => import('@/views/default/contacts.vue')
         },
-        {
-          path: ':slug',
-          name: 'pageshow',
-          component: () => import('@/views/default/pageSlug.vue')
-        },
+
         {
           path: 'centers',
           name: 'center',
@@ -59,6 +65,11 @@ const router = createRouter({
           meta: {
             bg: true
           }
+        },
+        {
+          path: ':slug',
+          name: 'pageshow',
+          component: () => import('@/views/default/pageSlug.vue')
         }
       ]
     },

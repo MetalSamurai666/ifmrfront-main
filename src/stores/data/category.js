@@ -9,7 +9,7 @@ export const useCategoryStore = defineStore('useCategoryStore', () => {
   const category = ref({})
 
   const addCategory = async (data) => {
-    console.log(data)
+
     let newCategory = await api({
       url: 'api/category',
       method: 'post',
@@ -27,7 +27,6 @@ export const useCategoryStore = defineStore('useCategoryStore', () => {
       url: `api/category`,
       params
     })
-    console.log(data)
     categorys.value = [...data.data]
     categorysCount.value = data.count
   }
@@ -39,7 +38,6 @@ export const useCategoryStore = defineStore('useCategoryStore', () => {
       url: `v1/category`,
       params
     })
-    console.log(data)
     categorys.value = [...data]
   }
 
@@ -66,13 +64,11 @@ export const useCategoryStore = defineStore('useCategoryStore', () => {
   }
 
   const saveCategory = async (data) => {
-    console.log(data)
     let res = await api({
       url: `api/category`,
       method: 'put',
       data
     })
-    console.log(res.data)
     categorys.value = [
       ...categorys.value.map((category) => {
         if (category._id == res.data._id) return { ...res.data }

@@ -1,6 +1,14 @@
 export default {
   localeTitle: 'En',
+  link: 'Link',
+  date: 'Время приема документов',
   title: 'Center for research of issues in development of transport and logistics ',
+  personal: {
+    phone: 'Telefon raqami',
+    inphone: 'Ichki raqam',
+    recept: 'Qabul kunlari',
+    email: 'E-pochta manzili'
+  },
   message: {
     homeTitle: 'ТРАНСПОРТ ВА ЛОГИСТИКАНИ РИВОЖЛАНТИРИШ МУАММОЛАРИНИ ЎРГАНИШ МАРКАЗИ',
     nav: {

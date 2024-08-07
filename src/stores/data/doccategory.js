@@ -9,7 +9,7 @@ export const useDoccategoryStore = defineStore('useDoccategoryStore', () => {
   const doccategory = ref({})
 
   const addDoccategory = async (data) => {
-    console.log(data)
+
     let newDoccategory = await api({
       url: 'api/doccategory',
       method: 'post',
@@ -21,14 +21,13 @@ export const useDoccategoryStore = defineStore('useDoccategoryStore', () => {
   }
 
   const getAllDoccategorys = async (params) => {
-    console.log(params)
+
     doccategorys.value = []
     doccategorysCount.value = 0
     let { data } = await api({
       url: `api/doccategory`,
       params
     })
-    console.log(data)
     doccategorys.value = [...data.data]
     doccategorysCount.value = data.count
   }
@@ -40,7 +39,6 @@ export const useDoccategoryStore = defineStore('useDoccategoryStore', () => {
       url: `v1/doccategory`,
       params
     })
-    console.log(data)
     doccategorys.value = [...data]
   }
 
@@ -70,13 +68,12 @@ export const useDoccategoryStore = defineStore('useDoccategoryStore', () => {
   }
 
   const saveDoccategory = async (data) => {
-    console.log(data)
+
     let res = await api({
       url: `api/doccategory`,
       method: 'put',
       data
     })
-    console.log(res.data)
     doccategorys.value = [
       ...doccategorys.value.map((doccategory) => {
         if (doccategory._id == res.data._id) return { ...res.data }

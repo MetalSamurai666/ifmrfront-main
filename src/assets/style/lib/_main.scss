@@ -65,3 +65,13 @@ div.ql-container {
 .small {
   font-size: 14px;
 }
+
+pre.ql-syntax {
+  background-color: #f3f5fe;
+  white-space: wrap;
+  word-wrap: break-word;
+  font-family: 'Fira Sans Condensed';
+  padding: 20px 25px;
+  border-radius: 20px;
+  margin: 20px -25px;
+}
