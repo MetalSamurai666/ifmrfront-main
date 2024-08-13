@@ -10,14 +10,18 @@
 </template>
 
 <script setup>
-import headerPart from '@/components/layout/header-part.vue'
+import cookies from 'vue-cookies'
 import asidePart from '@/components/layout/aside-part.vue'
 import { authStore } from '@/stores/user/auth'
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 const store = authStore()
-
+const router = useRouter()
 onMounted(async () => {
-  await store.checkUser()
+  if (cookies.get('sitetoken')) {
+    return await store.checkUser()
+  }
+  router.push({ name: 'login' })
 })
 </script>
 

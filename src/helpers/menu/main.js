@@ -140,6 +140,26 @@ const menu = [
         }
       },
       {
+        path: 'region',
+        name: 'region',
+        component: () => import('@/views/dashboard/regionList.vue'),
+        meta: {
+          title: 'Регион',
+          group: 'centers',
+          icon: 'office-building'
+        }
+      },
+      {
+        path: 'district',
+        name: 'district',
+        component: () => import('@/views/dashboard/districtList.vue'),
+        meta: {
+          title: 'Регион',
+          group: 'centers',
+          icon: 'office-building'
+        }
+      },
+      {
         path: 'storage',
         name: 'storage',
         component: () => import('@/views/dashboard/storageList.vue'),

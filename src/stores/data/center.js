@@ -32,11 +32,15 @@ export const useCenterStore = defineStore('useCenterStore', () => {
   }
 
   const searchingCenters = async (params) => {
+    console.log(params)
     centers.value = []
     centersCount.value = 0
     let { data } = await api({
       url: `api/center/searching`,
-      params
+      params: {
+        title: params.title || '',
+        search: params.params
+      }
     })
     console.log(data)
     centers.value = [...data]

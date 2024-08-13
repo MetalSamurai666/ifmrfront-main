@@ -16,18 +16,21 @@ const usefull = useFullStore()
 
 const search = ref({})
 const searching = async () => {
-  await centerStore.searchingCenters({ ...search.value })
+  const { title, ...params } = search.value
+  await centerStore.searchingCenters({ title, params })
 }
 
 import { placeStore } from '@/stores/data/place'
 const place_store = placeStore()
 
 const regions = ref([])
+const districts = ref([])
 
 const getData = async () => {
   let res = await place_store.getRegions({
     language: locale.value
   })
+  console.log(res.data)
   regions.value = [...res.data]
 }
 
@@ -38,6 +41,7 @@ const getDistricts = async () => {
       language: locale.value
     })
     console.log(res.data)
+    districts.value = [...res.data]
   }
 }
 
@@ -96,53 +100,26 @@ onMounted(() => {
                         v-for="region of regions"
                         :key="region"
                         :label="region.title"
-                        :value="region._id"
+                        :value="region.key"
                       />
                     </el-select>
                   </el-form-item>
-
-                  <el-row :gutter="20">
-                    <el-col :span="12">
-                      <el-form-item label="Тип">
-                        <el-select placeholder="Выберите" size="large">
-                          <el-option label="Zone one" value="shanghai" />
-                          <el-option label="Zone two" value="beijing" />
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="12">
-                      <el-form-item label="Тип склада">
-                        <el-select placeholder="Выберите" size="large">
-                          <el-option label="Zone one" value="shanghai" />
-                          <el-option label="Zone two" value="beijing" />
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
-                  </el-row>
-
-                  <el-row :gutter="30">
-                    <el-col :span="12">
-                      <el-form-item label="Транспортная связь">
-                        <el-select placeholder="Выберите" size="large">
-                          <el-option label="Zone one" value="shanghai" />
-                          <el-option label="Zone two" value="beijing" />
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
-                    <el-col></el-col>
-                  </el-row>
                 </el-col>
-
                 <el-col :span="12" class="filter__col">
                   <el-form-item label="Район/город">
-                    <el-select placeholder="Выберите район" size="large">
-                      <el-option label="Zone one" value="shanghai" />
-                      <el-option label="Zone two" value="beijing" />
+                    <el-select v-model="search.district" placeholder="Выберите район" size="large">
+                      <el-option
+                        v-for="region of districts"
+                        :key="region"
+                        :label="region.title"
+                        :value="region.key"
+                      />
                     </el-select>
                   </el-form-item>
+                </el-col>
 
-                  <!-- <el-row :gutter="30">
-                                        <el-col :span="12"> -->
+
+                <el-col :span="12" class="filter__col" v-if="false">
                   <el-row :gutter="20">
                     <el-col :span="12">
                       <el-form-item label="Транспортная связь">
@@ -168,9 +145,6 @@ onMounted(() => {
                       </el-row>
                     </el-col>
                   </el-row>
-
-                  <!-- </el-col>
-                                    </el-row> -->
                 </el-col>
               </el-row>
             </el-form>

@@ -59,6 +59,7 @@ export default {
     }
   },
   block: {
+    contact:'Контактные данные',
     site: 'Веб-сайт',
     address: 'Адрес',
     square: 'Площадь Логистического центра',

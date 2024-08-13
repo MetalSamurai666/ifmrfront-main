@@ -29,27 +29,28 @@
         max-width: unset;
       }
     }
-    .photos {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      img {
-        height: 200px;
-        width: 100%;
-        object-fit: cover;
-      }
-    }
-    .name {
-      max-width: 300px;
+  }
+  .photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    img {
+      height: 200px;
       width: 100%;
-      font-weight: 500;
+      object-fit: cover;
     }
-    .value {
-      flex: 1;
-      text-align: left;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+  }
+  .name {
+    max-width: 300px;
+    width: 100%;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .value {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 }

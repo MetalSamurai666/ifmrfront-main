@@ -24,7 +24,8 @@ const handleSave = async (value) => {
         title: value.title,
         text: value.text,
         address: value.address,
-        language: value.language || 'ru'
+        language: value.language || 'ru',
+        phones: value.phones
       }
     ]
   }
@@ -49,6 +50,7 @@ const handleEdit = async ({ id, language = null }) => {
     title: translate.title,
     address: translate.address,
     text: translate.text,
+    phones: translate.phones,
     img: key?.img.map((img) => {
       return {
         ...img,
@@ -126,9 +128,15 @@ const classification_store = useClassificationStore()
 import { useSpecStore } from '@/stores/data/spec'
 const spec_store = useSpecStore()
 
+import { useRegionStore } from '@/stores/data/region'
+const region_store = useRegionStore()
+
 onMounted(async () => {
   await getDate()
 
+  await region_store.getAllRegions({
+    limit: 0
+  })
   await spec_store.getAllSpecs({
     limit: 0
   })

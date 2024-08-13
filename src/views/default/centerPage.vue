@@ -14,7 +14,6 @@ const route = useRoute()
 const data = ref({})
 const centerStore = useCenterStore()
 
-
 onMounted(async () => {
   console.log(route?.params.id)
   let res = await centerStore.bySlug(route?.params.id)
@@ -37,6 +36,15 @@ onMounted(async () => {
         {{ data.translate?.title }}
       </div>
       <div class="logi__list">
+        <div class="name">{{ $t('block.contact') }}</div>
+        <div class="logi__item" v-for="phone of data.translate?.phones" :key="phone._id">
+          <div class="name">{{ phone.who }}</div>
+          <div class="value">
+            <span v-for="numb of phone.numbers" :key="numb" class="mr-20">
+              {{ numb }}
+            </span>
+          </div>
+        </div>
         <div class="logi__item">
           <div class="name">{{ $t('block.site') }}</div>
           <div class="value">{{ data.site }}</div>

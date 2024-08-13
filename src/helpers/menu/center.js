@@ -9,6 +9,24 @@ export const centerMenu = [
     }
   },
   {
+    path: 'region',
+    name: 'region',
+    meta: {
+      title: 'Регион',
+      group: 'centers',
+      icon: 'office-building'
+    }
+  },
+  {
+    path: 'district',
+    name: 'district',
+    meta: {
+      title: 'Район/город',
+      group: 'centers',
+      icon: 'office-building'
+    }
+  },
+  {
     path: 'storage',
     name: 'storage',
     meta: {

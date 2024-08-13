@@ -26,6 +26,35 @@
             <el-input v-model="data.rating" />
           </el-form-item>
         </el-col>
+        <el-col :span="12">
+          <el-form-item label="Область" prop="region" :rules="blurRule">
+            <el-select
+              @change="getDistricts"
+              v-model="data.region"
+              placeholder="Выберите из списка"
+            >
+              <el-option
+                v-for="item of regions"
+                :key="item._id"
+                :label="item.translates?.at(0)?.title"
+                :value="item._id"
+              />
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="Район/город" prop="district" :rules="blurRule">
+            <el-select v-model="data.district" placeholder="Выберите из списка">
+              <el-option
+                v-for="item of districts"
+                :key="item._id"
+                :label="item?.title"
+                :value="item._id"
+              />
+            </el-select>
+          </el-form-item>
+        </el-col>
+
         <el-col :span="16">
           <el-form-item label="Адрес" prop="address" :rules="blurRule">
             <el-input v-model="data.address" />
@@ -148,6 +177,37 @@
           </el-form-item>
         </el-col>
         <el-col :span="24">
+          <div>Контактные данные:</div>
+          <el-row :gutter="30" v-for="(phone, index) of data.phones" :key="index">
+            <el-col :span="6">
+              <el-form-item :label="index == 0 ? 'Имя контакта/должности' : index">
+                <el-input v-model="data.phones[index].who" placeholder="Название контакта" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="18">
+              <el-form-item :label="index == 0 ? 'Номер телефон' : ''">
+                <div
+                  class="mr-10 mb-10"
+                  v-for="(numb, numbIndex) of phone.numbers"
+                  :key="`number-${numbIndex}`"
+                >
+                  <el-input
+                    v-maska="'+998 (##) ###-##-##'"
+                    v-model="data.phones[index].numbers[numbIndex]"
+                  />
+                </div>
+
+                <el-button @click="addNumber(index)" type="primary">
+                  <el-icon> <plus /> </el-icon>Добавить телефон
+                </el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-button @click="addContact" type="primary">
+            <el-icon> <plus /> </el-icon>Добавить контакт
+          </el-button>
+        </el-col>
+        <el-col :span="24">
           <el-form-item label="Наличие дополнительных услуг">
             <el-input v-model="data.text" type="textarea" :rows="4" />
           </el-form-item>
@@ -196,6 +256,8 @@
 </template>
 
 <script setup>
+import { vMaska } from 'maska/vue'
+
 import { ref, watch } from 'vue'
 const emits = defineEmits(['close', 'save', 'checkslug'])
 const props = defineProps(['toggle', 'id', 'type', 'option', 'center'])
@@ -259,6 +321,33 @@ import { useSpecStore } from '@/stores/data/spec'
 const spec_store = useSpecStore()
 const { specs } = storeToRefs(spec_store)
 
+import { useRegionStore } from '@/stores/data/region'
+const region_store = useRegionStore()
+const { regions } = storeToRefs(region_store)
+
+import { placeStore } from '@/stores/data/place'
+const place_store = placeStore()
+
+const districts = ref([])
+const getDistricts = async () => {
+  let res = await place_store.getDistricts({
+    region: data.value.region
+  })
+  console.log(res.data)
+  districts.value = [...res.data]
+}
+
+const addNumber = (index) => {
+  data.value.phones[index].numbers.push('')
+}
+
+const addContact = () => {
+  data.value.phones.push({
+    who: '',
+    numbers: ['']
+  })
+}
+
 const close = async () => {
   emits('close')
   dialogToggle.value = false
@@ -283,10 +372,20 @@ const save = async () => {
 watch(
   () => props.toggle,
   async (to) => {
-    if (props.type) data.value = { ...props.center }
-    else
+    if (props.type) {
+      data.value = { ...props.center }
+      if (data.value.region) {
+        await getDistricts()
+      }
+    } else
       data.value = {
-        language: 'ru'
+        language: 'ru',
+        phones: [
+          {
+            who: '',
+            numbers: ['']
+          }
+        ]
       }
     console.log(data.value)
     dialogToggle.value = to
