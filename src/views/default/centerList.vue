@@ -32,7 +32,33 @@ const getData = async () => {
   })
   console.log(res.data)
   regions.value = [...res.data]
+
+  await connect_store.getAllConnects({
+    limit: 0,
+    language: locale.value
+  })
+  await type_store.getAllTypes({
+    limit: 0,
+    language: locale.value
+  })
+
+  await classification_store.getAllClassifications({
+    limit: 0,
+    language: locale.value
+  })
 }
+
+import { useConnectStore } from '@/stores/data/connect'
+const connect_store = useConnectStore()
+const { connects } = storeToRefs(connect_store)
+
+import { useTypeStore } from '@/stores/data/type'
+const type_store = useTypeStore()
+const { types } = storeToRefs(type_store)
+
+import { useClassificationStore } from '@/stores/data/classification'
+const classification_store = useClassificationStore()
+const { classifications } = storeToRefs(classification_store)
 
 const getDistricts = async () => {
   if (search.value.region) {
@@ -110,7 +136,7 @@ onMounted(() => {
                     <el-select v-model="search.district" placeholder="Выберите район" size="large">
                       <el-option
                         v-for="region of districts"
-                        :key="region"
+                        :key="region.key"
                         :label="region.title"
                         :value="region.key"
                       />
@@ -118,33 +144,53 @@ onMounted(() => {
                   </el-form-item>
                 </el-col>
 
-
-                <el-col :span="12" class="filter__col" v-if="false">
-                  <el-row :gutter="20">
-                    <el-col :span="12">
-                      <el-form-item label="Транспортная связь">
-                        <el-select placeholder="Выберите" size="large">
-                          <el-option label="Zone one" value="shanghai" />
-                          <el-option label="Zone two" value="beijing" />
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
-
-                    <el-col :span="12">
-                      <el-row :gutter="20">
-                        <el-col :span="12">
-                          <el-form-item label="Площадь (от)">
-                            <el-input size="large" />
-                          </el-form-item>
-                        </el-col>
-                        <el-col :span="12">
-                          <el-form-item label="Площадь (до)">
-                            <el-input size="large" />
-                          </el-form-item>
-                        </el-col>
-                      </el-row>
-                    </el-col>
-                  </el-row>
+                <!-- <el-col :span="6">
+                  <el-form-item label="Тип">
+                    <el-select v-model="search.connect" placeholder="Выберите" size="large">
+                      <el-option
+                        v-for="item of connects"
+                        :key="item._id"
+                        :label="item.translates?.at(0)?.title"
+                        :value="item._id"
+                      />
+                    </el-select>
+                  </el-form-item>
+                </el-col> -->
+                <el-col :span="6">
+                  <el-form-item label="Тип склада">
+                    <el-select v-model="search.type" placeholder="Выберите" size="large">
+                      <el-option
+                        v-for="item of types"
+                        :key="item._id"
+                        :label="item.translates?.at(0)?.title"
+                        :value="item._id"
+                      />
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="6">
+                  <el-form-item label="Классификация">
+                    <el-select v-model="search.classification" placeholder="Выберите" size="large">
+                      <el-option
+                        v-for="item of classifications"
+                        :key="item._id"
+                        :label="item.translates?.at(0)?.title"
+                        :value="item._id"
+                      />
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="6">
+                  <el-form-item label="Транспортная связь">
+                    <el-select v-model="search.connect" placeholder="Выберите" size="large">
+                      <el-option
+                        v-for="item of connects"
+                        :key="item._id"
+                        :label="item.translates?.at(0)?.title"
+                        :value="item._id"
+                      />
+                    </el-select>
+                  </el-form-item>
                 </el-col>
               </el-row>
             </el-form>

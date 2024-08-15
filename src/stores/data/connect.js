@@ -26,7 +26,7 @@ export const useConnectStore = defineStore('useConnectStore', () => {
       url: `api/connect`,
       params
     })
-
+    console.log(data.data)
     connects.value = [...data.data]
     connectsCount.value = data.count
   }
@@ -46,9 +46,7 @@ export const useConnectStore = defineStore('useConnectStore', () => {
       url: `api/connect/${id}`,
       method: 'delete'
     })
-    connects.value = connects.value.filter(
-      (connect) => connect._id !== id
-    )
+    connects.value = connects.value.filter((connect) => connect._id !== id)
     connectsCount.value -= 1
     ElMessage.warning('Удалено')
   }
